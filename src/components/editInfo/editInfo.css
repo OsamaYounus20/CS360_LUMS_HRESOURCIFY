@@ -1,0 +1,10 @@
+.ContainerPlacing {
+    margin : 100px auto 0 250px;
+}
+
+.input:invalid:required {
+    box-shadow: 0 0 5px 1px;
+}
+.centerplacing {
+    text-align: center;
+}
