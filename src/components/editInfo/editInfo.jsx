@@ -51,7 +51,7 @@ export default function FormPropsTextFields() {
             style={{ backgroundColor: "#fff", height: "auto" }}
           >
             <form className={classes.root}>
-              <div>
+              <div className="myForm">
                 <div className={classes.image}>
                   <Avatar
                     alt="Remy Sharp"
