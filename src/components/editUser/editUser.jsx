@@ -45,13 +45,13 @@ export default function FormPropsTextFields() {
       <Navbar />
       <div className="ContainerPlacing">
         <Container fixed>
-          <h1>Edit Personal Info</h1>
+          <h1>Edit Employee Info</h1>
           <Typography
             component="div"
             style={{ backgroundColor: "#fff", height: "auto" }}
           >
             <form className={classes.root}>
-              <div>
+              <div className="myForm">
                 <div className={classes.image}>
                   <Avatar
                     alt="Remy Sharp"
