@@ -1,12 +1,10 @@
+import React, { Component } from "react";
 import "./adminDashboard.css";
-import React,{Component} from "react";
+import Button from "@material-ui/core/Button";
 
-import Container from "@material-ui/core/Container";
 import Navbar from "../adminNavbar/navbar";
 
-//export default function ClippedDrawer() {
-class adminDashBoard extends Component{
-
+class adminDashBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,63 +12,127 @@ class adminDashBoard extends Component{
   onClickAddUser(event) {
     this.props.history.push("/add_user");
   }
-  onClickDeleteUser(){
+  onClickDeleteUser() {
     this.props.history.push("/user");
   }
-  render(){
-  return (
-    <div>
-      <Navbar />
-      <div className="ContainerPlacing">
-        <Container fixed>
-          <ul>
-            <li>
-              <button className="addUserButton" onClick={this.onClickAddUser.bind(this)}>
-                <h3 className="buttonText">
-                  <b>Add User</b>
-                </h3>
-              </button>
-            </li>
-            <li>
-              <button className="addDepartmentButton">
-                <h3 className="buttonText2">
-                  <b>Add Department</b>
-                </h3>
-              </button>
-            </li>
-            <li>
-              <button className="leaveButton">
-                <h3 className="buttonText2">
-                  <b>View Leave Request</b>
-                </h3>
-              </button>
-            </li>
-            <li>
-              <button className="deleteUserButton">
-                <h3 className="buttonText" onClick={this.onClickDeleteUser.bind(this)}>
-                  <b>Users</b>
-                </h3>
-              </button>
-            </li>
-            <li>
-              <button className="deleteDepartmentButton">
-                <h3 className="buttonText2">
-                  <b>Delete Department</b>
-                </h3>
-              </button>
-            </li>
-            <li>
-              <button className="benefitButton">
-                <h3 className="buttonText2">
-                  <b>View Benefit Request</b>
-                </h3>
-              </button>
-            </li>
-          </ul>
-        </Container>
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="dashboard">
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+            onClick={this.onClickDeleteUser.bind(this)}
+          >
+            Users
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+          >
+            Add Department
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+          >
+            View Leave Request
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+            onClick={this.onClickAddUser.bind(this)}
+          >
+            Add User
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+          >
+            Delete Department
+          </Button>
+          <Button
+            variant="contained"
+            style={{
+              marginLeft: "100px",
+              marginTop: "100px",
+              minWidth: "200px",
+              minHeight: "200px",
+              maxWidth: "200px",
+              maxHeight: "200px",
+              background: "#292770",
+              borderRadius: "30px",
+              fontSize: "1.5em",
+            }}
+            size="large"
+            color="default"
+          >
+            View Benefit Request
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
   }
 }
 export default adminDashBoard;
