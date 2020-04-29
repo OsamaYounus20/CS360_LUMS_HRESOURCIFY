@@ -3,6 +3,8 @@ import "./userDashboard.css";
 import Button from "@material-ui/core/Button";
 import Navbar from "../userNavbar/navbar";
 import Clock from "../clock/clock";
+import Piechart from "../piechart/piechart";
+
 class userDashBoard extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,8 @@ class userDashBoard extends Component {
     return (
       <React.Fragment>
         <Navbar />
+        <Piechart />
+
         <div className="clockContainer">
           <Clock />
         </div>
