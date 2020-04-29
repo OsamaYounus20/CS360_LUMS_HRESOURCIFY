@@ -35,23 +35,13 @@ class piechart extends Component {
           <Paper
             style={{
               background: "#d3c1c3",
-              maxWidth: "400px",
-              maxHeight: "430px",
-              minWidth: "400px",
-              minHeight: "430px",
+              maxWidth: "100px",
+              maxHeight: "130px",
+              minWidth: "100px",
+              minHeight: "130px",
               borderRadius: "30px",
             }}
           >
-            <Chart data={chartData}>
-              <PieSeries
-                valueField="val"
-                argumentField="stats"
-                innerRadius={0.25}
-                outerRadius={0.65}
-              />
-              <Title text="Attendance" />
-              <Animation />
-            </Chart>
           </Paper>
         </div>
       </React.Fragment>
