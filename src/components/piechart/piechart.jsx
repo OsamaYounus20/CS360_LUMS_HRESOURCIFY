@@ -36,9 +36,9 @@ class piechart extends Component {
             style={{
               background: "#d3c1c3",
               maxWidth: "400px",
-              maxHeight: "420px",
+              maxHeight: "430px",
               minWidth: "400px",
-              minHeight: "420px",
+              minHeight: "430px",
               borderRadius: "30px",
             }}
           >
@@ -46,8 +46,8 @@ class piechart extends Component {
               <PieSeries
                 valueField="val"
                 argumentField="stats"
-                innerRadius={0.2}
-                outerRadius={0.5}
+                innerRadius={0.25}
+                outerRadius={0.65}
               />
               <Title text="Attendance" />
               <Animation />
