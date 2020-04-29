@@ -35,10 +35,10 @@ class piechart extends Component {
           <Paper
             style={{
               background: "#d3c1c3",
-              maxWidth: "450px",
-              maxHeight: "480px",
-              minWidth: "450px",
-              minHeight: "480px",
+              maxWidth: "400px",
+              maxHeight: "420px",
+              minWidth: "400px",
+              minHeight: "420px",
               borderRadius: "30px",
             }}
           >
@@ -46,8 +46,8 @@ class piechart extends Component {
               <PieSeries
                 valueField="val"
                 argumentField="stats"
-                innerRadius={0.4}
-                outerRadius={0.75}
+                innerRadius={0.2}
+                outerRadius={0.5}
               />
               <Title text="Attendance" />
               <Animation />
