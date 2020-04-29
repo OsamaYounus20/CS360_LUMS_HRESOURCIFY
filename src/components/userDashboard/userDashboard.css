@@ -1,16 +1,31 @@
 .MuiButton-label {
   color: white;
 }
-.dashboard {
-  margin: 50px 100px auto 250px !important;
+.positioning {
+  display: flex;
+  justify-content: space-between;
+}
+.userDashboard {
+  margin: 25px 200px auto 140px !important;
+  max-width: 60%;
+  max-height: 60%;
+  padding: 0;
+  align-content: flex-start;
 }
 .compo {
   display: flex;
   justify-content: space-between;
+  max-width: 200px;
+  max-height: 200px;
   margin-top: 100px;
+  margin-left: 80%;
 }
 .piechart {
-  align-content: flex-start;
+  align-content: flex-end;
+  margin-top: 100px;
+  margin-right: 50px;
+  margin-left: 0px;
+
 }
 .clock {
   align-content: flex-end;
