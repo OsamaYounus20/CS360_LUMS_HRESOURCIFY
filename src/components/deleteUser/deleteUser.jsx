@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
 import "./deleteUser.css";
-import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -9,57 +8,38 @@ import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
-import {Link} from 'react-router-dom';
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  image: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(2),
-      background: "#f50057",
-    },
-  },
-  large: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-  },
-}));
 const theme = createMuiTheme({
   palette: {
     primary: green,
   },
 });
-export default function FormPropsTextFields() {
-  const classes = useStyles();
 
-  return (
-    <div>
-      <Navbar />
-      <div className="ContainerPlacing">
-        <Container fixed>
-          <h1>Employee Info</h1>
-          <Typography
-            component="div"
-            style={{ backgroundColor: "#fff", height: "auto" }}
-          >
-            <form className={classes.root}>
+class deleteUser extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  onClickEditUser(event) {
+    this.props.history.push("/edit_user");
+  }
+  onClickDeleteUser(event) {
+    this.props.history.push("/user");
+  }
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <div className="ContainerPlacing">
+          <Container fixed>
+            <h1>Employee Info</h1>
+            <Typography
+              component="div"
+              style={{ backgroundColor: "#fff", height: "auto" }}
+            >
               <div>
-                <div className={classes.image}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={image1}
-                    className={classes.large}
-                  />
+                <div className="pictureBG">
+                  <Avatar alt="Remy Sharp" src={image1} className="picture" />
                 </div>
                 <ul>
                   <li>
@@ -160,37 +140,34 @@ export default function FormPropsTextFields() {
                   </li>
                 </ul>
               </div>
-            </form>
-          </Typography>
-        </Container>
-        <div className="centerplacing">
-          <ThemeProvider theme={theme}>
-            <Link to = '/edit_user'>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              className={classes.margin}
-              
-            >
-              Edit
-            </Button>
-            </Link>
+            </Typography>
+          </Container>
+          <div className="centerplacing">
+            <ThemeProvider theme={theme}>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                className="margin"
+                onClick={this.onClickEditUser.bind(this)}
+              >
+                Edit
+              </Button>
 
-
-            <Link to = '/user'>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              className={classes.margin}
-            >
-              Delete
-            </Button>
-            </Link>
-          </ThemeProvider>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                className="margin"
+                onClick={this.onClickDeleteUser.bind(this)}
+              >
+                Delete
+              </Button>
+            </ThemeProvider>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+export default deleteUser;
