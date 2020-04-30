@@ -21,122 +21,123 @@ class userDashBoard extends Component {
       <React.Fragment>
         <Navbar />
         <div className="pageContainer">
-              <div className="compo">
-                  <div className="clock">
-                    <Clock />
-                  </div>
-              </div>
-            <div className="positioning">
-          <div className="userDashboard">
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                // marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-              onClick={this.onClickDeleteUser.bind(this)}
-            >
-              Users
-            </Button>
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                // marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-            >
-              Add Department
-            </Button>
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                // marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-            >
-              View Leave Request
-            </Button>
+          <div className="clockContainer">
+            <div className="clock">
+              <Clock />
+            </div>
+          </div>
+          <div className="positioning">
+            <div className="userDashboard">
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  // marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+                onClick={this.onClickDeleteUser.bind(this)}
+              >
+                Users
+              </Button>
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  // marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+              >
+                Add Department
+              </Button>
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  // marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+              >
+                View Leave Request
+              </Button>
 
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-              onClick={this.onClickAddUser.bind(this)}
-            >
-              Add User
-            </Button>
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-            >
-              Delete Department
-            </Button>
-            <Button
-              variant="contained"
-              style={{
-                marginLeft: "100px",
-                marginTop: "100px",
-                minWidth: "140px",
-                minHeight: "140px",
-                maxWidth: "140px",
-                maxHeight: "140px",
-                background: "#292770",
-                borderRadius: "30px",
-                fontSize: "1em",
-              }}
-              color="default"
-            >
-              View Benefit Request
-            </Button>
-          </div>
-          <div className="piechart">
-              <h1>piechart</h1>
-          </div>
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+                onClick={this.onClickAddUser.bind(this)}
+              >
+                Add User
+              </Button>
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+              >
+                Delete Department
+              </Button>
+              <Button
+                variant="contained"
+                style={{
+                  marginLeft: "100px",
+                  marginTop: "100px",
+                  minWidth: "140px",
+                  minHeight: "140px",
+                  maxWidth: "140px",
+                  maxHeight: "140px",
+                  background: "#292770",
+                  borderRadius: "30px",
+                  fontSize: "1em",
+                }}
+                color="default"
+              >
+                View Benefit Request
+              </Button>
+            </div>
+            <div className="piechart">
+              <h1>Attendance</h1>
+              <Piechart />
+            </div>
           </div>
         </div>
       </React.Fragment>
