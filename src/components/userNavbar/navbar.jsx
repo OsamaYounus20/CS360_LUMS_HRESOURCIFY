@@ -11,6 +11,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Logout from "../logoutMenu/logoutMenu";
+import './navbar.css'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -58,11 +60,18 @@ export default function ClippedDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
+      <div className="placinglog">
+          <div className="hr">
         <Toolbar>
           <Typography variant="h6" noWrap>
             HRESOURCIFY
           </Typography>
         </Toolbar>
+        </div>
+        <div className="log">
+          <Logout/>
+        </div>
+        </div>
       </AppBar>
       <Drawer
         className={classes.drawer}
