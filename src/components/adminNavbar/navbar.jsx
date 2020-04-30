@@ -92,14 +92,15 @@ export default function ClippedDrawer() {
           <ListItemText style={textstyle} primary={"Users"} />
           </ListItem>
           </Link>
-
+          
+          <Link to = '/department'>
           <ListItem style={buttonstyle} button key={"Department"}>
                   <ListItemIcon style={iconstyle}>
                      <InboxIcon /> 
                   </ListItemIcon>
                   <ListItemText style={textstyle} primary={"Department"} />
             </ListItem>
-
+            </Link>
 
             <ListItem style={buttonstyle} button key={"Leaves"}>
                   <ListItemIcon style={iconstyle}>
