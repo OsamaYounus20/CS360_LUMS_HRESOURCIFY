@@ -11,7 +11,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Logout from "../logoutMenu/logoutMenu";
+import './navbar.css'
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,11 +60,18 @@ export default function ClippedDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
+        <div className="placinglog">
+          <div className="hr">
         <Toolbar>
           <Typography variant="h6" noWrap>
             HRESOURCIFY
           </Typography>
         </Toolbar>
+        </div>
+        <div className="log">
+          <Logout/>
+        </div>
+        </div>
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -92,15 +101,14 @@ export default function ClippedDrawer() {
           <ListItemText style={textstyle} primary={"Users"} />
           </ListItem>
           </Link>
-          
-          <Link to = '/department'>
+
           <ListItem style={buttonstyle} button key={"Department"}>
                   <ListItemIcon style={iconstyle}>
                      <InboxIcon /> 
                   </ListItemIcon>
                   <ListItemText style={textstyle} primary={"Department"} />
             </ListItem>
-            </Link>
+
 
             <ListItem style={buttonstyle} button key={"Leaves"}>
                   <ListItemIcon style={iconstyle}>
