@@ -8,6 +8,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
@@ -18,10 +19,52 @@ const theme = createMuiTheme({
 class addUser extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      Name : '',
+      Email: '',
+      phoneNumber: '',
+      cnic:'',
+      dob: '',
+      maritalStatus: '',
+      bloodGroup: '',
+      designation: '',
+      department: '',
+      nationality: '',
+      location: '',
+      address: '',
+    };
+    this.inputChange = this.inputChange.bind(this);
   }
+  inputChange(e) {
+    this.setState({
+        [e.target.name] : e.target.value
+    });
+}
   onClickAddUser(event) {
-    this.props.history.push("/user");
+    event.preventDefault()
+    var apiBaseUrl =  "http://localhost:4000/api/";
+    var self = this;
+    var payload = {
+        'Name': this.state.Name,
+        'Email': this.state.Email,
+        'phoneNumber' : this.state.phoneNumber,
+        'cnic': this.state.cnic,
+        'dob': this.state.dob,
+        'maritalStatus': this.state.maritalStatus,
+        'bloodGroup': this.state.bloodGroup,
+        'designation': this.state.designation,
+        'department': this.state.department,
+        'nationality': this.state.nationality,
+        'location': this.state.location,
+        'address': this.state.address,
+    }
+    axios.post(apiBaseUrl+'login', payload)
+    .then(function(response){
+        if (response.data.code === 206) {           // successful login
+            self.props.history.push('/user');
+        }
+    })
+    return
   }
   onClickCancel(event) {
     this.props.history.push("/user");
@@ -43,78 +86,102 @@ class addUser extends Component {
                     <Avatar alt="Remy Sharp" className="picture" />
                   </div>
                   <TextField
+                    name="Name"
                     id="outlined-basic"
                     label="Name"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "Email"
                     id="outlined-basic"
                     label="Email"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "phoneNumber"
                     id="outlined-basic"
                     label="Phone Number"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "cnic"
                     id="outlined-basic"
                     label="CNIC"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "dob"
                     id="outlined-basic"
                     label="D.O.B"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "maritalStatus"
                     id="outlined-basic"
                     label="Marital Status"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "bloodGroup"
                     id="outlined-basic"
                     label="Blood Group"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "designation"
                     id="outlined-basic"
                     label="Designation"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "department"
                     id="outlined-basic"
                     label="Department"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "nationality"
                     id="outlined-basic"
                     label="Nationality"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name= "location"
                     id="outlined-basic"
                     label="Location"
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />
                   <TextField
+                    name="address"
                     id="outlined-multiline-static"
                     label="Address"
                     rows={4}
                     multiline
                     variant="outlined"
                     defaultValue=""
+                    onChange = {this.inputChange}
                   />{" "}
                 </div>
               </form>
