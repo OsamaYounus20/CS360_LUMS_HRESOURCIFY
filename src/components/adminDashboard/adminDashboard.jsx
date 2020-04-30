@@ -15,6 +15,12 @@ class adminDashBoard extends Component {
   onClickDeleteUser() {
     this.props.history.push("/user");
   }
+  onClickAddDepartment() {
+    this.props.history.push("/add_department");
+  }
+  onClickDepartment() {
+    this.props.history.push("/department");
+  }
   render() {
     return (
       <div>
@@ -54,8 +60,9 @@ class adminDashBoard extends Component {
             }}
             size="large"
             color="default"
+            onClick={this.onClickDepartment.bind(this)}
           >
-            Add Department
+            Departments
           </Button>
           <Button
             variant="contained"
@@ -109,8 +116,9 @@ class adminDashBoard extends Component {
             }}
             size="large"
             color="default"
+            onClick={this.onClickAddDepartment.bind(this)}
           >
-            Delete Department
+            Add Department
           </Button>
           <Button
             variant="contained"
@@ -127,6 +135,7 @@ class adminDashBoard extends Component {
             }}
             size="large"
             color="default"
+            
           >
             View Benefit Request
           </Button>
