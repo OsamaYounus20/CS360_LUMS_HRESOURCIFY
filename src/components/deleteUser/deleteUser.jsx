@@ -8,6 +8,7 @@ import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
+import { Route, withRouter } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -170,4 +171,4 @@ class deleteUser extends Component {
     );
   }
 }
-export default deleteUser;
+export default withRouter(deleteUser);

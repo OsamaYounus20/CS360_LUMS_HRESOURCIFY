@@ -5,12 +5,13 @@ import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import Navbar from "../adminNavbar/navbar";
 import Form from "../form/form";
-
+import { Route, withRouter } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
     primary: green,
   },
 });
+
 class user extends Component {
   constructor(props) {
     super(props);
@@ -41,4 +42,4 @@ class user extends Component {
     );
   }
 }
-export default user;
+export default withRouter(user);
