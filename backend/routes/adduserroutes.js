@@ -35,46 +35,45 @@ function generatePassword() {
 }
 
 exports.add = async function(req, res) {
-    var user_id;
+    user_password = generatePassword();
+    department_id = departments[req.body.department];
     connection.query('SELECT COUNT(*) FROM HRUSER', async function(error, results, fields) {
         if (error) {
             console.log(error);
         } else {
             user_id = results[0]['COUNT(*)'] + 2000;
+            values = [
+                user_id,
+                req.body.Name,
+                user_password,
+                req.body.Email,
+                req.body.phoneNumber,
+                req.body.cnic,
+                req.body.dob,
+                req.body.maritalStatus,
+                req.body.bloodGroup,
+                req.body.designation,
+                department_id,
+                req.body.nationality,
+                req.body.location,
+                req.body.address
+            ]
+
+            connection.query('INSERT INTO HRUSER (user_id, full_name, user_password, email, contact_no, cnic, dob, marital_status, blood_type, job_title, department, nationality, location, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', values, async function(error, results, fields) {
+                if (error) {
+                    console.log(error);
+                    res.send({
+                        'code': 500,
+                        'success': 'Server error'
+                    });
+                } else {
+                    console.log('Employee inserted successfully');
+                    res.send({
+                        'code': 200,
+                        'success': 'Added successfully'
+                    });
+                }
+            });
         }
-    });
-    user_password = generatePassword();
-    department_id = departments[req.body.department];
-    values = [
-        user_id,
-        req.body.Name,
-        user_password,
-        req.body.Email,
-        req.body.phoneNumber,
-        req.body.cnic,
-        req.body.dob,
-        req.body.maritalStatus,
-        req.body.bloodGroup,
-        req.body.designation,
-        department_id,
-        req.body.nationality,
-        req.body.location,
-        req.body.address
-    ]
-    // connection.query('INSERT INTO HRUSER (user_id, full_name, user_password, email, contact_no, cnic, dob, marital_status, blood_type, job_title, department, nationality, location, address) VALUES ?', values, async function(error, results, fields) {
-    //     if (error) {
-    //         console.log(error);
-    //         res.send({
-    //             'code': 500,
-    //             'success': 'Server error'
-    //         });
-    //     } else {
-    //         console.log('inserted');
-    //         res.send({
-    //             'code': 200,
-    //             'success': 'Added successfully'
-    //         });
-    //     }
-    // });
-    console.log(values)
+    });  
 }
