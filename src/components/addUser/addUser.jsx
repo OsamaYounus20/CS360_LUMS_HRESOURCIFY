@@ -58,9 +58,9 @@ class addUser extends Component {
         'location': this.state.location,
         'address': this.state.address,
     }
-    axios.post(apiBaseUrl+'login', payload)
+    axios.post(apiBaseUrl+'add_user', payload)
     .then(function(response){
-        if (response.data.code === 206) {           // successful login
+        if (response.data.code === 200) {           // successful login
             self.props.history.push('/user');
         }
     })
