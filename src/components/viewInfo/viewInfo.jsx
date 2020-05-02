@@ -8,6 +8,7 @@ import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
+import axios from "axios";
 
 const theme = createMuiTheme({
   palette: {
@@ -17,12 +18,40 @@ const theme = createMuiTheme({
 class viewInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      rows: [],
+    };
   }
   onClickEditUser(event) {
     this.props.history.push("/edit_info");
   }
-
+  componentDidMount() {
+    var apiBaseUrl = "http://localhost:4000/api/";
+    var self = this;
+    var payload = {
+      msg: "Send Data",
+      id: 2001,
+    };
+    axios.post(apiBaseUrl + "view_info", payload).then(function (response) {
+      self.setState({
+        // rows: response.data,
+        name: response.data[0].full_name,
+        phone: response.data[0].contact_no,
+        address: response.data[0].address,
+        email: response.data[0].email,
+        cnic: response.data[0].cnic,
+        dob: response.data[0].dob,
+        gender: response.data[0].gender,
+        status: response.data[0].marital_status,
+        dept: response.data[0].department,
+        job: response.data[0].job_title,
+        loc: response.data[0].location,
+        nationality: response.data[0].nationality,
+        bloodgrp: response.data[0].blood_type,
+      });
+    });
+    return;
+  }
   render() {
     return (
       <div>
@@ -44,7 +73,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Name:</b>
                       </h5>
-                      <h4> John Doe</h4>
+                      <h4> {this.state.name}</h4>
                     </div>
                   </li>
                   <li>
@@ -52,7 +81,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Email:</b>
                       </h5>
-                      <h4> johndoe@johndoe.com</h4>
+                      <h4> {this.state.email}</h4>
                     </div>
                   </li>
                   <li>
@@ -60,7 +89,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Phone Number:</b>
                       </h5>
-                      <h4> 090078601</h4>
+                      <h4>{this.state.phone}</h4>
                     </div>
                   </li>
                   <li>
@@ -68,7 +97,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>CNIC:</b>
                       </h5>
-                      <h4> 12345-12345678-6</h4>
+                      <h4> {this.state.cnic}</h4>
                     </div>
                   </li>
                   <li>
@@ -76,7 +105,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>D.O.B:</b>
                       </h5>
-                      <h4> 19 June 1980</h4>
+                      <h4>{this.state.dob}</h4>
                     </div>
                   </li>
                   <li>
@@ -84,7 +113,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Marital Status:</b>
                       </h5>
-                      <h4> Married</h4>
+                      <h4> {this.state.status}</h4>
                     </div>
                   </li>
                   <li>
@@ -92,15 +121,15 @@ class viewInfo extends Component {
                       <h5>
                         <b>Blood Group:</b>
                       </h5>
-                      <h4> B+</h4>
+                      <h4> {this.state.bloodgrp}</h4>
                     </div>
                   </li>
                   <li>
                     <div>
                       <h5>
-                        <b>Designation:</b>
+                        <b>Job Title:</b>
                       </h5>
-                      <h4> Manager</h4>
+                      <h4> {this.state.job}</h4>
                     </div>
                   </li>
                   <li>
@@ -108,7 +137,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Department:</b>
                       </h5>
-                      <h4> HR</h4>
+                      <h4> {this.state.dept}</h4>
                     </div>
                   </li>
                   <li>
@@ -116,7 +145,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Location:</b>
                       </h5>
-                      <h4> Karachi Head Office</h4>
+                      <h4> {this.state.loc}</h4>
                     </div>
                   </li>
                   <li>
@@ -124,7 +153,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Nationality:</b>
                       </h5>
-                      <h4> Pakistan</h4>
+                      <h4> {this.state.nationality}</h4>
                     </div>
                   </li>
                   <li>
@@ -132,7 +161,7 @@ class viewInfo extends Component {
                       <h5>
                         <b>Address:</b>
                       </h5>
-                      <h4> 192-B, Bakers Street, Downtown, Karachi</h4>
+                      <h4> {this.state.address}</h4>
                     </div>
                   </li>
                 </ul>
