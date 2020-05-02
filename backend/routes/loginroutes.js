@@ -26,6 +26,7 @@ exports.login = async function(req, res){
         console.log("here")
         res.send({
             'code'    : 206,
+            'user'    : 'none',
             'success' : 'Employee does not exist'
         });
     } else {
@@ -34,25 +35,38 @@ exports.login = async function(req, res){
                 console.log(error);
                 res.send({
                     'code'   : 400,
-                    'failed' : 'error ocurred'
+                    'user'   : 'none',
+                    'failed' : 'Error ocurred'
                 })
             } else {
                 console.log(results)
-                if(results.length > 0){
+                if (results.length > 0){
                     if(password === results[0].user_password){
-                        res.send({
-                            'code'    : 200,
-                            'success' : 'Login sucessful'
-                        })
+                        if (username === 'admin') {
+                            res.send({
+                                'code'    : 200,
+                                'user'    : 'admin',
+                                'success' : 'Login sucessful'
+                            });
+                        } else {
+                            res.send({
+                                'code'    : 200,
+                                'user'    : 'employee',
+                                'success' : 'Login sucessful'
+                            });
+                        }
+                        
                     } else {
                         res.send({
                             'code'    : 204,
+                            'user'    : 'none',
                             'success' : 'Username and password does not match'
-                        })
+                        });
                     }
                 } else {
                     res.send({
                         'code'    : 206,
+                        'user'    : 'none',
                         'success' : 'Employee does not exist'
                     });
                 }
