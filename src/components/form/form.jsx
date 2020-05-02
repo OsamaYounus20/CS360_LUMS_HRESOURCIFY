@@ -83,7 +83,16 @@ class table extends Component {
     };
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
-  onClickAddUser(event) {
+  onClickAddUser(row){
+    var apiBaseUrl =  "http://localhost:4000/api/";
+    var self = this;
+    var payload = {
+        id : row.user_id
+    }
+    axios.post(apiBaseUrl+'edit_delete', payload)
+    .then(function(response){
+      // console.log(response.data);            
+    })
     this.props.history.push("/delete_user");
   }
   componentDidMount() {
@@ -125,7 +134,7 @@ class table extends Component {
                     role="checkbox"
                     tabIndex={-1}
                     key={row.code}
-                    onClick={this.onClickAddUser}
+                    onClick={(e) => this.onClickAddUser(row)}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];
