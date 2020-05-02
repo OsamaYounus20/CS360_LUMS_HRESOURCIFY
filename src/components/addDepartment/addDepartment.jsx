@@ -24,8 +24,7 @@ class addDepartment extends Component {
       Email : '',
       ExtNO: '',
       HeadofDept: '',
-      EmailHOD: '',
-      PhoneNoHOD:'',
+      hodID: '',
 
     };
     this.inputChange = this.inputChange.bind(this);
@@ -40,19 +39,18 @@ class addDepartment extends Component {
     var apiBaseUrl =  "http://localhost:4000/api/";
     var self = this;
     var payload = {
-        'Name': this.state.Name,
-        'Email' : this.state.Email,
-        'ExtNO' : this.state.ExtNO,
-        'HeadofDept' : this.state.HeadofDept,
-        'EmailHOD' : this.state.EmailHOD,
-        'PhoneNoHOD' : this.state.PhoneNoHOD,
-
-
+        'name': this.state.Name,
+        'email' : this.state.Email,
+        'extNo' : this.state.ExtNO,
+        'hod' : this.state.HeadofDept,
+        'hodID' : this.state.hodID,
     }
-    axios.post(apiBaseUrl+'login', payload)
+    axios.post(apiBaseUrl+'add_dept', payload)
     .then(function(response){
-        if (response.data.code === 206) {           // successful login
-            self.props.history.push('/department');
+        if (response.data.code === 200) {           // successful login
+          self.props.history.push('/department');
+        } else if (response.data.code === 400) {
+          // hod id name do not match
         }
     })
     return
@@ -92,7 +90,7 @@ class addDepartment extends Component {
                     onChange = {this.inputChange}
                   />
                   <TextField
-                    name= "Extension Code"
+                    name= "ExtNO"
                     id="outlined-basic"
                     label="Extension Code"
                     variant="outlined"
@@ -100,29 +98,22 @@ class addDepartment extends Component {
                     onChange = {this.inputChange}
                   />
                   <TextField
-                    name= "Head of Department"
+                    name= "HeadofDept"
                     id="outlined-basic"
-                    label="Head of Department"
+                    label="HOD Name"
                     variant="outlined"
                     defaultValue=""
                     onChange = {this.inputChange}
                   />
-                  <TextField
-                    name= "Email HOD"
+                  { <TextField
+                    name= "hodID"
                     id="outlined-basic"
-                    label="Email HOD"
+                    label="HOD ID"
                     variant="outlined"
                     defaultValue=""
                     onChange = {this.inputChange}
                   />
-                  <TextField
-                    name= "Phone Number HOD"
-                    id="outlined-basic"
-                    label="Phone Number HOD"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
+                  }
                   
                   
                   
