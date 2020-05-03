@@ -4,6 +4,8 @@ var users = require('./routes/users');
 var addUser= require('./routes/addUser');
 var departments = require('./routes/departments')
 var addDepartment = require('./routes/addDepartment')
+var viewInfo = require('./routes/viewinforoutes')
+
 
 var bodyParser = require('body-parser');
 let cors = require('cors')
@@ -27,6 +29,7 @@ router.post('/users', users.display);
 router.post('/add_user', addUser.add);
 router.post('/departments', departments.display);
 router.post('/add_dept', addDepartment.add)
+router.post('/view_info', viewInfo.display)
 
 app.use('/api', router);
 app.listen(4000);
