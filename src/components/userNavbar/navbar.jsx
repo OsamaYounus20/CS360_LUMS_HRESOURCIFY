@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,10 +10,14 @@ import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import HowToRegIcon from "@material-ui/icons/HowToReg";
+import EventIcon from "@material-ui/icons/Event";
 import Logout from "../logoutMenu/logoutMenu";
-import './navbar.css'
+import "./navbar.css";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -60,17 +65,17 @@ export default function ClippedDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-      <div className="placinglog">
+        <div className="placinglog">
           <div className="hr">
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            HRESOURCIFY
-          </Typography>
-        </Toolbar>
-        </div>
-        <div className="log">
-          <Logout/>
-        </div>
+            <Toolbar>
+              <Typography variant="h6" noWrap>
+                HRESOURCIFY
+              </Typography>
+            </Toolbar>
+          </div>
+          <div className="log">
+            <Logout />
+          </div>
         </div>
       </AppBar>
       <Drawer
@@ -83,23 +88,46 @@ export default function ClippedDrawer() {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {[
-              "Dashboard",
-              "Tasks",
-              "Performance",
-              "Attendace",
-              "Leaves",
-              "Benefits",
-              "Calendar",
-              "Personal Info",
-            ].map((text, index) => (
-              <ListItem style={buttonstyle} button key={text}>
+            <Link to="/user_dashboard" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Dashboard"}>
                 <ListItemIcon style={iconstyle}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText style={textstyle} primary={text} />
+                <ListItemText style={textstyle} primary={"Dashboard"} />
               </ListItem>
-            ))}
+            </Link>
+            <ListItem style={buttonstyle} button key={"Tasks"}>
+              <ListItemIcon style={iconstyle}>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText style={textstyle} primary={"Tasks"} />
+            </ListItem>
+            <ListItem style={buttonstyle} button key={"Attendance"}>
+              <ListItemIcon style={iconstyle}>
+                <HowToRegIcon />
+              </ListItemIcon>
+              <ListItemText style={textstyle} primary={"Attendance"} />
+            </ListItem>
+            <ListItem style={buttonstyle} button key={"Leaves"}>
+              <ListItemIcon style={iconstyle}>
+                <DateRangeIcon />
+              </ListItemIcon>
+              <ListItemText style={textstyle} primary={"Leaves"} />
+            </ListItem>
+            <ListItem style={buttonstyle} button key={"Calendar"}>
+              <ListItemIcon style={iconstyle}>
+                <EventIcon />
+              </ListItemIcon>
+              <ListItemText style={textstyle} primary={"Calendar"} />
+            </ListItem>
+            <Link to="/view_info" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Personal Info"}>
+                <ListItemIcon style={iconstyle}>
+                  <PermIdentityIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Personal Info"} />
+              </ListItem>
+            </Link>
           </List>
         </div>
       </Drawer>

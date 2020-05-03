@@ -9,11 +9,14 @@ import Typography from "@material-ui/core/Typography";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import { Link } from 'react-router-dom';
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import BusinessIcon from "@material-ui/icons/Business";
+import { Link } from "react-router-dom";
 import Logout from "../logoutMenu/logoutMenu";
-import './navbar.css'
+import "./navbar.css";
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,15 +65,15 @@ export default function ClippedDrawer() {
       <AppBar position="fixed" className={classes.appBar}>
         <div className="placinglog">
           <div className="hr">
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            HRESOURCIFY
-          </Typography>
-        </Toolbar>
-        </div>
-        <div className="log">
-          <Logout/>
-        </div>
+            <Toolbar>
+              <Typography variant="h6" noWrap>
+                HRESOURCIFY
+              </Typography>
+            </Toolbar>
+          </div>
+          <div className="log">
+            <Logout />
+          </div>
         </div>
       </AppBar>
       <Drawer
@@ -82,55 +85,39 @@ export default function ClippedDrawer() {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-        <List>
-            
-            <Link to = '/admin_dashboard'>
-            <ListItem style={buttonstyle} button key={"Dashboard"}>
-            <ListItemIcon style={iconstyle}>
-               <InboxIcon /> 
-            </ListItemIcon>
-            <ListItemText style={textstyle} primary={"Dashboard"} />
-          </ListItem>
-          </Link>
+          <List>
+            <Link to="/admin_dashboard" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Dashboard"}>
+                <ListItemIcon style={iconstyle}>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Dashboard"} />
+              </ListItem>
+            </Link>
 
-              <Link to = '/user'>
-          <ListItem style={buttonstyle} button key={"Users"}>                
-          <ListItemIcon style={iconstyle}>
-             <MailIcon />
-          </ListItemIcon>
-          <ListItemText style={textstyle} primary={"Users"} />
-          </ListItem>
-          </Link>
+            <Link to="/user" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Users"}>
+                <ListItemIcon style={iconstyle}>
+                  <PeopleAltIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Users"} />
+              </ListItem>
+            </Link>
 
-          <ListItem style={buttonstyle} button key={"Department"}>
-                  <ListItemIcon style={iconstyle}>
-                     <InboxIcon /> 
-                  </ListItemIcon>
-                  <ListItemText style={textstyle} primary={"Department"} />
-            </ListItem>
-
-
+            <Link to="/department" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Department"}>
+                <ListItemIcon style={iconstyle}>
+                  <BusinessIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Department"} />
+              </ListItem>
+            </Link>
             <ListItem style={buttonstyle} button key={"Leaves"}>
-                  <ListItemIcon style={iconstyle}>
-                  <MailIcon /> 
-                  </ListItemIcon>   
-            <ListItemText style={textstyle} primary={"Leaves"} />
-                </ListItem>
-
-          
-          
-           <ListItem style={buttonstyle} button key={"Benefits"}>        
-            <ListItemIcon style={iconstyle}>
-               <InboxIcon /> 
-            </ListItemIcon>
-            <ListItemText style={textstyle} primary={"Benefits"} />
-          </ListItem>
-
-
-
-
-
-
+              <ListItemIcon style={iconstyle}>
+                <DateRangeIcon />
+              </ListItemIcon>
+              <ListItemText style={textstyle} primary={"Leaves"} />
+            </ListItem>
           </List>
         </div>
       </Drawer>

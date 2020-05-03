@@ -10,12 +10,28 @@ class userDashBoard extends Component {
     super(props);
     this.state = {};
   }
-  onClickAddUser(event) {
-    this.props.history.push("/add_user");
+  onClickPersonalInfo(event) {
+    this.props.history.push("/view_info");
   }
-  onClickDeleteUser() {
-    this.props.history.push("/user");
+  onClickViewAssignedTasks() {
+    console.log("abhi krna hai");
   }
+  onClickToDoTasks() {
+    console.log("abhi krna hai");
+  }
+  onClickAssignTasks() {
+    console.log("abhi krna hai");
+  }
+  onClickCalendar(event) {
+    this.props.history.push("/calendar");
+  }
+  onClickLeave(event) {
+    console.log("abhi krna hai");
+  }
+  onClickAttendance(event) {
+    this.props.history.push("/attendance");
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -42,9 +58,9 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
-                onClick={this.onClickDeleteUser.bind(this)}
+                onClick={this.onClickAssignTasks.bind(this)}
               >
-                Users
+                Assign Tasks
               </Button>
               <Button
                 variant="contained"
@@ -60,8 +76,9 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
+                onClick={this.onClickViewAssignedTasks.bind(this)}
               >
-                Add Department
+                View Assigned Tasks
               </Button>
               <Button
                 variant="contained"
@@ -77,8 +94,9 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
+                onClick={this.onClickToDoTasks.bind(this)}
               >
-                View Leave Request
+                To Do Tasks
               </Button>
 
               <Button
@@ -95,9 +113,9 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
-                onClick={this.onClickAddUser.bind(this)}
+                onClick={this.onClickCalendar.bind(this)}
               >
-                Add User
+                Calendar
               </Button>
               <Button
                 variant="contained"
@@ -113,8 +131,9 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
+                onClick={this.onClickLeave.bind(this)}
               >
-                Delete Department
+                Leave
               </Button>
               <Button
                 variant="contained"
@@ -130,14 +149,18 @@ class userDashBoard extends Component {
                   fontSize: "1em",
                 }}
                 color="default"
+                onClick={this.onClickPersonalInfo.bind(this)}
               >
-                View Benefit Request
+                Personal Info
               </Button>
             </div>
-            <div className="piechart">
+            <button
+              className="piechart"
+              onClick={this.onClickAttendance.bind(this)}
+            >
               <h1>Attendance</h1>
               <Piechart />
-            </div>
+            </button>
           </div>
         </div>
       </React.Fragment>

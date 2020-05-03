@@ -14,8 +14,8 @@ import department from "./components/department/department";
 import addDepartment from "./components/addDepartment/addDepartment";
 import deleteDepartment from "./components/deleteDepartment/deleteDepartment";
 import editDepartment from "./components/editDepartment/editDepartment";
-// import userDasboard from "./components/userDashboard/userDashboard";
-
+import userDasboard from "./components/userDashboard/userDashboard";
+import calendar from "./components/calendar/calendar";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -32,12 +32,13 @@ function App() {
           <Route exact path="/admin_dashboard" component={adminDasboard} />
           <Route exact path="/" component={Login} />
           <Route exact path="/loading" component={Loading} />
+          <Route exact path="/calendar" component={calendar} />
           <Route exact path="/delete_user" component={deleteUser} />
           <Route exact path="/department" component={department} />
-          <Route exact path="/add_department" component={addDepartment}/>
-          <Route exact path="/edit_department" component={editDepartment}/>
-          <Route exact path="/delete_department" component={deleteDepartment}/>
-          {/* <Route exact path="/user_dashboard" component={userDasboard}/> */}
+          <Route exact path="/add_department" component={addDepartment} />
+          <Route exact path="/edit_department" component={editDepartment} />
+          <Route exact path="/delete_department" component={deleteDepartment} />
+          <Route exact path="/user_dashboard" component={userDasboard} />
         </Switch>
       </div>
     </BrowserRouter>

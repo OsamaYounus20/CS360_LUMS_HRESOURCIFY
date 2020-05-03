@@ -11,7 +11,7 @@ connection.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
 });
-
+var id = 0;
 var departments = {};
 connection.query('SELECT * FROM DEPARTMENT', async function (error, results, fields) {
     if (error) {
@@ -24,7 +24,10 @@ connection.query('SELECT * FROM DEPARTMENT', async function (error, results, fie
     }
 });
 exports.display = async function (req, res) {
-    connection.query('SELECT * FROM HRUSER WHERE user_id = ?', [req.body.id] ,async function (error, results, fields) {
+    if (req.body.id > 0) {
+        id = req.body.id
+    }
+    connection.query('SELECT * FROM HRUSER WHERE user_id = ?', [id] ,async function (error, results, fields) {
         if (error) {
             console.log(error);
         } else {
