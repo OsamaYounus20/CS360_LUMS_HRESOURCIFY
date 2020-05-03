@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./deleteUser.css";
-import Navbar from "../adminNavbar/navbar";
+import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
@@ -33,7 +33,6 @@ class deleteUser extends Component {
     var self = this;
     var payload = {
       msg: "Send Data",
-      id: 2001,
     };
     axios.post(apiBaseUrl + "edit_delete", payload).then(function (response) {
       console.log(response.data)
