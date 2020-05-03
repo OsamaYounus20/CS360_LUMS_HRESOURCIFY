@@ -26,8 +26,7 @@ connection.query('SELECT * FROM DEPARTMENT', async function (error, results, fie
 exports.display = async function (req, res) {
     if (req.body.id > 0) {
         id = req.body.id
-    } 
-    console.log(id);
+    }
     connection.query('SELECT * FROM HRUSER WHERE user_id = ?', [id] ,async function (error, results, fields) {
         if (error) {
             console.log(error);
