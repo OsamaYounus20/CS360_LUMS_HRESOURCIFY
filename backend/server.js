@@ -31,7 +31,7 @@ router.post('/departments', departments.display);
 router.post('/add_dept', addDepartment.add);
 router.post('/view_user_info', viewUserInfo.display);
 router.post('/view_personal_info', viewPersonalInfo.display);
-
+router.post('/view_dept_info', viewDeptInfo.display);
 
 app.use('/api', router);
 app.listen(4000);
