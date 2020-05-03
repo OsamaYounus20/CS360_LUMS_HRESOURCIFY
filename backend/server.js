@@ -1,17 +1,10 @@
 var express = require("express");
-<<<<<<< HEAD
 var login = require('./routes/login');
 var users = require('./routes/users');
 var addUser= require('./routes/addUser');
 var departments = require('./routes/departments')
 var addDepartment = require('./routes/addDepartment')
-
-=======
-var loginroutes = require('./routes/loginroutes');
-var usersroutes = require('./routes/usersroutes');
-var adduserroutes = require('./routes/adduserroutes');
 var editdeleteroutes = require('./routes/editdeleteroutes');
->>>>>>> 8e003a0e57941475ca732460282a4b736788e261
 var bodyParser = require('body-parser');
 let cors = require('cors')
 // body parser added
@@ -21,7 +14,6 @@ app.use(bodyParser.json());
 
 // Allow cross origin requests
 app.use(cors())
-
 var router = express.Router();
 
 // test route
@@ -33,12 +25,8 @@ router.post('/login', login.login);
 router.post('/users', users.display);
 router.post('/add_user', addUser.add);
 router.post('/departments', departments.display);
-router.post('/add_dept', addDepartment.add)
-<<<<<<< HEAD
-=======
-router.post('/view_info', viewInfo.display)
-router.post('/edit_delete',editdeleteroutes.display);
->>>>>>> 8e003a0e57941475ca732460282a4b736788e261
+router.post('/add_dept', addDepartment.add);
+router.post('/edit_delete', editdeleteroutes.display);
 
 app.use('/api', router);
 app.listen(4000);

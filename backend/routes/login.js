@@ -34,7 +34,7 @@ exports.login = async function(req, res){
                 console.log(error);
                 res.send({
                     'code'   : 400,
-                    'failed' : 'error ocurred'
+                    'success' : 'error ocurred'
                 })
             } else {
                 console.log(results)
