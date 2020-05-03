@@ -1,12 +1,8 @@
 var express = require("express");
-var login = require('./routes/login');
-var users = require('./routes/users');
-var addUser= require('./routes/addUser');
-var departments = require('./routes/departments')
-var addDepartment = require('./routes/addDepartment')
-var viewInfo = require('./routes/viewinforoutes')
-
-
+var loginroutes = require('./routes/loginroutes');
+var usersroutes = require('./routes/usersroutes');
+var adduserroutes = require('./routes/adduserroutes');
+var editdeleteroutes = require('./routes/editdeleteroutes');
 var bodyParser = require('body-parser');
 let cors = require('cors')
 // body parser added
@@ -30,6 +26,7 @@ router.post('/add_user', addUser.add);
 router.post('/departments', departments.display);
 router.post('/add_dept', addDepartment.add)
 router.post('/view_info', viewInfo.display)
+router.post('/edit_delete',editdeleteroutes.display);
 
 app.use('/api', router);
 app.listen(4000);
