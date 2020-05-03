@@ -26,10 +26,19 @@ class departmentTable extends Component {
       this.state = {
         rows : [],
       };
-      this.onClickEditDepartment=this.onClickEditDepartment.bind(this)
+      this.onClickDepartmentRow=this.onClickDepartmentRow.bind(this)
     }
-    onClickEditDepartment(event){
-      this.props.history.push("/delete_department");
+    onClickDepartmentRow(row){
+      var apiBaseUrl =  "http://localhost:4000/api/";
+      var self = this;
+      var payload = {
+          id : row.dept_id
+      }
+      axios.post(apiBaseUrl+'view_dept_info', payload)
+      .then(function(response){
+        // console.log(response.data);            
+      })
+      this.props.history.push("/view_department_info");
     }
     componentDidMount() {
       var apiBaseUrl =  "http://localhost:4000/api/";
@@ -69,7 +78,7 @@ class departmentTable extends Component {
                       {this.state.rows.map((row) => {
                         return (
                           
-                          <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={this.onClickEditDepartment} >
+                          <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={(e) => this.onClickDepartmentRow(row)} >
                             {columns.map((column) => {
                               const value = row[column.id];
                               return (

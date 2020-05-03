@@ -105,11 +105,11 @@ export default function ClippedDrawer() {
             </Link>
 
             <Link to="/department" style={{ textDecoration: "none" }}>
-              <ListItem style={buttonstyle} button key={"Department"}>
+              <ListItem style={buttonstyle} button key={"Departments"}>
                 <ListItemIcon style={iconstyle}>
                   <BusinessIcon />
                 </ListItemIcon>
-                <ListItemText style={textstyle} primary={"Department"} />
+                <ListItemText style={textstyle} primary={"Departments"} />
               </ListItem>
             </Link>
             <ListItem style={buttonstyle} button key={"Leave Requests"}>
