@@ -112,11 +112,11 @@ export default function ClippedDrawer() {
                 <ListItemText style={textstyle} primary={"Department"} />
               </ListItem>
             </Link>
-            <ListItem style={buttonstyle} button key={"Leaves"}>
+            <ListItem style={buttonstyle} button key={"Leave Requests"}>
               <ListItemIcon style={iconstyle}>
                 <DateRangeIcon />
               </ListItemIcon>
-              <ListItemText style={textstyle} primary={"Leaves"} />
+              <ListItemText style={textstyle} primary={"Leave Requests"} />
             </ListItem>
           </List>
         </div>

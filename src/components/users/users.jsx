@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import Navbar from "../adminNavbar/navbar";
-import Form from "../form/form";
+import UserTable from "../userTable/userTable";
 import { Route, withRouter } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
@@ -36,7 +36,7 @@ class user extends Component {
               Add User
             </Button>
           </ThemeProvider>
-          <Form />
+          <UserTable />
         </div>
       </div>
     );

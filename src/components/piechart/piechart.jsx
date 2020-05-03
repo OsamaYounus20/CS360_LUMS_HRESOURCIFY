@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { PieChart } from "react-minimal-pie-chart";
-import { withRouter } from "react-router-dom";
 
 // code borrowed from:
 // https://toomuchdesign.github.io/react-minimal-pie-chart/index.html?path=/story/donut-chart--custom-arcs-width
@@ -9,13 +8,6 @@ const present = "330"; //insert present value of backend here
 const absent = "10"; //insert absences value of backend here
 const leave = "25"; //insert leave value of backend here
 class piechart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  onClickAttendance(event) {
-    this.props.history.push("/view_info");
-  }
   render() {
     return (
       <React.Fragment>
@@ -49,12 +41,11 @@ class piechart extends Component {
             viewBoxSize={[100, 100]}
           />
         </div>
-        ]{" "}
       </React.Fragment>
     );
   }
 }
-export default withRouter(piechart);
+export default piechart;
 
 // import React, { Component } from "react";
 // import Paper from "@material-ui/core/Paper";
