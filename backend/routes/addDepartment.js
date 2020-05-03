@@ -11,23 +11,6 @@ connection.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
 });
-
-// getUser = async function (){
-//     var hods = {};
-//     connection.query('SELECT user_id, full_name FROM HRUSER', async function (error, results, fields) {
-//         if (error) {
-//             console.log(error);
-//         } else {
-//             results = JSON.parse(JSON.stringify(results));
-//             for (var index = 0; index < results.length; index++) {
-//                 hods[results[index].user_id] = results[index].full_name;
-//             }
-//         }
-//     });
-//     return hods;
-// }
-// hods = getUser();
-
 exports.add = async function(req, res) {
     console.log(req.body)
     req.body.hodID = parseInt(req.body.hodID)
