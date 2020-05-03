@@ -16,22 +16,8 @@ import { Route , withRouter} from 'react-router-dom';
 
 
 const columns = [
-  { id: 'user_id', label: 'ID', minWidth: 170, align: 'center'},
-  { id: 'full_name', label: 'Name', minWidth: 170 },
-//   {
-//     id: 'department',
-//     label: 'Department',
-//     minWidth: 170,
-//     align: 'center',
-//     format: (value) => value.toLocaleString(),
-//   },
-//   {
-//     id: 'job_title',
-//     label: 'Job Title',
-//     minWidth: 170,
-//     align: 'center',
-//     format: (value) => value.toLocaleString(),
-//   },
+  { id: 'dept_id', label: 'ID', minWidth: 170, align: 'center'},
+  { id: 'dept_name', label: 'Name', minWidth: 170, align: 'center'},
 ];
 
 class departmentTable extends Component {
@@ -51,13 +37,9 @@ class departmentTable extends Component {
       var payload = {
           'msg' : 'Send Data'
       }
-      axios.post(apiBaseUrl+'users', payload)
+      axios.post(apiBaseUrl+'departments', payload)
       .then(function(response){
-        // response.data.forEach(oneRow =>{
-        //       self.setState({
-        //         rows oneRow),
-        //       })
-        // })
+       
         self.setState({
           rows : response.data,
         })
