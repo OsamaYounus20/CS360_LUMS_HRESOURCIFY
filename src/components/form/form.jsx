@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const columns = [
   { id: "user_id", label: "ID", minWidth: 170 },
@@ -83,16 +79,7 @@ class table extends Component {
     };
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
-  onClickAddUser(row){
-    var apiBaseUrl =  "http://localhost:4000/api/";
-    var self = this;
-    var payload = {
-        id : row.user_id
-    }
-    axios.post(apiBaseUrl+'edit_delete', payload)
-    .then(function(response){
-      // console.log(response.data);            
-    })
+  onClickAddUser(event) {
     this.props.history.push("/delete_user");
   }
   componentDidMount() {
@@ -134,7 +121,7 @@ class table extends Component {
                     role="checkbox"
                     tabIndex={-1}
                     key={row.code}
-                    onClick={(e) => this.onClickAddUser(row)}
+                    onClick={this.onClickAddUser}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];
