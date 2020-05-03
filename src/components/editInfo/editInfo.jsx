@@ -20,10 +20,10 @@ class editInfo extends Component {
     this.state = {};
   }
   onClickSave(event) {
-    this.props.history.push("/view_info");
+    this.props.history.push("/view_personal_info");
   }
   onClickCancel(event) {
-    this.props.history.push("/view_info");
+    this.props.history.push("/view_personal_info");
   }
   render() {
     return (
