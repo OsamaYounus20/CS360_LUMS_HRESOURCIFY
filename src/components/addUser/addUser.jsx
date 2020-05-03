@@ -40,11 +40,27 @@ class addUser extends Component {
         [e.target.name] : e.target.value
     });
 }
+  componentDidMount(){
+    var apiBaseUrl =  "http://localhost:4000/api/";
+    var self = this;
+    var payload = {
+      'Message': 'show depts'
+    }
+    axios.post(apiBaseUrl+'add_user', payload)
+    .then(function(response){
+        if (response.data.code === 200) {       
+          console.log(response.data)
+        }
+    })
+    return
+  }
+
   onClickAddUser(event) {
     event.preventDefault()
     var apiBaseUrl =  "http://localhost:4000/api/";
     var self = this;
     var payload = {
+        'Message': 'add user', 
         'Name': this.state.Name,
         'Email': this.state.Email,
         'phoneNumber' : this.state.phoneNumber,
@@ -58,9 +74,10 @@ class addUser extends Component {
         'location': this.state.location,
         'address': this.state.address,
     }
+
     axios.post(apiBaseUrl+'add_user', payload)
     .then(function(response){
-        if (response.data.code === 200) {           // successful login
+        if (response.data.code === 200) {           //success
             self.props.history.push('/user');
         }
     })
