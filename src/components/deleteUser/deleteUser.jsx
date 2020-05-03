@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./deleteUser.css";
-import Navbar from "../userNavbar/navbar";
+import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Avatar from "@material-ui/core/Avatar";
