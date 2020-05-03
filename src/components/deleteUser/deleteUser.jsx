@@ -35,7 +35,6 @@ class deleteUser extends Component {
       msg: "Send Data",
     };
     axios.post(apiBaseUrl + "edit_delete", payload).then(function (response) {
-      console.log(response.data)
       self.setState({
         // rows: response.data,
         name: response.data[0].full_name,
