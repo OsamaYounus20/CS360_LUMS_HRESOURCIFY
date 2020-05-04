@@ -11,14 +11,14 @@ import viewPersonalInfo from "./components/viewPersonaInfo/viewPersonalInfo";
 import editInfo from "./components/editInfo/editInfo";
 import department from "./components/department/department";
 import addDepartment from "./components/addDepartment/addDepartment";
-import deleteDepartment from "./components/deleteDepartment/deleteDepartment";
+import viewDepartmentInfo from "./components/viewDepartmentInfo/viewDepartmentInfo";
 import editDepartment from "./components/editDepartment/editDepartment";
-// import userDasboard from "./components/userDashboard/userDashboard";
+import userDasboard from "./components/userDashboard/userDashboard";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import viewUserInfo from "./components/viewUserInfo/viewUserInfo";
 import applyLeave from "./components/applyLeaves/applyLeaves";
 import viewLeaveRequest from "./components/viewLeaveRequest/viewLeaveRequest";
-import pendingLeaveRequests from "./components/pendingLeaveRequests/pendingLeaveRequests";
+import pendingLeaveRequests from "./components/pendingLeaveRequests/PendingLeaveRequests";
 
 function App() {
   return (
@@ -37,8 +37,8 @@ function App() {
           <Route exact path="/department" component={department} />
           <Route exact path="/add_department" component={addDepartment}/>
           <Route exact path="/edit_department" component={editDepartment}/>
-          <Route exact path="/delete_department" component={deleteDepartment}/>
-          {/* <Route exact path="/user_dashboard" component={userDasboard}/> */}
+          <Route exact path="/view_departmentInfo" component={deleteDepartment}/>
+          <Route exact path="/user_dashboard" component={userDasboard}/>
           <Route exact path="/apply_leaves" component={applyLeave}/>
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
           <Route exact path="/pending_leave_request" component={pendingLeaveRequests}/>
