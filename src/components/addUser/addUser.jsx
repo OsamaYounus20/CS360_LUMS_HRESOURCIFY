@@ -131,8 +131,10 @@ class addUser extends Component {
             >
               <form>
                 <div className="formContainer">
+                  <div>
+                    <Avatar alt="Remy Sharp" className="picture" />
+                  </div>
                   <TextField
-                    required
                     name="Name"
                     id="outlined-basic"
                     label="Name"
@@ -141,7 +143,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="Email"
                     id="outlined-basic"
                     label="Email"
@@ -150,7 +151,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="phoneNumber"
                     id="outlined-basic"
                     label="Phone Number"
@@ -159,7 +159,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="cnic"
                     id="outlined-basic"
                     label="CNIC"
@@ -169,7 +168,6 @@ class addUser extends Component {
                   />
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
-                      required
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
@@ -183,7 +181,6 @@ class addUser extends Component {
                   <FormControl
                     variant="outlined"
                     className="departmentDropdown"
-                    required
                   >
                     <InputLabel id="demo-simple-select-outlined-label">
                       Department
@@ -202,7 +199,6 @@ class addUser extends Component {
                     </Select>
                   </FormControl>
                   <TextField
-                    required
                     name="maritalStatus"
                     id="outlined-basic"
                     label="Marital Status"
@@ -211,7 +207,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="bloodGroup"
                     id="outlined-basic"
                     label="Blood Group"
@@ -220,7 +215,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="designation"
                     id="outlined-basic"
                     label="Designation"
@@ -228,16 +222,11 @@ class addUser extends Component {
                     defaultValue=""
                     onChange={this.inputChange}
                   />
-                  <FormControl
-                    variant="outlined"
-                    className="formControl"
-                    required
-                  >
+                  <FormControl variant="outlined" className="formControl">
                     <InputLabel id="demo-simple-select-outlined-label">
                       Gender
                     </InputLabel>
                     <Select
-                      required
                       name="gender"
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
@@ -250,7 +239,6 @@ class addUser extends Component {
                     </Select>
                   </FormControl>
                   <TextField
-                    required
                     name="manager"
                     id="outlined-basic"
                     label="Manager"
@@ -259,7 +247,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="nationality"
                     id="outlined-basic"
                     label="Nationality"
@@ -268,7 +255,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="location"
                     id="outlined-basic"
                     label="Location"
@@ -277,7 +263,6 @@ class addUser extends Component {
                     onChange={this.inputChange}
                   />
                   <TextField
-                    required
                     name="address"
                     id="outlined-multiline-static"
                     label="Address"
