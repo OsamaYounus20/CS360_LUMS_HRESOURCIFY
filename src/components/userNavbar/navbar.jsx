@@ -96,12 +96,14 @@ export default function ClippedDrawer() {
                 <ListItemText style={textstyle} primary={"Dashboard"} />
               </ListItem>
             </Link>
+            <Link to="/to_do_task" style={{ textDecoration: "none" }}>
             <ListItem style={buttonstyle} button key={"Tasks"}>
               <ListItemIcon style={iconstyle}>
                 <AssignmentIcon />
               </ListItemIcon>
               <ListItemText style={textstyle} primary={"Tasks"} />
             </ListItem>
+            </Link>
             <ListItem style={buttonstyle} button key={"Attendance"}>
               <ListItemIcon style={iconstyle}>
                 <HowToRegIcon />
@@ -124,7 +126,7 @@ export default function ClippedDrawer() {
               <ListItemText style={textstyle} primary={"Calendar"} />
             </ListItem>
             </Link>
-            <Link to="/view_personal_info" style={{ textDecoration: "none" }}>
+            <Link to="/view_info" style={{ textDecoration: "none" }}>
               <ListItem style={buttonstyle} button key={"Personal Info"}>
                 <ListItemIcon style={iconstyle}>
                   <PermIdentityIcon />

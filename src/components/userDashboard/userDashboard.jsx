@@ -20,14 +20,17 @@ class userDashBoard extends Component {
     this.props.history.push("/view_info");
   }
   onClickViewAssignedTasks() {
-    console.log(userclass.returnUser());
-    console.log("abhi krna hai");
+    // console.log(userclass.returnUser());
+    // console.log("abhi krna hai");
+    this.props.history.push("/view_assigned_task");
   }
   onClickToDoTasks() {
-    console.log("abhi krna hai");
+    // console.log("abhi krna hai");
+    this.props.history.push("/to_do_task");
   }
   onClickAssignTasks() {
-    console.log("abhi krna hai");
+    // console.log("abhi krna hai");
+    this.props.history.push("/assign_task");
   }
   onClickCalendar(event) {
     this.props.history.push("/calendar");
