@@ -20,6 +20,9 @@ import applyLeave from "./components/applyLeaves/applyLeaves";
 import viewLeaveRequest from "./components/viewLeaveRequest/viewLeaveRequest";
 import pendingLeaveRequests from "./components/pendingLeaveRequests/pendingLeaveRequests";
 import calendar from "./components/calendar/calendar";
+import viewAssignedTask from "./components/viewAssignedTask/viewAssignedTask";
+import toDoTask from "./components/toDoTask/toDoTask";
+import assignTask from "./components/assignTask/assignTask";
 
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
           <Route exact path="/pending_leave_request" component={pendingLeaveRequests}/>
           <Route exact path="/calendar" component={calendar}/>
+          <Route exact path="/view_assigned_task" component={viewAssignedTask}/>
+          <Route exact path="/to_do_task" component={toDoTask}/>
+          <Route exact path="/assign_task" component={assignTask}/>
         </Switch>
       </div>
     </BrowserRouter>
