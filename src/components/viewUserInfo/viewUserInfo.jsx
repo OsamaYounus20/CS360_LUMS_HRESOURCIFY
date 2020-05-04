@@ -23,6 +23,26 @@ class viewUserInfo extends Component {
     };
   }
   handleClickEditUser(event) {
+    var apiBaseUrl = "http://localhost:4000/api/";
+    var self = this;
+    var payload = {
+      Message: "give user info",
+      Id: this.state.id
+    };
+    axios.post(apiBaseUrl + 'edit_user_info', payload).then(function(response) {
+      // self.setState({
+      //   name: response.data[0].full_name,
+      //   phone: response.data[0].contact_no,
+      //   address: response.data[0].address,
+      //   email: response.data[0].email,
+      //   status: response.data[0].marital_status,
+      //   dept: response.data[0].department,
+      //   job: response.data[0].job_title,
+      //   loc: response.data[0].location,
+      //   nationality: response.data[0].nationality,
+      //   bloodType: response.data[0].blood_type,
+      // });
+    });
     this.props.history.push("/edit_user");
   }
   handleClickUser(event) {
@@ -37,19 +57,21 @@ class viewUserInfo extends Component {
     axios.post(apiBaseUrl + "view_user_info", payload).then(function (response) {
       self.setState({
         // rows: response.data,
-        name: response.data[0].full_name,
-        phone: response.data[0].contact_no,
-        address: response.data[0].address,
-        email: response.data[0].email,
-        cnic: response.data[0].cnic,
-        dob: response.data[0].dob,
-        gender: response.data[0].gender,
-        status: response.data[0].marital_status,
-        dept: response.data[0].department,
-        job: response.data[0].job_title,
-        loc: response.data[0].location,
-        nationality: response.data[0].nationality,
-        bloodgrp: response.data[0].blood_type,
+        id: response.data.user_id,
+        name: response.data.full_name,
+        phone: response.data.contact_no,
+        address: response.data.address,
+        email: response.data.email,
+        cnic: response.data.cnic,
+        dob: response.data.dob,
+        gender: response.data.gender,
+        status: response.data.marital_status,
+        dept: response.data.department,
+        job: response.data.job_title,
+        loc: response.data.location,
+        nationality: response.data.nationality,
+        bloodgrp: response.data.blood_type,
+        manager: response.data.manager
       });
     });
     return;
@@ -144,6 +166,14 @@ class viewUserInfo extends Component {
                         <b>Department:</b>
                       </h5>
                       <h4> {this.state.dept}</h4>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <h5>
+                        <b>Manager:</b>
+                      </h5>
+                      <h4> {this.state.manager}</h4>
                     </div>
                   </li>
                   <li>
