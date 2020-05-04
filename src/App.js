@@ -7,7 +7,7 @@ import adminDasboard from "./components/adminDashboard/adminDashboard";
 import user from "./components/users/users";
 import editUser from "./components/editUser/editUser";
 import addUser from "./components/addUser/addUser";
-import viewPersonalInfo from "./components/viewPersonaInfo/viewPersonalInfo";
+import viewPersonalInfo from "./components/viewPersonalInfo/viewPersonalInfo";
 import editInfo from "./components/editInfo/editInfo";
 import department from "./components/department/department";
 import addDepartment from "./components/addDepartment/addDepartment";
@@ -18,7 +18,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import viewUserInfo from "./components/viewUserInfo/viewUserInfo";
 import applyLeave from "./components/applyLeaves/applyLeaves";
 import viewLeaveRequest from "./components/viewLeaveRequest/viewLeaveRequest";
-import pendingLeaveRequests from "./components/pendingLeaveRequests/PendingLeaveRequests";
+import pendingLeaveRequests from "./components/pendingLeaveRequests/pendingLeaveRequests";
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
           <Route exact path="/department" component={department} />
           <Route exact path="/add_department" component={addDepartment}/>
           <Route exact path="/edit_department" component={editDepartment}/>
-          <Route exact path="/view_departmentInfo" component={deleteDepartment}/>
+          <Route exact path="/view_departmentInfo" component={viewDepartmentInfo}/>
           <Route exact path="/user_dashboard" component={userDasboard}/>
           <Route exact path="/apply_leaves" component={applyLeave}/>
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
