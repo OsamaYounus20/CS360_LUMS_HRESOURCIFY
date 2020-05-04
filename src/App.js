@@ -19,6 +19,8 @@ import viewUserInfo from "./components/viewUserInfo/viewUserInfo";
 import applyLeave from "./components/applyLeaves/applyLeaves";
 import viewLeaveRequest from "./components/viewLeaveRequest/viewLeaveRequest";
 import pendingLeaveRequests from "./components/pendingLeaveRequests/pendingLeaveRequests";
+import calendar from "./components/calendar/calendar";
+
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
           <Route exact path="/user_dashboard" component={userDasboard}/>
           <Route exact path="/apply_leaves" component={applyLeave}/>
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
-          <Route exact path="/pending_leave_request" component={pendingLeaveRequests}/>
+          <Route exact path="/calendar" component={calendar}/>
         </Switch>
       </div>
     </BrowserRouter>
