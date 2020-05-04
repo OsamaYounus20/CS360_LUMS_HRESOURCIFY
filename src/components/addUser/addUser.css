@@ -24,3 +24,19 @@
   margin: 10px 10px 10px !important;
   width: 25ch;
 }
+
+.formControl {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  min-width: 100px !important;
+  max-width: 100px !important;
+}
+
+.departmentDropdown {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+}

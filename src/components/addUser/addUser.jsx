@@ -8,7 +8,20 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
-import axios from 'axios';
+import axios from "axios";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import DateFnsUtils from "@date-io/date-fns";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
+
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,68 +33,87 @@ class addUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name : '',
-      Email: '',
-      phoneNumber: '',
-      cnic:'',
-      dob: '',
-      maritalStatus: '',
-      bloodGroup: '',
-      designation: '',
-      department: '',
-      nationality: '',
-      location: '',
-      address: '',
+      departmentDictionary: {},
+      Name: "",
+      Email: "",
+      phoneNumber: "",
+      cnic: "",
+      dob: new Date(),
+      maritalStatus: "",
+      bloodGroup: "",
+      designation: "",
+      departmentList: [],
+      department: "",
+      nationality: "",
+      location: "",
+      address: "",
+      gender: "",
+      manager: "",
     };
     this.inputChange = this.inputChange.bind(this);
   }
+  handleGenderChange(gender) {
+    this.setState({
+      gender: gender,
+    });
+  }
+  handleDateChange(date) {
+    this.setState({
+      dob: date,
+    });
+  }
   inputChange(e) {
     this.setState({
-        [e.target.name] : e.target.value
+      [e.target.name]: e.target.value,
     });
-}
-  componentDidMount(){
-    var apiBaseUrl =  "http://localhost:4000/api/";
+  }
+  componentDidMount() {
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
-      'Message': 'show depts'
-    }
-    axios.post(apiBaseUrl+'add_user', payload)
-    .then(function(response){
-        if (response.data.code === 200) {       
-          console.log(response.data)
-        }
-    })
-    return
+      Message: "show depts",
+    };
+    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
+      if (response.data.code === 200) {
+        var tempdept = Object.keys(response.data.dept);
+        self.setState({
+          departmentDictionary: response.data.dept,
+          departmentList: tempdept,
+        });
+      }
+    });
+    return;
   }
 
   onClickAddUser(event) {
-    event.preventDefault()
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    event.preventDefault();
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
-        'Message': 'add user', 
-        'Name': this.state.Name,
-        'Email': this.state.Email,
-        'phoneNumber' : this.state.phoneNumber,
-        'cnic': this.state.cnic,
-        'dob': this.state.dob,
-        'maritalStatus': this.state.maritalStatus,
-        'bloodGroup': this.state.bloodGroup,
-        'designation': this.state.designation,
-        'department': this.state.department,
-        'nationality': this.state.nationality,
-        'location': this.state.location,
-        'address': this.state.address,
-    }
+      Message: "add user",
+      Name: this.state.Name,
+      Email: this.state.Email,
+      phoneNumber: this.state.phoneNumber,
+      cnic: this.state.cnic,
+      dob: this.state.dob,
+      maritalStatus: this.state.maritalStatus,
+      bloodGroup: this.state.bloodGroup,
+      designation: this.state.designation,
+      department: this.state.departmentDictionary[this.state.department],
+      nationality: this.state.nationality,
+      location: this.state.location,
+      address: this.state.address,
+      gender: this.state.gender,
+      manager: this.state.manager,
+    };
 
-    axios.post(apiBaseUrl+'add_user', payload)
-    .then(function(response){
-        if (response.data.code === 200) {           //success
-            self.props.history.push('/user');
-        }
-    })
-    return
+    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
+      if (response.data.code === 200) {
+        //success
+        self.props.history.push("/user");
+      }
+    });
+    return;
   }
   onClickCancel(event) {
     this.props.history.push("/user");
@@ -108,87 +140,127 @@ class addUser extends Component {
                     label="Name"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "Email"
+                    name="Email"
                     id="outlined-basic"
                     label="Email"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "phoneNumber"
+                    name="phoneNumber"
                     id="outlined-basic"
                     label="Phone Number"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "cnic"
+                    name="cnic"
                     id="outlined-basic"
                     label="CNIC"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
-                  <TextField
-                    name= "dob"
-                    id="outlined-basic"
-                    label="D.O.B"
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      autoOk
+                      variant="inline"
+                      inputVariant="outlined"
+                      label="D.O.B"
+                      format="yyyy/MM/dd"
+                      value={this.state.dob}
+                      InputAdornmentProps={{ position: "start" }}
+                      onChange={(date) => this.handleDateChange(date)}
+                    />
+                  </MuiPickersUtilsProvider>
+                  <FormControl
                     variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
+                    className="departmentDropdown"
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Department
+                    </InputLabel>
+                    <Select
+                      name="department"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.department}
+                      onChange={this.inputChange}
+                      label="Department"
+                    >
+                      {this.state.departmentList.map((d) => {
+                        return <MenuItem value={d}>{d}</MenuItem>;
+                      })}
+                    </Select>
+                  </FormControl>
                   <TextField
-                    name= "maritalStatus"
+                    name="maritalStatus"
                     id="outlined-basic"
                     label="Marital Status"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "bloodGroup"
+                    name="bloodGroup"
                     id="outlined-basic"
                     label="Blood Group"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "designation"
+                    name="designation"
                     id="outlined-basic"
                     label="Designation"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
+                  <FormControl variant="outlined" className="formControl">
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Gender
+                    </InputLabel>
+                    <Select
+                      name="gender"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.gender}
+                      onChange={this.inputChange}
+                      label="Gender"
+                    >
+                      <MenuItem value={"M"}>M</MenuItem>
+                      <MenuItem value={"F"}>F</MenuItem>
+                    </Select>
+                  </FormControl>
                   <TextField
-                    name= "department"
+                    name="manager"
                     id="outlined-basic"
-                    label="Department"
+                    label="Manager"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "nationality"
+                    name="nationality"
                     id="outlined-basic"
                     label="Nationality"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
-                    name= "location"
+                    name="location"
                     id="outlined-basic"
                     label="Location"
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />
                   <TextField
                     name="address"
@@ -198,7 +270,7 @@ class addUser extends Component {
                     multiline
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />{" "}
                 </div>
               </form>
