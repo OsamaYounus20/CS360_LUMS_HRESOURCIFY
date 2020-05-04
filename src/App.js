@@ -43,6 +43,7 @@ function App() {
           <Route exact path="/user_dashboard" component={userDasboard}/>
           <Route exact path="/apply_leaves" component={applyLeave}/>
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
+          <Route exact path="/pending_leave_request" component={pendingLeaveRequests}/>
           <Route exact path="/calendar" component={calendar}/>
         </Switch>
       </div>
