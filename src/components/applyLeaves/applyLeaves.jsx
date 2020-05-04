@@ -55,7 +55,7 @@ class applyLeave extends Component {
         [e.target.name] : e.target.value
     });
 }
-  onClickAddUser(event) {
+  onClickApply(event) {
     event.preventDefault()
     var apiBaseUrl =  "http://localhost:4000/api/";
     var self = this;
@@ -96,6 +96,7 @@ class applyLeave extends Component {
                     <Avatar alt="Remy Sharp" className="picture" />
                   </div>
                   <TextField
+                    required
                     name="Name"
                     id="outlined-basic"
                     label="Name"
@@ -104,6 +105,7 @@ class applyLeave extends Component {
                     onChange = {this.inputChange}
                   />
                   <TextField
+                    required
                     name= "Department"
                     id="outlined-basic"
                     label="Department"
@@ -112,6 +114,7 @@ class applyLeave extends Component {
                     onChange = {this.inputChange}
                   />
                   <TextField
+                    required
                     name= "Head of Department"
                     id="outlined-basic"
                     label="Head of Department"
@@ -121,6 +124,7 @@ class applyLeave extends Component {
                   />
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
+                      required
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
@@ -134,6 +138,7 @@ class applyLeave extends Component {
                   
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
+                      required
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
@@ -145,6 +150,7 @@ class applyLeave extends Component {
                     />
                   </MuiPickersUtilsProvider>
                   <TextField
+                    required
                     name= "Type"
                     id="outlined-basic"
                     label="Type"
@@ -155,6 +161,7 @@ class applyLeave extends Component {
                   
 
                   <TextField
+                    required
                     name="Reason"
                     id="outlined-multiline-static"
                     label="Reason"
@@ -175,7 +182,7 @@ class applyLeave extends Component {
                 size="small"
                 color="primary"
                 className="margin"
-                onClick={this.onClickAddUser.bind(this)}
+                onClick={this.onClickApply.bind(this)}
               >
                 Apply
               </Button>
