@@ -4,16 +4,23 @@ import Button from "@material-ui/core/Button";
 import Navbar from "../userNavbar/navbar";
 import Clock from "../clock/clock";
 import Piechart from "../piechart/piechart";
+import userclass from "../helper/helper";
 
 class userDashBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      user: {
+        userID: "",
+        userType: "",
+      },
+    };
   }
   onClickPersonalInfo(event) {
     this.props.history.push("/view_info");
   }
   onClickViewAssignedTasks() {
+    console.log(userclass.returnUser());
     console.log("abhi krna hai");
   }
   onClickToDoTasks() {
