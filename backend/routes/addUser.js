@@ -30,6 +30,7 @@ exports.add = async function(req, res) {
                 console.log(error);
             } else {
                 user_id = results[0]['COUNT(*)'] + 2000;
+
                 values = [
                     user_id,
                     req.body.Name,
@@ -44,10 +45,12 @@ exports.add = async function(req, res) {
                     req.body.department,
                     req.body.nationality,
                     req.body.location,
-                    req.body.address
+                    req.body.address,
+                    req.body.manager,
+                    req.body.gender,
                 ]
 
-                connection.query('INSERT INTO HRUSER (user_id, full_name, user_password, email, contact_no, cnic, dob, marital_status, blood_type, job_title, department, nationality, location, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', values, async function(error, results, fields) {
+                connection.query('INSERT INTO HRUSER (user_id, full_name, user_password, email, contact_no, cnic, dob, marital_status, blood_type, job_title, department, nationality, location, address, manager, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', values, async function(error, results, fields) {
                     if (error) {
                         console.log(error);
                         res.send({

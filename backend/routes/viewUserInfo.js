@@ -39,26 +39,34 @@ exports.display = async function (req, res) {
         console.log(error);
       } else {
         results = JSON.parse(JSON.stringify(results));
-        results.forEach((element) => {
-          element.user_id = element.user_id.toString();
-          element.department = departments[element.department];
-          element.contact_no = element.contact_no.toString();
-          element.address = element.address.toString();
-          element.dob = element.dob.toString();
-          element.marital_status = element.marital_status.toString();
-          element.nationality = element.nationality.toString();
-          element.blood_type = element.nationality.toString();
-          element.location = element.location.toString();
+        results = results[0];
+        results.department = departments[results.department];
+        // results.contact_no = results.contact_no.toString();
+        // results.address = results.address.toString();
+        // results.dob = results.dob.toString();
+        // results.marital_status = results.marital_status.toString();
+        // results.nationality = results.nationality.toString();
+        // results.blood_type = results.nationality.toString();
+        // results.location = results.location.toString();
+        delete results.user_password;
+        delete results.photo;
+        delete results.employment_status;
+        delete results.presences;
+        delete results.absences;
 
-          delete element.manager;
-          delete element.user_password;
-          delete element.photo;
-          delete element.employment_status;
-          delete element.presences;
-          delete element.absences;
-        });
-        console.log(results);
-        res.send(results);
+        if (results.manager != null) {
+          connection.query('SELECT full_name FROM HRUSER WHERE user_id = ?', [results.manager], async function(error, results2, fields) {
+            if (error) {
+              console.log(error);
+            } else {
+              results.manager = results2[0].full_name;
+              res.send(results);
+            }
+          });
+        } else {
+          results.manager = 'None';
+          res.send(results);
+        }
       }
     }
   );
