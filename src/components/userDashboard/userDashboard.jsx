@@ -33,6 +33,7 @@ class userDashBoard extends Component {
     this.props.history.push("/calendar");
   }
   onClickLeave(event) {
+    this.props.history.push("/apply_leaves");
     console.log("abhi krna hai");
   }
   onClickAttendance(event) {

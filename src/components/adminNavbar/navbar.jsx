@@ -112,12 +112,14 @@ export default function ClippedDrawer() {
                 <ListItemText style={textstyle} primary={"Departments"} />
               </ListItem>
             </Link>
+            <Link to = "pending_leave_request" style={{ textDecoration: "none" }}>
             <ListItem style={buttonstyle} button key={"Leave Requests"}>
               <ListItemIcon style={iconstyle}>
                 <DateRangeIcon />
               </ListItemIcon>
               <ListItemText style={textstyle} primary={"Leave Requests"} />
             </ListItem>
+            </Link>
           </List>
         </div>
       </Drawer>

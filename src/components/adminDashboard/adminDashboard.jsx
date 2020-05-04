@@ -21,6 +21,9 @@ class adminDashBoard extends Component {
   onClickDepartment() {
     this.props.history.push("/department");
   }
+  onClickViewLeaveRequest() {
+    this.props.history.push("/pending_leave_request");
+  }
   render() {
     return (
       <div>
@@ -79,6 +82,7 @@ class adminDashBoard extends Component {
             }}
             size="large"
             color="default"
+            onClick={this.onClickViewLeaveRequest.bind(this)}
           >
             View Leave Request
           </Button>
