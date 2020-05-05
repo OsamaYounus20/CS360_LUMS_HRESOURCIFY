@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import "./pendingLeaveRequests.css";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { green } from "@material-ui/core/colors";
 import Navbar from "../adminNavbar/navbar";
 import Form from "../leaveTable/leaveTable";
-import { Route, withRouter } from "react-router-dom";
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-  },
-});
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class pendingLeaveRequests extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: true,
+    };
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onClickAddUser(event) {
     this.props.history.push("/add_user");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
