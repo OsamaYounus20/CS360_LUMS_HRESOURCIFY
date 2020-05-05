@@ -3,29 +3,25 @@
 }
 .positioning {
   display: flex;
-  justify-content: space-between;
+  margin-bottom: 20px;
 }
 .userDashboard {
   margin: 25px 0px auto 140px !important;
-
   max-width: 60%;
   max-height: 60%;
   padding: 0;
-  align-content: flex-start;
 }
 .clockContainer {
-  display: flex;
-  justify-content: space-between;
-  max-width: 200px;
-  max-height: 200px;
-  margin-top: 100px;
-  margin-left: 72%;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 80px;
+  margin-left: 70%;
 }
 .piechart {
-  align-content: flex-end;
   margin-top: 20px;
-  margin-right: 33px;
-  margin-left: 0px;
   background-color: #d3c1c3;
   max-width: 350px;
   max-height: 390px;
@@ -34,7 +30,7 @@
   border-radius: 20px;
 }
 .clock {
-  align-content: flex-end;
+  margin-left: 0px;
 }
 
 .chartBackground {
@@ -43,5 +39,5 @@
   max-height: 200px;
   min-height: 200px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
 }

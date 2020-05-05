@@ -26,7 +26,7 @@ class userDashBoard extends Component {
     }
   }
   onClickPersonalInfo(event) {
-    this.props.history.push("/view_info");
+    this.props.history.push("/view_personal_info");
   }
   onClickViewAssignedTasks() {
     // console.log(userclass.returnUser());
@@ -59,23 +59,30 @@ class userDashBoard extends Component {
     return (
       <React.Fragment>
         <Navbar />
-        <div className="pageContainer">
+        <div>
           <div className="clockContainer">
             <div className="clock">
               <Clock />
             </div>
+            <button
+              className="piechart"
+              onClick={this.onClickAttendance.bind(this)}
+            >
+              <h1>Attendance</h1>
+              <Piechart />
+            </button>
           </div>
           <div className="positioning">
             <div className="userDashboard">
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  // marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  // marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -88,12 +95,12 @@ class userDashBoard extends Component {
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  // marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  // marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -106,12 +113,12 @@ class userDashBoard extends Component {
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  // marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  // marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -125,12 +132,12 @@ class userDashBoard extends Component {
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -143,12 +150,12 @@ class userDashBoard extends Component {
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -161,12 +168,12 @@ class userDashBoard extends Component {
               <Button
                 variant="contained"
                 style={{
-                  marginLeft: "100px",
-                  marginTop: "100px",
-                  minWidth: "140px",
-                  minHeight: "140px",
-                  maxWidth: "140px",
-                  maxHeight: "140px",
+                  marginLeft: "10%",
+                  marginTop: "50px",
+                  minWidth: "130px",
+                  minHeight: "130px",
+                  maxWidth: "130px",
+                  maxHeight: "130px",
                   background: "#292770",
                   borderRadius: "30px",
                   fontSize: "1em",
@@ -177,13 +184,6 @@ class userDashBoard extends Component {
                 Personal Info
               </Button>
             </div>
-            <button
-              className="piechart"
-              onClick={this.onClickAttendance.bind(this)}
-            >
-              <h1>Attendance</h1>
-              <Piechart />
-            </button>
           </div>
         </div>
       </React.Fragment>
