@@ -9,14 +9,12 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import DateFnsUtils from "@date-io/date-fns";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
+import { Link } from "react-router-dom";
 
 import {
   KeyboardDatePicker,
@@ -49,6 +47,7 @@ class addUser extends Component {
       address: "",
       gender: "",
       manager: "",
+      loggedIn: true,
     };
     this.inputChange = this.inputChange.bind(this);
   }
@@ -68,6 +67,12 @@ class addUser extends Component {
     });
   }
   componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
@@ -119,6 +124,9 @@ class addUser extends Component {
     this.props.history.push("/user");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
