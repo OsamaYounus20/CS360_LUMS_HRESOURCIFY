@@ -43,13 +43,13 @@ class viewLeaveRequest extends Component {
       self.setState({
         // rows: response.data,
         name: response.data[0].full_name,
-        phone: response.data[0].contact_no,
-        address: response.data[0].address,
-        email: response.data[0].email,
-        cnic: response.data[0].cnic,
-        dob: response.data[0].dob,
-        gender: response.data[0].gender,
-        status: response.data[0].marital_status,
+        department: response.data[0].full_name,
+        HOD: response.data[0].full_name,
+        fromDate: response.data[0].full_name,
+        toDate: response.data[0].full_name,
+        type: response.data[0].full_name,
+        reason: response.data[0].full_name,
+        
       });
     });
     return;
@@ -60,15 +60,13 @@ class viewLeaveRequest extends Component {
         <Navbar />
         <div className="ContainerPlacing">
           <Container fixed>
-            <h1>Personal Info</h1>
+            <h1>Leave Request</h1>
             <Typography
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
+              className="ContainerPlacing"
             >
               <div>
-                <div className="pictureBG">
-                  <Avatar alt="Remy Sharp" src={image1} className="picture" />
-                </div>
                 <ul>
                   <li>
                     <div>
@@ -83,7 +81,7 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>Department:</b>
                       </h5>
-                      <h4> {this.state.email}</h4>
+                      <h4> {this.state.department}</h4>
                     </div>
                   </li>
                   <li>
@@ -91,7 +89,7 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>H.O.D:</b>
                       </h5>
-                      <h4>{this.state.phone}</h4>
+                      <h4>{this.state.HOD}</h4>
                     </div>
                   </li>
                   <li>
@@ -99,7 +97,7 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>From Date:</b>
                       </h5>
-                      <h4> {this.state.cnic}</h4>
+                      <h4> {this.state.fromDate}</h4>
                     </div>
                   </li>
                   <li>
@@ -107,7 +105,7 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>To Date:</b>
                       </h5>
-                      <h4>{this.state.dob}</h4>
+                      <h4>{this.state.toDate}</h4>
                     </div>
                   </li>
                   <li>
@@ -115,7 +113,17 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>Type:</b>
                       </h5>
-                      <h4> {this.state.status}</h4>
+                      <h4> {this.state.type}</h4>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                     
                     </div>
                   </li>
                   <li>
@@ -123,16 +131,20 @@ class viewLeaveRequest extends Component {
                       <h5>
                         <b>Reason:</b>
                       </h5>
-                      <h4> {this.state.bloodgrp}</h4>
+                      <h4> {this.state.reason}</h4>
                     </div>
                   </li>
+                  
+                  
                 </ul>
               </div>
             </Typography>
-          </Container>
+          </Container >
             
-          <div className="centerplacing">
-            <ThemeProvider theme={theme} >
+          
+        
+        <div >
+            <ThemeProvider theme={theme }  >
               <Button
                 variant="contained"
                 size="small"
@@ -154,7 +166,7 @@ class viewLeaveRequest extends Component {
               </Button>
             </ThemeProvider>
           </div>
-        </div>
+          </div>
       </div>
     );
   }
