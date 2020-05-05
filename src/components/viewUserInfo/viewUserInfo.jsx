@@ -9,6 +9,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,11 +21,11 @@ class viewUserInfo extends Component {
     super(props);
     this.state = {
       rows: [],
+      loggedIn: true,
     };
   }
   handleClickEditUser(event) {
     var apiBaseUrl = "http://localhost:4000/api/";
-    var self = this;
     var payload = {
       Message: "give user info",
       Id: this.state.id
@@ -49,6 +50,12 @@ class viewUserInfo extends Component {
     this.props.history.push("/user");
   }
   componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
@@ -77,6 +84,9 @@ class viewUserInfo extends Component {
     return;
   }
   render(){
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
   return (
     <div>
       <Navbar />
