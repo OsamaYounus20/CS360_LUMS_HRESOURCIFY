@@ -14,8 +14,8 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker
   } from "@material-ui/pickers";
-import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
+import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -34,11 +34,20 @@ class applyLeave extends Component {
       toDate: '2020/01/11',
       type: '',
       reason: '',
+      loggedIn: true,
       
     };
     this.inputChange = this.inputChange.bind(this);
     this.handleDateChange = this.handleFromDateChange.bind(this);
     this.handleDateChange = this.handleToDateChange.bind(this);
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   handleFromDateChange(date) {
     this.setState({
@@ -80,6 +89,9 @@ class applyLeave extends Component {
     this.props.history.push("/user_dashboard");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
