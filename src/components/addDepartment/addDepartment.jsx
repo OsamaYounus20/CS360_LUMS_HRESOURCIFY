@@ -31,7 +31,7 @@ class addDepartment extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -67,8 +67,12 @@ class addDepartment extends Component {
     this.props.history.push("/department");
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>

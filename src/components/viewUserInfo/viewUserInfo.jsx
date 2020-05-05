@@ -28,22 +28,24 @@ class viewUserInfo extends Component {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
       Message: "give user info",
-      Id: this.state.id
+      Id: this.state.id,
     };
-    axios.post(apiBaseUrl + 'edit_user_info', payload).then(function(response) {
-      // self.setState({
-      //   name: response.data[0].full_name,
-      //   phone: response.data[0].contact_no,
-      //   address: response.data[0].address,
-      //   email: response.data[0].email,
-      //   status: response.data[0].marital_status,
-      //   dept: response.data[0].department,
-      //   job: response.data[0].job_title,
-      //   loc: response.data[0].location,
-      //   nationality: response.data[0].nationality,
-      //   bloodType: response.data[0].blood_type,
-      // });
-    });
+    axios
+      .post(apiBaseUrl + "edit_user_info", payload)
+      .then(function (response) {
+        // self.setState({
+        //   name: response.data[0].full_name,
+        //   phone: response.data[0].contact_no,
+        //   address: response.data[0].address,
+        //   email: response.data[0].email,
+        //   status: response.data[0].marital_status,
+        //   dept: response.data[0].department,
+        //   job: response.data[0].job_title,
+        //   loc: response.data[0].location,
+        //   nationality: response.data[0].nationality,
+        //   bloodType: response.data[0].blood_type,
+        // });
+      });
     this.props.history.push("/edit_user");
   }
   handleClickUser(event) {
@@ -51,7 +53,7 @@ class viewUserInfo extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -61,50 +63,49 @@ class viewUserInfo extends Component {
     var payload = {
       msg: "Send Data",
     };
-    axios.post(apiBaseUrl + "view_user_info", payload).then(function (response) {
-      self.setState({
-        // rows: response.data,
-        id: response.data.user_id,
-        name: response.data.full_name,
-        phone: response.data.contact_no,
-        address: response.data.address,
-        email: response.data.email,
-        cnic: response.data.cnic,
-        dob: response.data.dob,
-        gender: response.data.gender,
-        status: response.data.marital_status,
-        dept: response.data.department,
-        job: response.data.job_title,
-        loc: response.data.location,
-        nationality: response.data.nationality,
-        bloodgrp: response.data.blood_type,
-        manager: response.data.manager
+    axios
+      .post(apiBaseUrl + "view_user_info", payload)
+      .then(function (response) {
+        self.setState({
+          // rows: response.data,
+          id: response.data.user_id,
+          name: response.data.full_name,
+          phone: response.data.contact_no,
+          address: response.data.address,
+          email: response.data.email,
+          cnic: response.data.cnic,
+          dob: response.data.dob,
+          gender: response.data.gender,
+          status: response.data.marital_status,
+          dept: response.data.department,
+          job: response.data.job_title,
+          loc: response.data.location,
+          nationality: response.data.nationality,
+          bloodgrp: response.data.blood_type,
+          manager: response.data.manager,
+        });
       });
-    });
     return;
   }
-  render(){
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+  render() {
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
-  return (
-    <div>
-      <Navbar />
-      <div className="ContainerPlacing">
-        <Container fixed>
-          <h1>Employee Info</h1>
-          <Typography
-            component="div"
-            style={{ backgroundColor: "#fff", height: "auto" }}
-          >
+    return (
+      <div>
+        <Navbar />
+        <div className="ContainerPlacing">
+          <Container fixed>
+            <h1>Employee Info</h1>
+            <Typography
+              component="div"
+              style={{ backgroundColor: "#fff", height: "auto" }}
+            >
               <div>
-                <div className="pictureBG">
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={image1}
-                    className="picture"
-                  />
-                </div>
                 <ul>
                   <li>
                     <div>
@@ -212,33 +213,33 @@ class viewUserInfo extends Component {
                   </li>
                 </ul>
               </div>
-          </Typography>
-        </Container>
-        <div className="centerplacing">
-          <ThemeProvider theme={theme}>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              className="margin"
-              onClick={this.handleClickEditUser.bind(this)}              
-            >
-              Edit
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              className="margin"
-              onClick={this.handleClickUser.bind(this)}
-            >
-              Delete
-            </Button>
-          </ThemeProvider>
+            </Typography>
+          </Container>
+          <div className="centerplacing">
+            <ThemeProvider theme={theme}>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                className="margin"
+                onClick={this.handleClickEditUser.bind(this)}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                className="margin"
+                onClick={this.handleClickUser.bind(this)}
+              >
+                Delete
+              </Button>
+            </ThemeProvider>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 export default viewUserInfo;

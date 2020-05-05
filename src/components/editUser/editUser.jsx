@@ -4,8 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
@@ -13,7 +11,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import axios from 'axios';
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
@@ -31,13 +29,13 @@ class editUser extends Component {
       department: "",
       user_id: "",
       name: "",
+      dob: new Date(),
       phone: "",
       address: "",
       email: "",
-      status : "",
-      department: "",
-      designation:"",
-      location:"" ,
+      status: "",
+      designation: "",
+      location: "",
       nationality: "",
       bloodType: "",
       manager: "",
@@ -53,14 +51,14 @@ class editUser extends Component {
   }
   inputChangeDepartment(e) {
     this.setState({
-      department: this.state.departmentDictionary[e.target.value]
+      department: this.state.departmentDictionary[e.target.value],
     });
   }
   onClickSave(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
 
     var payload = {
-      Message: "updated info",
+      Message: "updated info employee",
       Id: this.state.user_id,
       Name: this.state.name,
       Email: this.state.email,
@@ -72,12 +70,14 @@ class editUser extends Component {
       nationality: this.state.nationality,
       location: this.state.location,
       address: this.state.address,
-      manager: this.state.manager
+      manager: this.state.manager,
     };
 
-    axios.post(apiBaseUrl + 'edit_user_info', payload).then(function(response) {
-      // console.log(response.data);
-    });
+    axios
+      .post(apiBaseUrl + "edit_user_info", payload)
+      .then(function (response) {
+        // console.log(response.data);
+      });
     this.props.history.push("/user");
   }
   onClickCancel(event) {
@@ -85,7 +85,7 @@ class editUser extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -93,34 +93,39 @@ class editUser extends Component {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-      Message: "give user info",
-      Id: -1
+      Message: "give employee info",
+      Id: -1,
     };
-    axios.post(apiBaseUrl + 'edit_user_info', payload).then(function(response) {
-      console.log(response.data);
-      var tempdept = Object.keys(response.data.dept);
-      self.setState({
-        user_id: response.data.user.user_id,
-        name: response.data.user.full_name.toString(),
-        phone: response.data.user.contact_no.toString(),
-        address: response.data.user.address.toString(),
-        email: response.data.user.email.toString(),
-        status: response.data.user.marital_status.toString(),
-        department: response.data.user.department,
-        designation: response.data.user.job_title.toString(),
-        location: response.data.user.location.toString(),
-        nationality: response.data.user.nationality.toString(),
-        manager: response.data.user.manager,
-        bloodType: response.data.user.blood_type.toString(),
-        departmentDictionary: response.data.dept,
-        departmentList: tempdept
+    axios
+      .post(apiBaseUrl + "edit_user_info", payload)
+      .then(function (response) {
+        var tempdept = Object.keys(response.data.dept);
+        self.setState({
+          user_id: response.data.user.user_id,
+          name: response.data.user.full_name.toString(),
+          phone: response.data.user.contact_no.toString(),
+          address: response.data.user.address.toString(),
+          email: response.data.user.email.toString(),
+          status: response.data.user.marital_status.toString(),
+          department: response.data.user.department,
+          designation: response.data.user.job_title.toString(),
+          location: response.data.user.location.toString(),
+          nationality: response.data.user.nationality.toString(),
+          manager: response.data.user.manager,
+          bloodType: response.data.user.blood_type.toString(),
+          departmentDictionary: response.data.dept,
+          departmentList: tempdept,
+        });
       });
-    });
   }
- 
+
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
@@ -134,16 +139,13 @@ class editUser extends Component {
             >
               <form className="formContainer">
                 <div className="myForm">
-                  <div>
-                    <Avatar alt="Remy Sharp" src={image1} className="picture" />
-                  </div>
                   <TextField
-                    name = "name"
+                    name="name"
                     id="outlined-basic"
                     label="Name"
                     variant="outlined"
                     helperText={this.state.name}
-                    onChange={this.inputChange}                 
+                    onChange={this.inputChange}
                   />
                   <TextField
                     name="email"
@@ -206,12 +208,12 @@ class editUser extends Component {
                     </Select>
                   </FormControl>
                   <TextField
-                    name = "manager"
+                    name="manager"
                     id="outlined-basic"
                     label="Manager"
                     variant="outlined"
                     helperText={this.state.manager}
-                    onChange={this.inputChange}                 
+                    onChange={this.inputChange}
                   />
                   <TextField
                     name="nationality"

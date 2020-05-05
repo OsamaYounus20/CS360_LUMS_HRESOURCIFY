@@ -39,11 +39,3 @@ h5 {
 .margin {
   margin: 10px 10px 10px !important;
 }
-
-.picture {
-  width: 75px !important;
-  height: 75px !important;
-}
-.pictureBG {
-  background-color: #fafafa;
-}

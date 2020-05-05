@@ -20,19 +20,19 @@ class viewPersonalInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      phone: '',
-      address: '',
-      email: '',
-      cnic: '',
-      dob: '',
-      gender: '',
-      status: '',
-      dept: '',
-      job: '',
-      loc: '',
-      nationality: '',
-      bloodgrp: '',
+      name: "",
+      phone: "",
+      address: "",
+      email: "",
+      cnic: "",
+      dob: "",
+      gender: "",
+      status: "",
+      dept: "",
+      job: "",
+      loc: "",
+      nationality: "",
+      bloodgrp: "",
       loggedIn: true,
     };
   }
@@ -41,7 +41,7 @@ class viewPersonalInfo extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -52,30 +52,36 @@ class viewPersonalInfo extends Component {
       msg: "Send Data",
       id: localStorage.getItem("user_id"),
     };
-    axios.post(apiBaseUrl + "view_personal_info", payload).then(function (response) {
-      self.setState({
-        // rows: response.data,
-        name: response.data[0].full_name,
-        phone: response.data[0].contact_no,
-        address: response.data[0].address,
-        email: response.data[0].email,
-        cnic: response.data[0].cnic,
-        dob: response.data[0].dob,
-        gender: response.data[0].gender,
-        status: response.data[0].marital_status,
-        dept: response.data[0].department,
-        job: response.data[0].job_title,
-        loc: response.data[0].location,
-        nationality: response.data[0].nationality,
-        bloodgrp: response.data[0].blood_type,
+    axios
+      .post(apiBaseUrl + "view_personal_info", payload)
+      .then(function (response) {
+        self.setState({
+          // rows: response.data,
+          name: response.data[0].full_name,
+          phone: response.data[0].contact_no,
+          address: response.data[0].address,
+          email: response.data[0].email,
+          cnic: response.data[0].cnic,
+          dob: response.data[0].dob,
+          gender: response.data[0].gender,
+          status: response.data[0].marital_status,
+          dept: response.data[0].department,
+          job: response.data[0].job_title,
+          loc: response.data[0].location,
+          nationality: response.data[0].nationality,
+          bloodgrp: response.data[0].blood_type,
+        });
       });
-    });
 
     return;
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
@@ -88,9 +94,6 @@ class viewPersonalInfo extends Component {
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
               <div>
-                <div className="pictureBG">
-                  <Avatar alt="Remy Sharp" src={image1} className="picture" />
-                </div>
                 <ul>
                   <li>
                     <div>

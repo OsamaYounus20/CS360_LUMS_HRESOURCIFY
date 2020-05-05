@@ -4,12 +4,21 @@ import TextField from "@material-ui/core/TextField";
 import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -19,26 +28,105 @@ class editInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: "",
+      name: "",
+      phone: "",
+      address: "",
+      email: "",
+      status: "",
+      nationality: "",
+      bloodType: "",
+      dob: new Date(),
+      gender: "",
+
       loggedIn: true,
     };
+    this.inputChange = this.inputChange.bind(this);
+  }
+  handleGenderChange(gender) {
+    this.setState({
+      gender: gender,
+    });
+  }
+  handleDateChange(date) {
+    this.setState({
+      dob: date,
+    });
+  }
+  inputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+  onClickSave(event) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    // "http://3.8.136.131:4000/api/";
+
+    var payload = {
+      Message: "updated info user",
+      Id: this.state.user_id,
+      Name: this.state.name,
+      Email: this.state.email,
+      phoneNumber: this.state.phone,
+      maritalStatus: this.state.status,
+      bloodGroup: this.state.bloodType,
+      nationality: this.state.nationality,
+      location: this.state.location,
+      address: this.state.address,
+      gender: this.state.gender,
+      dob: this.state.dob,
+    };
+
+    axios
+      .post(apiBaseUrl + "edit_personal_info", payload)
+      .then(function (response) {
+        // console.log(response.data);
+      });
+    this.props.history.push("/view_personal_info");
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
     }
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    // "http://3.8.136.131:4000/api/";
+    var self = this;
+    var payload = {
+      Message: "give user info",
+      Id: -1,
+    };
+    axios
+      .post(apiBaseUrl + "edit_personal_info", payload)
+      .then(function (response) {
+        console.log(response.data);
+        self.setState({
+          user_id: response.data.user.user_id,
+          name: response.data.user.full_name.toString(),
+          phone: response.data.user.contact_no.toString(),
+          address: response.data.user.address.toString(),
+          email: response.data.user.email.toString(),
+          status: response.data.user.marital_status.toString(),
+          gender: response.data.user.gender.toString(),
+          dob: response.data.user.dob.toString(),
+          nationality: response.data.user.nationality.toString(),
+          bloodType: response.data.user.blood_type.toString(),
+        });
+      });
   }
-  onClickSave(event) {
-    this.props.history.push("/view_personal_info");
-  }
+
   onClickCancel(event) {
     this.props.history.push("/view_personal_info");
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
@@ -52,82 +140,97 @@ class editInfo extends Component {
             >
               <form className="formContainer">
                 <div className="myForm">
-                  <div>
-                    <Avatar alt="Remy Sharp" src={image1} className="picture" />
-                  </div>
                   <TextField
+                    name="name"
                     id="outlined-basic"
                     label="Name"
                     variant="outlined"
-                    defaultValue="John Doe"
+                    helperText={this.state.name}
+                    onChange={this.inputChange}
                   />
                   <TextField
                     id="outlined-basic"
                     label="Email"
                     variant="outlined"
-                    defaultValue="johndoe@johndoe.com"
+                    helperText={this.state.email}
+                    onChange={this.inputChange}
+                    name="email"
                   />
                   <TextField
                     id="outlined-basic"
                     label="Phone Number"
                     variant="outlined"
-                    defaultValue="090078601"
+                    helperText={this.state.phone}
+                    onChange={this.inputChange}
+                    name="phone"
                   />
-                  <TextField
-                    id="outlined-basic"
-                    label="CNIC"
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      required
+                      autoOk
+                      variant="inline"
+                      inputVariant="outlined"
+                      label="D.O.B"
+                      format="yyyy/MM/dd"
+                      value={this.state.dob}
+                      InputAdornmentProps={{ position: "start" }}
+                      onChange={(date) => this.handleDateChange(date)}
+                    />
+                  </MuiPickersUtilsProvider>
+                  <FormControl
+                    required
                     variant="outlined"
-                    defaultValue="12345-12345678-6"
-                  />
-                  <TextField
-                    id="outlined-basic"
-                    label="D.O.B"
-                    variant="outlined"
-                    defaultValue="19 June 1980"
-                  />
+                    className="formControl"
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Gender
+                    </InputLabel>
+                    <Select
+                      name="gender"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.gender}
+                      onChange={this.inputChange}
+                      label="Gender"
+                    >
+                      <MenuItem value={"M"}>M</MenuItem>
+                      <MenuItem value={"F"}>F</MenuItem>
+                    </Select>
+                  </FormControl>
                   <TextField
                     id="outlined-basic"
                     label="Marital Status"
                     variant="outlined"
-                    defaultValue="Married"
+                    helperText={this.state.status}
+                    onChange={this.inputChange}
+                    name="status"
                   />
                   <TextField
                     id="outlined-basic"
                     label="Blood Group"
                     variant="outlined"
-                    defaultValue="B+"
+                    helperText={this.state.bloodType}
+                    onChange={this.inputChange}
+                    name="bloodType"
                   />
                   <TextField
-                    id="outlined-basic"
-                    label="Designation"
-                    variant="outlined"
-                    defaultValue="Manager"
-                  />
-                  <TextField
-                    id="outlined-basic"
-                    label="Department"
-                    variant="outlined"
-                    defaultValue="HR"
-                  />
-                  <TextField
+                    name="nationality"
                     id="outlined-basic"
                     label="Nationality"
                     variant="outlined"
-                    defaultValue="Pakistan"
+                    helperText={this.state.nationality}
+                    onChange={this.inputChange}
                   />
+
                   <TextField
-                    id="outlined-basic"
-                    label="Location"
-                    variant="outlined"
-                    defaultValue="Karachi Head Office"
-                  />
-                  <TextField
+                    name="address"
                     id="outlined-multiline-static"
                     label="Address"
                     rows={4}
                     multiline
                     variant="outlined"
-                    defaultValue="192-B, Bakers Street, Downtown, Karachi"
+                    helperText={this.state.address}
+                    onChange={this.inputChange}
                   />
                 </div>
               </form>
