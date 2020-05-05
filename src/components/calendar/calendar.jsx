@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import Navbar from "../userNavbar/navbar";
 import Calendar from 'react-calendar';
-import dateFns from "date-fns";
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
-import useState from "react"; 
+import { Link } from "react-router-dom";
 
 
 class calendar extends Component {
@@ -14,8 +12,17 @@ class calendar extends Component {
     this.state = {
         date: new Date(),
         event: '',
+        loggedIn: true,
     };
     this.onChangedate = this.onChangedate.bind(this);
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onChangedate= date => {
       this.setState({date})
@@ -24,6 +31,9 @@ class calendar extends Component {
       });
   };
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <React.Fragment>
           <Navbar />
