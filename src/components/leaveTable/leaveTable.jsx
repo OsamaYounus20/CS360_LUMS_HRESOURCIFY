@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { Route, withRouter } from "react-router-dom";
 
 const columns = [
-  { id: "user_id", label: "ID", minWidth: 170 },
+  { id: "requested_by", label: "ID", minWidth: 170 },
   { id: "full_name", label: "Name", minWidth: 170 },
   {
     id: "department",
@@ -23,18 +23,14 @@ const columns = [
     align: "center",
     format: (value) => value.toLocaleString(),
   },
-//   {
-//     id: "job_title",
-//     label: "Job Title",
-//     minWidth: 170,
-//     align: "center",
-//     format: (value) => value.toLocaleString(),
-//   },
+  {
+    id: "type",
+    label: "Type",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toLocaleString(),
+  },
 ];
-
-function createData(id, name, department) {
-  return [id, name, department];
-}
 
 class leaveRequestTable extends Component {
   constructor(props) {
@@ -42,15 +38,19 @@ class leaveRequestTable extends Component {
     this.state = {
       rows: [],
     };
-    this.onClickAddUser = this.onClickAddUser.bind(this);
+    this.onClickViewRequest = this.onClickViewRequest.bind(this);
   }
-  onClickAddUser(row){
+  onClickViewRequest(row){
     var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-        id : row.user_id
+        request_id : row.request_id,
+        full_name : row.full_name,
+        department_id : row.department_id,
+        department : row.department
     }
-    axios.post(apiBaseUrl+'view_user_info', payload)
+    console.log(payload);
+    axios.post(apiBaseUrl+'view_leave_request', payload)
     .then(function(response){
       // console.log(response.data);            
     })
@@ -62,7 +62,7 @@ class leaveRequestTable extends Component {
     var payload = {
       msg: "Send Data",
     };
-    axios.post(apiBaseUrl + "users", payload).then(function (response) {
+    axios.post(apiBaseUrl + "leaves", payload).then(function (response) {
       self.setState({
         rows: response.data,
       });
@@ -95,7 +95,7 @@ class leaveRequestTable extends Component {
                     role="checkbox"
                     tabIndex={-1}
                     key={row.code}
-                    onClick={(e) => this.onClickAddUser(row)}
+                    onClick={(e) => this.onClickViewRequest(row)}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];
