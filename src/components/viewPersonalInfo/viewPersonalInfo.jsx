@@ -9,7 +9,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
-import userclass from "../helper/helper";
+import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -33,17 +33,24 @@ class viewPersonalInfo extends Component {
       loc: '',
       nationality: '',
       bloodgrp: '',
+      loggedIn: true,
     };
   }
   onClickEditUser(event) {
     this.props.history.push("/edit_info");
   }
   componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",
-      id: userclass.returnUserID(),
+      id: localStorage.getItem("user_id"),
     };
     axios.post(apiBaseUrl + "view_personal_info", payload).then(function (response) {
       self.setState({
@@ -67,6 +74,9 @@ class viewPersonalInfo extends Component {
     return;
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
