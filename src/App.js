@@ -42,7 +42,7 @@ function App() {
           <Route exact path="/department" component={department} />
           <Route exact path="/add_department" component={addDepartment}/>
           <Route exact path="/edit_department" component={editDepartment}/>
-          <Route exact path="/view_departmentInfo" component={viewDepartmentInfo}/>
+          <Route exact path="/view_department_info" component={viewDepartmentInfo}/>
           <Route exact path="/user_dashboard" component={userDasboard}/>
           <Route exact path="/apply_leaves" component={applyLeave}/>
           <Route exact path="/view_leave_request" component={viewLeaveRequest}/>
