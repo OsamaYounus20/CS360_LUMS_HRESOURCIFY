@@ -1,28 +1,27 @@
 import React, { Component } from "react";
 import "./toDoTask.css";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import { green } from "@material-ui/core/colors";
 import Navbar from "../userNavbar/navbar";
 import Form from "./toDoTaskTable";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-const theme = createMuiTheme({
-    palette: {
-      primary: green,
-    },
-    style:{
-        height: "auto",
-        margin: "auto",
-    }
-  });
+import { Link } from "react-router-dom";
 
 class toDoTask extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: true,
+    };
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onClickAssignTask(event) {
     this.props.history.push("/assign_task");
@@ -34,6 +33,9 @@ class toDoTask extends Component {
     this.props.history.push("/to_do_task");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
