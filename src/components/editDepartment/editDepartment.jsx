@@ -4,11 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
+import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,7 +18,17 @@ const theme = createMuiTheme({
 class editDepartment extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: true,
+    };
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onClickSave(event) {
     this.props.history.push("/department");
@@ -28,6 +37,9 @@ class editDepartment extends Component {
     this.props.history.push("/department");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
