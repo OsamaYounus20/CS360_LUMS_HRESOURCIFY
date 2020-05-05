@@ -14,6 +14,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,7 +40,8 @@ class editUser extends Component {
       location:"" ,
       nationality: "",
       bloodType: "",
-      manager: ""
+      manager: "",
+      loggedIn: true,
     };
     this.inputChange = this.inputChange.bind(this);
     this.inputChangeDepartment = this.inputChangeDepartment.bind(this);
@@ -82,6 +84,12 @@ class editUser extends Component {
     this.props.history.push("/user");
   }
   componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
@@ -111,6 +119,9 @@ class editUser extends Component {
   }
  
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
