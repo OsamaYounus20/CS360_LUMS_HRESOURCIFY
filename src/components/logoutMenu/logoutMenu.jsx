@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from "react-router-dom";
 
 class Logout extends Component {
     constructor(props){
@@ -12,24 +13,13 @@ class Logout extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleCloseAccount = this.handleCloseAccount.bind(this);
-        this.handleCloseProfile = this.handleCloseProfile.bind(this);
         this.handleCloseLogout = this.handleCloseLogout.bind(this);
-    }
-    handleCloseProfile = (event) => {
-            this.setState({
-                anchorEl : event.currentTarget,
-            });
-    }
-    handleCloseAccount = (event) => {
-        this.setState({
-            anchorEl : event.currentTarget,
-        });
     }
     handleCloseLogout = (event) => {
         this.setState({
             anchorEl : event.currentTarget,
         });
+        localStorage.removeItem("token");
     }
     handleClick = (event) => {
         this.setState({
@@ -59,9 +49,9 @@ class Logout extends Component {
         open={Boolean(this.state.anchorEl)}
         onClose={this.handleClose}
       >
-        <MenuItem onClick={this.handleCloseProfile}>Profile</MenuItem>
-        <MenuItem onClick={this.handleCloseAccount}>My account</MenuItem>
+        <Link to="/" style={{ textDecoration: "none" }}>
         <MenuItem onClick={this.handleCloseLogout}>Logout</MenuItem>
+        </Link>
       </Menu>
     </div>
   );
