@@ -3,12 +3,12 @@ import "./viewDepartmentInfo.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -19,7 +19,7 @@ class viewDepartmentInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      loggedIn: true,
     };
   }
   onClickEditDepartment(event) {
@@ -29,6 +29,12 @@ class viewDepartmentInfo extends Component {
     this.props.history.push("/department");
   }
   componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
@@ -48,6 +54,9 @@ class viewDepartmentInfo extends Component {
   }
 
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
