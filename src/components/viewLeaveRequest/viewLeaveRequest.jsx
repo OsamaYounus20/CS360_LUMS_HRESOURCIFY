@@ -3,11 +3,12 @@ import "./viewLeaveRequest.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Avatar from "@material-ui/core/Avatar";
+import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -23,47 +24,55 @@ class viewLeaveRequest extends Component {
     super(props);
     this.state = {
       rows: [],
-      loggedIn: true,
     };
   }
   onClickGrant(event) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var payload = {
+      msg : "grant leave",
+      id  : this.state.id
+    };
+    axios.post(apiBaseUrl + "grant_deny_leave", payload).then(function (response) {
+      console.log(response);
+    });
     this.props.history.push("/pending_leave_request");
   }
   onClickDeny(event) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var payload = {
+      msg : "deny leave",
+      id  : this.state.id
+    };
+    axios.post(apiBaseUrl + "grant_deny_leave", payload).then(function (response) {
+      console.log(response);
+    });
+    this.props.history.push("/pending_leave_request");
+  }
+  onClickCancel(event) {
     this.props.history.push("/pending_leave_request");
   }
   componentDidMount() {
-    const token = localStorage.getItem("token");
-    if(token === null) {
-      this.setState({
-        loggedIn: false,
-      });
-    }
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-      msg: "Send Data",
-      id: 2001,
+      msg: "Send Data"
     };
-    axios.post(apiBaseUrl + "view_info", payload).then(function (response) {
+    axios.post(apiBaseUrl + "view_leave_request", payload).then(function (response) {
+      console.log(response);
       self.setState({
-        // rows: response.data,
-        name: response.data[0].full_name,
-        department: response.data[0].full_name,
-        HOD: response.data[0].full_name,
-        fromDate: response.data[0].full_name,
-        toDate: response.data[0].full_name,
-        type: response.data[0].full_name,
-        reason: response.data[0].full_name,
-        
+        id: response.data.info.request_id,
+        name: response.data.info.full_name,
+        department: response.data.info.department,
+        HOD: response.data.info.hod,
+        fromDate: response.data.info.start_date,
+        toDate: response.data.info.end_date,
+        type: response.data.info.type,
+        reason: response.data.info.reason,
       });
     });
     return;
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
-    }
     return (
       <div>
         <Navbar />
@@ -172,6 +181,15 @@ class viewLeaveRequest extends Component {
                 onClick={this.onClickDeny.bind(this)}
               >
                 Deny
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                className="margin"
+                onClick={this.onClickCancel.bind(this)}
+              >
+                Cancel
               </Button>
             </ThemeProvider>
           </div>
