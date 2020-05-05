@@ -1,12 +1,12 @@
 var express = require("express");
-var login = require('./routes/login');
-var users = require('./routes/users');
-var addUser= require('./routes/addUser');
-var departments = require('./routes/departments');
-var addDepartment = require('./routes/addDepartment');
-var viewUserInfo = require('./routes/viewUserInfo');
-var viewPersonalInfo = require('./routes/viewPersonalInfo');
-var viewDeptInfo = require('./routes/viewDeptInfo');
+var login = require('./backend/routes/login');
+var users = require('./backend/routes/users');
+var addUser= require('./backend/routes/addUser');
+var departments = require('./backend/routes/departments');
+var addDepartment = require('./backend/routes/addDepartment');
+var viewUserInfo = require('./backend/routes/viewUserInfo');
+var viewPersonalInfo = require('./backend/routes/viewPersonalInfo');
+var viewDeptInfo = require('./backend/routes/viewDeptInfo');
 var bodyParser = require('body-parser');
 
 let cors = require('cors')
