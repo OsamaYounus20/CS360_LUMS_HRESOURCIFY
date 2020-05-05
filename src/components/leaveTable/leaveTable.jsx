@@ -23,13 +23,13 @@ const columns = [
     align: "center",
     format: (value) => value.toLocaleString(),
   },
-//   {
-//     id: "job_title",
-//     label: "Job Title",
-//     minWidth: 170,
-//     align: "center",
-//     format: (value) => value.toLocaleString(),
-//   },
+  {
+    id: "",
+    label: "Type",
+    minWidth: 170,
+    align: "center",
+    format: (value) => value.toLocaleString(),
+  },
 ];
 
 function createData(id, name, department) {
@@ -42,9 +42,9 @@ class leaveRequestTable extends Component {
     this.state = {
       rows: [],
     };
-    this.onClickAddUser = this.onClickAddUser.bind(this);
+    this.onClickViewRequest = this.onClickViewRequest.bind(this);
   }
-  onClickAddUser(row){
+  onClickViewRequest(row){
     var apiBaseUrl =  "http://localhost:4000/api/";
     var self = this;
     var payload = {
@@ -95,7 +95,7 @@ class leaveRequestTable extends Component {
                     role="checkbox"
                     tabIndex={-1}
                     key={row.code}
-                    onClick={(e) => this.onClickAddUser(row)}
+                    onClick={(e) => this.onClickViewRequest(row)}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];

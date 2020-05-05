@@ -27,10 +27,10 @@ class viewLeaveRequest extends Component {
     };
   }
   onClickGrant(event) {
-    this.props.history.push("/pending_leave_requests");
+    this.props.history.push("/pending_leave_request");
   }
   onClickDeny(event) {
-    this.props.history.push("/pending_leave_requests");
+    this.props.history.push("/pending_leave_request");
   }
   componentDidMount() {
     var apiBaseUrl = "http://localhost:4000/api/";
