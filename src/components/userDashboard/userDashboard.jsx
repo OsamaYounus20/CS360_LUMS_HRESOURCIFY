@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Navbar from "../userNavbar/navbar";
 import Clock from "../clock/clock";
 import Piechart from "../piechart/piechart";
-import userclass from "../helper/helper";
+import { Link } from "react-router-dom";
 
 class userDashBoard extends Component {
   constructor(props) {
@@ -14,7 +14,16 @@ class userDashBoard extends Component {
         userID: "",
         userType: "",
       },
+      loggedIn: true,
     };
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onClickPersonalInfo(event) {
     this.props.history.push("/view_info");
@@ -44,6 +53,9 @@ class userDashBoard extends Component {
   }
 
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <React.Fragment>
         <Navbar />
