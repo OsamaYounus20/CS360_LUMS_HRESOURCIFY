@@ -24,14 +24,14 @@ router.get('/', function(req, res) {
     res.json({ message: 'welcome to our upload module apis' });
 });
 
-router.post('/login', login.login);
-router.post('/users', users.display);
-router.post('/add_user', addUser.add);
-router.post('/departments', departments.display);
-router.post('/add_dept', addDepartment.add);
-router.post('/view_user_info', viewUserInfo.display);
-router.post('/view_personal_info', viewPersonalInfo.display);
-router.post('/view_dept_info', viewDeptInfo.display);
+router.all('/login', login.login);
+router.all('/users', users.display);
+router.all('/add_user', addUser.add);
+router.all('/departments', departments.display);
+router.all('/add_dept', addDepartment.add);
+router.all('/view_user_info', viewUserInfo.display);
+router.all('/view_personal_info', viewPersonalInfo.display);
+router.all('/view_dept_info', viewDeptInfo.display);
 
 app.use('/api', router);
 app.listen(4000);
