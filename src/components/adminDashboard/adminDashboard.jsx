@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import "./adminDashboard.css";
 import Button from "@material-ui/core/Button";
-
+import { Link } from "react-router-dom";
 import Navbar from "../adminNavbar/navbar";
 
 class adminDashBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loggedIn: true,
+    };
+  }
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if(token === null) {
+      this.setState({
+        loggedIn: false,
+      });
+    }
   }
   onClickAddUser(event) {
     this.props.history.push("/add_user");
@@ -25,6 +35,9 @@ class adminDashBoard extends Component {
     this.props.history.push("/pending_leave_request");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
