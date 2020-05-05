@@ -126,7 +126,7 @@ export default function ClippedDrawer() {
               <ListItemText style={textstyle} primary={"Calendar"} />
             </ListItem>
             </Link>
-            <Link to="/view_info" style={{ textDecoration: "none" }}>
+            <Link to="/view_personal_info" style={{ textDecoration: "none" }}>
               <ListItem style={buttonstyle} button key={"Personal Info"}>
                 <ListItemIcon style={iconstyle}>
                   <PermIdentityIcon />
