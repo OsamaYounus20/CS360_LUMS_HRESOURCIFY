@@ -5,21 +5,19 @@ import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from 'axios';
 import {
     MuiPickersUtilsProvider,
-    KeyboardTimePicker,
     KeyboardDatePicker
   } from "@material-ui/pickers";
-import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import Calendar from "../calendar/calendar";
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { Link } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -37,6 +35,7 @@ class assignTask extends Component {
       toDate: '2020/01/11',
       type: '',
       reason: '',
+      loggedIn: true,
       
     };
     this.inputChange = this.inputChange.bind(this);
@@ -57,6 +56,14 @@ class assignTask extends Component {
     this.setState({
         [e.target.name] : e.target.value
     });
+}
+componentDidMount() {
+  const token = localStorage.getItem("token");
+  if(token === null) {
+    this.setState({
+      loggedIn: false,
+    });
+  }
 }
   onClickAssign(event) {
     event.preventDefault()
@@ -92,6 +99,9 @@ class assignTask extends Component {
     this.props.history.push("/to_do_task");
   }
   render() {
+    if(this.state.loggedIn === false) {
+      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    }
     return (
       <div>
         <Navbar />
