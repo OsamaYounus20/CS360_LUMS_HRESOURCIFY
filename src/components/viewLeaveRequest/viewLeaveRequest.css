@@ -1,11 +1,13 @@
 .ContainerPlacing {
-    margin: 50px 50px 50px 50px auto !important;
+    margin: 100px auto 0 250px;
   }
   
   .input:invalid:required {
     box-shadow: 0 0 5px 1px;
   }
-  
+  .centerplacing {
+    text-align: center;
+  }
   .ContainerPlacing ul {
     padding: 0px;
     margin: 0px;
@@ -33,7 +35,7 @@
   .centerplacing {
     text-align: center;
     
-    margin: auto !important;
+    margin: 180px 0px 0px 0px !important;
 }
   
   .margin {
