@@ -45,7 +45,7 @@ class leaveRequestTable extends Component {
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
   onClickAddUser(row){
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
         id : row.user_id
@@ -57,7 +57,7 @@ class leaveRequestTable extends Component {
     this.props.history.push("/view_leave_request");
   }
   componentDidMount() {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

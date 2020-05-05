@@ -35,7 +35,7 @@ class viewDepartmentInfo extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

@@ -48,7 +48,7 @@ class viewAssignedTaskTable extends Component {
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
   onClickAddUser(row){
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var payload = {
         id : row.user_id
     }
@@ -59,7 +59,7 @@ class viewAssignedTaskTable extends Component {
     this.props.history.push("/loading");
   }
   componentDidMount() {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

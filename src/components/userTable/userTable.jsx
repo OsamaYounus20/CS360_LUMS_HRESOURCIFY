@@ -37,7 +37,7 @@ function createData(id, name, department, job) {
 }
 // var temp = []
 // function getUsersData() {
-//   var apiBaseUrl =  "http://localhost:4000/api/";
+//   var apiBaseUrl =  "http://3.8.136.131:4000/api/";
 //   var temp = [];
 //   var self = this;
 //   var payload = {
@@ -84,7 +84,7 @@ class table extends Component {
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
   onClickAddUser(row){
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
         id : row.user_id
@@ -96,7 +96,7 @@ class table extends Component {
     this.props.history.push("/view_user_info");
   }
   componentDidMount() {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

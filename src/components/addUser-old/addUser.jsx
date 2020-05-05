@@ -41,7 +41,7 @@ class addUser extends Component {
     });
 }
   componentDidMount(){
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       'Message': 'show depts'
@@ -57,7 +57,7 @@ class addUser extends Component {
 
   onClickAddUser(event) {
     event.preventDefault()
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
         'Message': 'add user', 

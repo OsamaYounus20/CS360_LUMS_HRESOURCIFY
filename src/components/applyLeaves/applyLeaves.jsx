@@ -66,7 +66,7 @@ class applyLeave extends Component {
 }
   onClickApply(event) {
     event.preventDefault()
-    var apiBaseUrl =  "http://localhost:4000/api/";
+    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
         'Name': this.state.Name,
