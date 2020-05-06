@@ -12,6 +12,10 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker
   } from "@material-ui/pickers";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import DateFnsUtils from "@date-io/date-fns";
 import Calendar from "../calendar/calendar";
 import Paper from '@material-ui/core/Paper';
@@ -28,59 +32,91 @@ class assignTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name : '',
-      Department: '',
-      HOD: '',
-      fromDate: '2020/01/01',
-      toDate: '2020/01/11',
-      type: '',
-      reason: '',
+      subordinateList: [],
+      subordinateDictionary: {},
+      priorityList: ['Low', 'Medium', 'High'],
+      priority: 'Low',
+      taskName : '',
+      deadline: new Date(),
+      assignee: '',
+      assignedOn: new Date(),
       loggedIn: true,
-      
     };
     this.inputChange = this.inputChange.bind(this);
-    this.handleDateChange = this.handleFromDateChange.bind(this);
-    this.handleDateChange = this.handleToDateChange.bind(this);
+    this.inputChangePriority = this.inputChangePriority.bind(this);
+    this.handleDateChange = this.handleDeadlineChange.bind(this);
+    this.inputChangeSubordinate = this.inputChangeSubordinate.bind(this);
   }
-  handleFromDateChange(date) {
+  inputChangeSubordinate(e) {
     this.setState({
-      fromDate: date,
+      assignee: this.state.subordinateDictionary[e.target.value]
     });
   }
-  handleToDateChange(date) {
+  handleDeadlineChange(date) {
     this.setState({
-      toDate: date,
+      deadline: date,
     });
   }
   inputChange(e) {
     this.setState({
         [e.target.name] : e.target.value
     });
-}
+  }
+  inputChangePriority(e) {
+    this.setState({
+      priority: this.state.priorityList[e.target.value]
+    });
+  }
 componentDidMount() {
   const token = localStorage.getItem("token");
+  // this.setState({
+  //   userId: localStorage.getItem("user_id")
+  // });
+  console.log(localStorage.getItem("user_id"));
   if(token === null) {
     this.setState({
       loggedIn: false,
     });
   }
+  var apiBaseUrl =  "http://3.8.136.131:4000/api/";
+  var self = this;
+  var payload = {
+      'message': 'subordinates',
+      'userId': localStorage.getItem("user_id"),
+      // 'description': this.state.taskName,
+      // 'deadline' : this.state.deadline,
+      // 'priority': this.state.priorityList,
+      // 'assigned_to': this.state.assignee,
+      // 'assigned_on': date,
+      // 'type': this.state.type,
+      // 'reason': this.state.reason,
+  }
+  axios.post(apiBaseUrl+'assign_task', payload)
+  .then(function(response){
+      self.setState({
+        subordinateDictionary: response.data.dict,
+        subordinateList: response.data.list
+      });
+  })
 }
   onClickAssign(event) {
     event.preventDefault()
     var apiBaseUrl =  "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-        'Name': this.state.Name,
-        'Department': this.state.Department,
-        'HOD' : this.state.HOD,
-        'fromDate': this.state.fromDate,
-        'toDate': this.state.toDate,
-        'type': this.state.type,
-        'reason': this.state.reason,
+        'user_id': localStorage.getItem("user_id"),
+        'description': this.state.taskName,
+        'deadline' : this.state.deadline,
+        'priority': this.state.priority,
+        'assigned_to': this.state.assignee,
+        'assigned_on': this.state.assignedOn
+        // 'assigned_on': date,
+        // 'type': this.state.type,
+        // 'reason': this.state.reason,
     }
-    axios.post(apiBaseUrl+'add_user', payload)
+    axios.post(apiBaseUrl+'assign_task', payload)
     .then(function(response){
-        if (response.data.code === 200) {           // successful login
+        if (response.data.code === 200) {
             self.props.history.push('/user_dashboard');
         }
     })
@@ -118,7 +154,8 @@ componentDidMount() {
               </Tabs>
             </Paper>
           <Container fixed>
-            <h1>Assign Task</h1>
+            <div className = "heading">
+            <h1>Assign Task</h1></div>
             <Typography
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
@@ -133,7 +170,7 @@ componentDidMount() {
                   
                   <TextField
                     required
-                    name="Task Name"
+                    name="taskName"
                     id="outlined-basic"
                     label="Task Name"
                     variant="outlined"
@@ -146,68 +183,58 @@ componentDidMount() {
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
-                      label="Assign Date"
-                      format="yyyy/MM/dd"
-                      value={this.state.fromDate}
-                      InputAdornmentProps={{ position: "start" }}
-                      onChange={(date) => this.handleDateChange(date)}
-                    />
-                  </MuiPickersUtilsProvider>
-                  
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      required
-                      autoOk
-                      variant="inline"
-                      inputVariant="outlined"
-                      label="Due Date"
+                      label="Deadline"
                       format="yyyy/MM/dd"
                       value={this.state.toDate}
                       InputAdornmentProps={{ position: "start" }}
-                      onChange={(date) => this.handleToDateChange(date)}
+                      onChange={(date) => this.handleDeadlineChange(date)}
                     />
                   </MuiPickersUtilsProvider>
-                  <TextField
-                    required
-                    name= "Status"
-                    id="outlined-basic"
-                    label="Status"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
-                  <TextField
-                    required
-                    name= "Priority"
-                    id="outlined-basic"
-                    label="Priority"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
                   
-                  <TextField
-                    required
-                    name= "Assignee"
-                    id="outlined-basic"
-                    label="Assignee"
+                  <FormControl
                     variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
+                    className="priorityDropdown"
+                    required
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Priority
+                    </InputLabel>
+                    <Select
+                      name="priority"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.priority}
+                      onChange={this.inputChangePriority}
+                      label="Priority"
+                    >
+                      {this.state.priorityList.map((d) => {
+                        return <MenuItem value={d}>{d}</MenuItem>;
+                      })}
+                    </Select>
+                  </FormControl>
+                  
+                  <FormControl
+                    variant="outlined"
+                    className="priorityDropdown"
+                    required
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Assignee
+                    </InputLabel>
+                    <Select
+                      name="assignee"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.assignee}
+                      onChange={this.inputChangeSubordinate}
+                      label="Assignee"
+                    >
+                      {this.state.subordinateList.map((d) => {
+                        return <MenuItem value={d}>{d}</MenuItem>;
+                      })}
+                    </Select>
+                  </FormControl>
 
-                  <TextField
-                    required
-                    name= "Team Lead"
-                    id="outlined-basic"
-                    label="Team Lead"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
-                  
-                 
-                  
                 </div>
                 <div className="cal">
                   <Calendar/>
