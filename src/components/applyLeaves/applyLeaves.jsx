@@ -7,12 +7,15 @@ import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
-import axios from 'axios';
+import axios from "axios";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker
-  } from "@material-ui/pickers";
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { Link } from "react-router-dom";
 
@@ -26,15 +29,14 @@ class applyLeave extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name : '',
-      Department: '',
-      HOD: '',
-      fromDate: '2020/01/01',
-      toDate: '2020/01/11',
-      type: '',
-      reason: '',
+      Name: "",
+      Department: "",
+      HOD: "",
+      fromDate: new Date(),
+      toDate: new Date(),
+      type: "",
+      reason: "",
       loggedIn: true,
-      
     };
     this.inputChange = this.inputChange.bind(this);
     this.handleDateChange = this.handleFromDateChange.bind(this);
@@ -42,7 +44,7 @@ class applyLeave extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -60,36 +62,40 @@ class applyLeave extends Component {
   }
   inputChange(e) {
     this.setState({
-        [e.target.name] : e.target.value
+      [e.target.name]: e.target.value,
     });
-}
+  }
   onClickApply(event) {
-    event.preventDefault()
-    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
+    event.preventDefault();
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
-        'Name': this.state.Name,
-        'Department': this.state.Department,
-        'HOD' : this.state.HOD,
-        'fromDate': this.state.fromDate,
-        'toDate': this.state.toDate,
-        'type': this.state.type,
-        'reason': this.state.reason,
-    }
-    axios.post(apiBaseUrl+'add_user', payload)
-    .then(function(response){
-        if (response.data.code === 200) {           // successful login
-            self.props.history.push('/user_dashboard');
-        }
-    })
-    return
+      Name: this.state.Name,
+      Department: this.state.Department,
+      HOD: this.state.HOD,
+      fromDate: this.state.fromDate,
+      toDate: this.state.toDate,
+      type: this.state.type,
+      reason: this.state.reason,
+    };
+    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
+      if (response.data.code === 200) {
+        // successful login
+        self.props.history.push("/user_dashboard");
+      }
+    });
+    return;
   }
   onClickCancel(event) {
     this.props.history.push("/user_dashboard");
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
@@ -116,7 +122,6 @@ class applyLeave extends Component {
                       onChange={(date) => this.handleDateChange(date)}
                     />
                   </MuiPickersUtilsProvider>
-                  
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       required
@@ -130,16 +135,32 @@ class applyLeave extends Component {
                       onChange={(date) => this.handleToDateChange(date)}
                     />
                   </MuiPickersUtilsProvider>
-                  <TextField
+                  <FormControl
                     required
-                    name= "Type"
-                    id="outlined-basic"
-                    label="Type"
                     variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
+                    className="typeDropdown"
+                  >
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      Type
+                    </InputLabel>
+                    <Select
+                      name="type"
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={this.state.gender}
+                      onChange={this.inputChange}
+                      label="Type"
+                    >
+                      <MenuItem value={"Medical"}>Medical</MenuItem>
+                      <MenuItem value={"Unpaid"}>Unpaid</MenuItem>
+                      <MenuItem value={"Maternity"}>Maternity</MenuItem>
+                      <MenuItem value={"Sick"}>Sick</MenuItem>
+                      <MenuItem value={"Annual"}>Annual</MenuItem>
+                      <MenuItem value={"Other"}>Other</MenuItem>
+                    </Select>
+                  </FormControl>
                   <TextField
+                    className="reasonInput"
                     required
                     name="Reason"
                     id="outlined-multiline-static"
@@ -148,7 +169,7 @@ class applyLeave extends Component {
                     multiline
                     variant="outlined"
                     defaultValue=""
-                    onChange = {this.inputChange}
+                    onChange={this.inputChange}
                   />{" "}
                 </div>
               </form>
