@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import "./attendance.css";
 import Navbar from "../userNavbar/navbar";
@@ -7,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import { createMuiTheme} from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
+import Table from "../attendance/attendanceTable";
 
 const theme = createMuiTheme({
   palette: {
@@ -43,7 +43,7 @@ class Attendance extends Component {
                   <li>
                     <div>
                       <h5>
-                        <b>Attendence:</b>
+                        <b>Present:</b>
                       </h5>
                       <h4> {this.state.attendance}</h4>
                     </div>
@@ -68,6 +68,9 @@ class Attendance extends Component {
               </div>
             </Typography>
           </Container>
+        </div >
+        <div className="tableplacing">
+        <Table/>
         </div>
       </div>
     );
