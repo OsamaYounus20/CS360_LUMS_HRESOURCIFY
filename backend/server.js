@@ -11,6 +11,7 @@ var editUserInfo = require("./routes/editUserInfo");
 var leaves = require("./routes/leaves");
 var viewLeaveRequest = require("./routes/viewLeaveRequest");
 var grantDenyLeave = require("./routes/grantDenyLeave");
+var assignTask = require('./routes/assignTask');
 var bodyParser = require("body-parser");
 let cors = require("cors");
 
@@ -40,6 +41,7 @@ router.all("/edit_user_info", editUserInfo.edit);
 router.all("/leaves", leaves.display);
 router.all("/view_leave_request", viewLeaveRequest.display);
 router.all("/grant_deny_leave", grantDenyLeave.grantDeny);
+router.all('/assign_task', assignTask.assign);
 
 app.use("/api", router);
 app.listen(4000);
