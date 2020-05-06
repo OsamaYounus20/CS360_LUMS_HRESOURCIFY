@@ -35,7 +35,6 @@ router.all("/departments", departments.display);
 router.all("/add_dept", addDepartment.add);
 router.all("/view_user_info", viewUserInfo.display);
 router.all("/view_personal_info", viewPersonalInfo.display);
-router.all("/edit_personal_info", editUserInfo.edit);
 router.all("/view_dept_info", viewDeptInfo.display);
 router.all("/edit_user_info", editUserInfo.edit);
 router.all("/leaves", leaves.display);
