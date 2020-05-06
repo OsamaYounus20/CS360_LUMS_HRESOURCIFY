@@ -104,12 +104,14 @@ export default function ClippedDrawer() {
               <ListItemText style={textstyle} primary={"Tasks"} />
             </ListItem>
             </Link>
+            <Link to="/attendance" style={{ textDecoration: "none" }}>
             <ListItem style={buttonstyle} button key={"Attendance"}>
               <ListItemIcon style={iconstyle}>
                 <HowToRegIcon />
               </ListItemIcon>
               <ListItemText style={textstyle} primary={"Attendance"} />
             </ListItem>
+            </Link>
             <Link to="/apply_leaves" style={{ textDecoration: "none" }}>
             <ListItem style={buttonstyle} button key={"Leaves"}>
               <ListItemIcon style={iconstyle}>
