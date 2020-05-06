@@ -41,6 +41,7 @@ exports.display = async function (req, res) {
         results = JSON.parse(JSON.stringify(results));
         results = results[0];
         results.department = departments[results.department];
+        results.dob = results.dob.substring(0,10);
         // results.contact_no = results.contact_no.toString();
         // results.address = results.address.toString();
         // results.dob = results.dob.toString();

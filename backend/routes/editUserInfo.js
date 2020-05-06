@@ -15,13 +15,46 @@ connection.connect((err) => {
 var id = 0;
 
 exports.edit = async function (req, res) {
-  if (req.body.Id > 0 && req.body.Message === "give employee info") {
-    id = req.body.Id;
-    res.send({
-      code: 200,
+  if (req.body.Id > 0 && req.body.Message === "give employee info") { //employee se aa raha hai
+    console.log(req.body.Message)
+    var departments = {};
+    connection.query("SELECT * FROM DEPARTMENT", async function (
+      error,
+      results,
+      fields
+    ) {
+      if (error) {
+        console.log(error);
+      } else {
+        results = JSON.parse(JSON.stringify(results));
+        for (var index = 0; index < results.length; index++) {
+          departments[results[index].dept_name] = results[index].dept_id;
+        }
+
+        connection.query(
+          "SELECT * FROM HRUSER WHERE user_id = ?",
+          [req.body.Id],
+          async function (error, results, fields) {
+            if (error) {
+              console.log(error);
+            } else {
+              results = JSON.parse(JSON.stringify(results));
+              results = results[0];
+              //delete results.user_password;
+              console.log('kuch',results);
+              res.send({
+                code: 200,
+                user: results,
+                dept: departments,
+              });
+            }
+          }
+        );
+      }
     });
-  } else if (req.body.Id > 0 && req.body.Message === "give user info") {
-    id = req.body.Id;
+  }
+  else if (req.body.Id > 0 && req.body.Message === "give user info") { //admin se aa raha hai
+    id = req.body.Id; 
     res.send({
       code: 200,
     });
@@ -61,7 +94,7 @@ exports.edit = async function (req, res) {
       req.body.phoneNumber,
       req.body.maritalStatus,
       req.body.bloodGroup,
-      req.body.dob,
+      req.body.dob.substring(0,10),
       req.body.gender,
       req.body.nationality,
       req.body.address,
@@ -69,7 +102,7 @@ exports.edit = async function (req, res) {
     ];
 
     connection.query(
-      "UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, nationality = ?, gender = ?, dob = ?, address = ? WHERE user_id = ?",
+      "UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, dob = ?, gender = ?, nationality = ?, address = ? WHERE user_id = ?",
       values,
       async function (error, results, fields) {
         if (error) {
@@ -103,8 +136,8 @@ exports.edit = async function (req, res) {
             } else {
               results = JSON.parse(JSON.stringify(results));
               results = results[0];
-              delete results.user_password;
-              console.log(results);
+              //delete results.user_password;
+              console.log('kuch',results);
               res.send({
                 code: 200,
                 user: results,
