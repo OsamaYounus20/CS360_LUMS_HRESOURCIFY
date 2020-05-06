@@ -55,7 +55,7 @@ class editUser extends Component {
     });
   }
   onClickSave(event) {
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
 
     var payload = {
       Message: "updated info employee",
@@ -90,7 +90,7 @@ class editUser extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       Message: "admin give employee info",
