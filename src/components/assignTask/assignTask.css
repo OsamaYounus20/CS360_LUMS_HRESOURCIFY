@@ -69,3 +69,25 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .priorityDropdown {
+    margin-top: 10px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    min-width: 225px !important;
+    max-width: 225px !important;
+    margin-bottom: 10px !important;
+
+  }
+
+  .MuiTabs-flexContainer{
+    background-color: #292770;
+
+  }
+  .MuiTab-textColorPrimary{
+    color: #ffffff !important;
+  }
+
+  .heading{
+    margin-top: 20px !important;
+  }
