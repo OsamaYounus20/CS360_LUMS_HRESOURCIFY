@@ -37,7 +37,7 @@ class viewPersonalInfo extends Component {
     };
   }
   onClickEditUser(event) {
-    this.props.history.push("/edit_info");
+    this.props.history.push("/edit_personal_info");
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -46,7 +46,7 @@ class viewPersonalInfo extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",
