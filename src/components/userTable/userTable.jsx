@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+//the table and the code for table was borrowed from www.material-ui.com and modified to fit our needs
 
+//setting properties of table here
 const columns = [
   { id: "user_id", label: "ID", minWidth: 170 },
   { id: "full_name", label: "Name", minWidth: 170 },
@@ -31,50 +29,7 @@ const columns = [
     format: (value) => value.toLocaleString(),
   },
 ];
-
-function createData(id, name, department, job) {
-  return [id, name, department, job];
-}
-// var temp = []
-// function getUsersData() {
-//   var apiBaseUrl =  "http://3.8.136.131:4000/api/";
-//   var temp = [];
-//   var self = this;
-//   var payload = {
-//       'msg' : 'Send Data'
-//   }
-// axios.post(apiBaseUrl+'users', payload)
-// .then(function(response){
-
-//   response.data.forEach(data =>{
-//     temp.push(createData(data.user_id,data.full_name,data.department,data.job_title))
-//   })
-// })
-// return temp
-// }
-
-// const rows = [
-//   createData ('A007', 'Ramasundar', 'Marketing', 'Senior Manager'),
-//   createData ('A003', 'Alex ', 'Marketing', 'Manager'),
-//   createData ('A008', 'Alford', 'Marketing', 'Employee'),
-//   createData ('A011', 'Ravi Kumar', 'Marketing', 'Employee'),
-//   createData ('A010', 'Santakumar', 'IT', 'Manager'),
-//   createData ('A012', 'Lucida', 'HR', 'Senior Manager'),
-//   createData ('A005', 'Anderson', 'HR', 'Manager'),
-//   createData ('A001', 'Subbarao', 'IT', 'Employee'),
-//   createData ('A002', 'Mukesh', 'Sales', 'Manager'),
-//   createData ('A006', 'McDen', 'Sales', 'Manager'),
-// ];
-
-// const useStyles = makeStyles({
-//   root: {
-//     width: '100%',
-//   },
-//   container: {
-//     maxHeight: 440,
-//   },
-// });
-
+//React component starts here
 class table extends Component {
   constructor(props) {
     super(props);
@@ -83,18 +38,20 @@ class table extends Component {
     };
     this.onClickAddUser = this.onClickAddUser.bind(this);
   }
-  onClickAddUser(row){
-    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
-    var self = this;
+
+  //updated data being sent to server here
+  onClickAddUser(row) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
-        id : row.user_id
-    }
-    axios.post(apiBaseUrl+'view_user_info', payload)
-    .then(function(response){
-      // console.log(response.data);            
-    })
+      id: row.user_id,
+    };
+    axios
+      .post(apiBaseUrl + "view_user_info", payload)
+      .then(function (response) {});
     this.props.history.push("/view_user_info");
   }
+
+  //user data is being recieved from the backend here on page load
   componentDidMount() {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
@@ -108,6 +65,7 @@ class table extends Component {
     });
     return;
   }
+  //following code defines the component the code above were the functions being used in the component
   render() {
     return (
       <Paper>
@@ -115,6 +73,7 @@ class table extends Component {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                {/* table column data defined by us being mapped to table columns here */}
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
@@ -127,6 +86,7 @@ class table extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
+              {/* the date fetched from server being mapped to rows here */}
               {this.state.rows.map((row) => {
                 return (
                   <TableRow
