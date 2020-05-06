@@ -29,7 +29,7 @@ class editUser extends Component {
       department: "",
       user_id: "",
       name: "",
-      dob: new Date(),
+      dob: "",
       phone: "",
       address: "",
       email: "",
@@ -55,7 +55,7 @@ class editUser extends Component {
     });
   }
   onClickSave(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://localhost:4000/api/";
 
     var payload = {
       Message: "updated info employee",
@@ -90,10 +90,10 @@ class editUser extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
-      Message: "give employee info",
+      Message: "admin give employee info",
       Id: -1,
     };
     axios
