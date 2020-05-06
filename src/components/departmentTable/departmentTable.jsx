@@ -24,7 +24,6 @@ class departmentTable extends Component {
   }
   onClickDepartmentRow(row) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
-    var self = this;
     var payload = {
       id: row.dept_id,
     };
