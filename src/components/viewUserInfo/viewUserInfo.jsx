@@ -25,7 +25,7 @@ class viewUserInfo extends Component {
     };
   }
   handleClickEditUser(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://localhost:4000/api/";
     var payload = {
       Message: "give user info",
       Id: this.state.id,
@@ -58,7 +58,7 @@ class viewUserInfo extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",
