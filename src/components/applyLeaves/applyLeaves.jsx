@@ -5,7 +5,6 @@ import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from 'axios';
@@ -104,43 +103,13 @@ class applyLeave extends Component {
             >
               <form>
                 <div className="formContainer">
-                  <div>
-                    <Avatar alt="Remy Sharp" className="picture" />
-                  </div>
-                  <TextField
-                    required
-                    name="Name"
-                    id="outlined-basic"
-                    label="Name"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
-                  <TextField
-                    required
-                    name= "Department"
-                    id="outlined-basic"
-                    label="Department"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
-                  <TextField
-                    required
-                    name= "Head of Department"
-                    id="outlined-basic"
-                    label="Head of Department"
-                    variant="outlined"
-                    defaultValue=""
-                    onChange = {this.inputChange}
-                  />
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       required
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
-                      label="From Date"
+                      label="From"
                       format="yyyy/MM/dd"
                       value={this.state.fromDate}
                       InputAdornmentProps={{ position: "start" }}
@@ -154,7 +123,7 @@ class applyLeave extends Component {
                       autoOk
                       variant="inline"
                       inputVariant="outlined"
-                      label="To Date"
+                      label="To"
                       format="yyyy/MM/dd"
                       value={this.state.toDate}
                       InputAdornmentProps={{ position: "start" }}
@@ -170,8 +139,6 @@ class applyLeave extends Component {
                     defaultValue=""
                     onChange = {this.inputChange}
                   />
-                  
-
                   <TextField
                     required
                     name="Reason"
