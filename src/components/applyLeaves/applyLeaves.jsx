@@ -29,9 +29,6 @@ class applyLeave extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: "",
-      Department: "",
-      HOD: "",
       fromDate: new Date(),
       toDate: new Date(),
       type: "",
@@ -70,17 +67,16 @@ class applyLeave extends Component {
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
     var payload = {
-      Name: this.state.Name,
-      Department: this.state.Department,
-      HOD: this.state.HOD,
+      message: "apply leave",
+      userId: localStorage.getItem("user_id"),
+      currentDate: new Date(),
       fromDate: this.state.fromDate,
       toDate: this.state.toDate,
       type: this.state.type,
-      reason: this.state.reason,
+      reason: this.state.reason
     };
-    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
+    axios.post(apiBaseUrl + "apply_leave", payload).then(function (response) {
       if (response.data.code === 200) {
-        // successful login
         self.props.history.push("/user_dashboard");
       }
     });
@@ -147,7 +143,7 @@ class applyLeave extends Component {
                       name="type"
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
-                      value={this.state.gender}
+                      value={this.state.type}
                       onChange={this.inputChange}
                       label="Type"
                     >
@@ -160,9 +156,8 @@ class applyLeave extends Component {
                     </Select>
                   </FormControl>
                   <TextField
-                    className="reasonInput"
                     required
-                    name="Reason"
+                    name="reason"
                     id="outlined-multiline-static"
                     label="Reason"
                     rows={4}
