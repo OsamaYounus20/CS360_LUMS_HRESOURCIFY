@@ -24,6 +24,7 @@ import viewAssignedTask from "./components/viewAssignedTask/viewAssignedTask";
 import toDoTask from "./components/toDoTask/toDoTask";
 import assignTask from "./components/assignTask/assignTask";
 import attendance from "./components/attendance/attendance";
+import accountSettings from "./components/accountSettings/accountSettings";
 
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
           <Route exact path="/to_do_task" component={toDoTask}/>
           <Route exact path="/assign_task" component={assignTask}/>
           <Route exact path="/attendance" component={attendance}/>
+          <Route exact path="/account_settings" component={accountSettings} />
+
         </Switch>
       </div>
     </BrowserRouter>
