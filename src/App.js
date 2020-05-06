@@ -8,7 +8,7 @@ import user from "./components/users/users";
 import editUser from "./components/editUser/editUser";
 import addUser from "./components/addUser/addUser";
 import viewPersonalInfo from "./components/viewPersonalInfo/viewPersonalInfo";
-import editInfo from "./components/editInfo/editInfo";
+import editPersonalInfo from "./components/editPersonalInfo/editPersonalInfo";
 import department from "./components/department/department";
 import addDepartment from "./components/addDepartment/addDepartment";
 import viewDepartmentInfo from "./components/viewDepartmentInfo/viewDepartmentInfo";
@@ -30,7 +30,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route exact path="/edit_info" component={editInfo} />
+          <Route exact path="/edit_personal_info" component={editPersonalInfo} />
           <Route exact path="/view_personal_info" component={viewPersonalInfo} />
           <Route exact path="/user" component={user} />
           <Route exact path="/add_user" component={addUser} />
