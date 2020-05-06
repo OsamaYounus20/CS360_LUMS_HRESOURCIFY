@@ -11,11 +11,10 @@ var editUserInfo = require("./routes/editUserInfo");
 var leaves = require("./routes/leaves");
 var viewLeaveRequest = require("./routes/viewLeaveRequest");
 var grantDenyLeave = require("./routes/grantDenyLeave");
-var assignTask = require("./routes/assignTask");
-var accountSettings = require("./routes/accountSettings");
+var assignTask = require('./routes/assignTask');
+let applyLeave = require("./routes/applyLeave");
 var bodyParser = require("body-parser");
 let cors = require("cors");
-
 // body parser added
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,9 +41,8 @@ router.all("/edit_user_info", editUserInfo.edit);
 router.all("/leaves", leaves.display);
 router.all("/view_leave_request", viewLeaveRequest.display);
 router.all("/grant_deny_leave", grantDenyLeave.grantDeny);
-router.all("/assign_task", assignTask.assign);
-router.all("/account_settings", accountSettings.set);
-
+router.all('/assign_task', assignTask.assign);
+router.all("/apply_leave", applyLeave.apply);
 app.use("/api", router);
 app.listen(4000);
 console.log("server is listening...");
