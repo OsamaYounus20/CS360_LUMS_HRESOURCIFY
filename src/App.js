@@ -26,6 +26,8 @@ import assignTask from "./components/assignTask/assignTask";
 import attendance from "./components/attendance/attendance";
 import accountSettings from "./components/accountSettings/accountSettings";
 import viewAppliedLeaves from "./components/viewAppliedLeaves/viewAppliedLeaves";
+import accountSettingsEmployee from "./components/accountSettings/accountSettingsEmployee";
+
 
 function App() {
   return (
@@ -56,6 +58,7 @@ function App() {
           <Route exact path="/attendance" component={attendance}/>
           <Route exact path="/account_settings" component={accountSettings} />
           <Route exact path="/view_applied_leaves" component={viewAppliedLeaves} />
+          <Route exact path="/account_settings_employee" component={accountSettingsEmployee}/>
         </Switch>
       </div>
     </BrowserRouter>
