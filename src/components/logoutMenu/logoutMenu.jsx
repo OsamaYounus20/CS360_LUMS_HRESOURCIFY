@@ -4,6 +4,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+
 //above components imported from material-ui.com and modified to fit our code
 
 class Logout extends Component {
@@ -22,6 +24,11 @@ class Logout extends Component {
     this.setState({
       anchorEl: null,
     });
+    if (localStorage.getItem("user_id") === "admin") {
+      this.props.history.push("/account_settings");
+    } else {
+      this.props.history.push("/account_settings_employee");
+    }
   };
   handleCloseLogout = (event) => {
     this.setState({
@@ -58,11 +65,9 @@ class Logout extends Component {
           onClose={this.handleClose}
         >
           {/* user being redirected to account settings */}
-          <Link to="/account_settings" style={{ textDecoration: "none" }}>
-            <MenuItem onClick={this.handleAccountSettings}>
-              Account Settings
-            </MenuItem>
-          </Link>
+          <MenuItem onClick={this.handleAccountSettings}>
+            Account Settings
+          </MenuItem>
           {/* user being redirected to login page */}
           <Link to="/" style={{ textDecoration: "none" }}>
             <MenuItem onClick={this.handleCloseLogout}>Logout</MenuItem>
@@ -72,4 +77,4 @@ class Logout extends Component {
     );
   }
 }
-export default Logout;
+export default withRouter(Logout);
