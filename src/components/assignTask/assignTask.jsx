@@ -63,11 +63,6 @@ class assignTask extends Component {
     this.handleDateChange = this.handleDeadlineChange.bind(this);
     this.inputChangeSubordinate = this.inputChangeSubordinate.bind(this);
   }
-  inputChangeSubordinate(e) {
-    this.setState({
-      assignee: this.state.subordinateDictionary[e.target.value]
-    });
-  }
   handleDeadlineChange(date) {
     this.setState({
       deadline: date,
@@ -87,11 +82,7 @@ class assignTask extends Component {
         [e.target.name] : e.target.value
     });
   }
-  inputChangePriority(e) {
-    this.setState({
-      priority: this.state.priorityList[e.target.value]
-    });
-  }
+  
 // for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
 //fetching subordiante list from the server for the user.
 componentDidMount() {
@@ -224,7 +215,7 @@ componentDidMount() {
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
                       value={this.state.priority}
-                      onChange={this.inputChangePriority}
+                      onChange = {this.inputChange}
                       label="Priority"
                     >
                       {this.state.priorityList.map((d) => {
@@ -260,7 +251,7 @@ componentDidMount() {
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
                       value={this.state.assignee}
-                      onChange={this.inputChangeSubordinate}
+                      onChange = {this.inputChange}
                       label="Assignee"
                     >
                       {this.state.subordinateList.map((d) => {
