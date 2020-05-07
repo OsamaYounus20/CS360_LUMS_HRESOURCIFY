@@ -7,12 +7,6 @@ import { createMuiTheme} from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
 import Table from "../attendance/attendanceTable";
-//color theme provided to buttons
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
-  },
-});
 //show number of times user present , absent and on leave.
 //dates, time in and time out of each day present.
 class Attendance extends Component {
