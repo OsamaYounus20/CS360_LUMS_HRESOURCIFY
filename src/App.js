@@ -25,7 +25,7 @@ import toDoTask from "./components/toDoTask/toDoTask";
 import assignTask from "./components/assignTask/assignTask";
 import attendance from "./components/attendance/attendance";
 import accountSettings from "./components/accountSettings/accountSettings";
-
+import viewAppliedLeaves from "./components/viewAppliedLeaves/viewAppliedLeaves";
 
 function App() {
   return (
@@ -55,7 +55,7 @@ function App() {
           <Route exact path="/assign_task" component={assignTask}/>
           <Route exact path="/attendance" component={attendance}/>
           <Route exact path="/account_settings" component={accountSettings} />
-
+          <Route exact path="/view_applied_leaves" component={viewAppliedLeaves} />
         </Switch>
       </div>
     </BrowserRouter>
