@@ -49,7 +49,7 @@ class userDashBoard extends Component {
     this.props.history.push("/calendar");
   }
   onClickLeave(event) {
-    this.props.history.push("/view_applied_leaves");
+    this.props.history.push("/apply_leaves");
   }
   onClickAttendance(event) {
     this.props.history.push("/attendance");
@@ -172,7 +172,7 @@ class userDashBoard extends Component {
                 color="default"
                 onClick={this.onClickLeave.bind(this)}
               >
-               View Leave Requests
+               Apply for Leave
               </Button>
               <Button
                 variant="contained"
