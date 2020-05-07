@@ -21,6 +21,9 @@ class adminDashBoard extends Component {
     }
   }
 //routing user to pages according to the button they clicked.
+  onClickAccountSettings(event) {
+    this.props.history.push("/account_settings")
+  }
   onClickAddUser(event) {
     this.props.history.push("/add_user");
   }
@@ -154,7 +157,8 @@ class adminDashBoard extends Component {
             }}
             size="large"
             color="default"
-            
+            onClick={this.onClickAccountSettings.bind(this)}
+
           >
             Account Settings
           </Button>
