@@ -33,7 +33,7 @@ const getDepartment = async function () {
 
 exports.display = async function (req, res) {
   var departments = await getDepartment();
-  connection.query("SELECT * FROM HRUSER LIMIT 10", async function (
+  connection.query("SELECT * FROM HRUSER LIMIT 11", async function (
     error,
     results,
     fields
