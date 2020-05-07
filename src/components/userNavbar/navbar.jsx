@@ -117,7 +117,7 @@ export default function ClippedDrawer() {
                 <ListItemText style={textstyle} primary={"Attendance"} />
               </ListItem>
             </Link>
-            <Link to="/view_applied_leaves" style={{ textDecoration: "none" }}>
+            <Link to="/apply_leaves" style={{ textDecoration: "none" }}>
               <ListItem style={buttonstyle} button key={"Leaves"}>
                 <ListItemIcon style={iconstyle}>
                   <DateRangeIcon />
