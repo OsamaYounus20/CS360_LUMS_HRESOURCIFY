@@ -3,12 +3,10 @@ import "./deleteDepartment.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
-
+//button styling.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -20,6 +18,7 @@ class deleteDepartment extends Component {
     super(props);
     this.state = {};
   }
+//routing according to user click.
   onClickEditDepartment(event) {
     this.props.history.push("/edit_department");
   }
