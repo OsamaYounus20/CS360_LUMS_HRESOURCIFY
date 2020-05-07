@@ -8,6 +8,8 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
 //front end code for adding new department.
 //assigning green color to button
@@ -16,6 +18,18 @@ const theme = createMuiTheme({
     primary: green,
   },
 });
+function Alert(props) {
+  return (
+    <MuiAlert
+      style={{
+        leftMargin: "100px",
+      }}
+      elevation={6}
+      variant="filled"
+      {...props}
+    />
+  );
+}
 class addDepartment extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +40,7 @@ class addDepartment extends Component {
       HeadofDept: "",
       hodID: "",
       loggedIn: true,
+      open: false
     };
     this.inputChange = this.inputChange.bind(this);
   }
@@ -38,6 +53,15 @@ class addDepartment extends Component {
       });
     }
   }
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({
+      open: true,
+    });
+    this.props.history.push("/department");
+  };
 //setting states to new input values 
   inputChange(e) {
     this.setState({
@@ -58,8 +82,9 @@ class addDepartment extends Component {
     };
     axios.post(apiBaseUrl + "add_dept", payload).then(function (response) {
       if (response.data.code === 200) {
-        // successful login
-        self.props.history.push("/department");
+        self.setState({
+          open: true,
+        });
       } else if (response.data.code === 400) {
         // hod id name do not match
       }
@@ -88,6 +113,20 @@ class addDepartment extends Component {
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
+              <div className="alert">
+                    <Snackbar
+                      open={this.state.open}
+                      autoHideDuration={2000}
+                      onClose={this.handleClose.bind(this)}
+                    >
+                      <Alert
+                        onClose={this.handleClose.bind(this)}
+                        severity="success"
+                      >
+                        Department added Successfully!
+                      </Alert>
+                    </Snackbar>
+                  </div>
               <form>
                 <div className="formContainer">
                   <TextField
