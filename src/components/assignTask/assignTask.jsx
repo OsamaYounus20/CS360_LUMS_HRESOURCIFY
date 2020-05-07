@@ -60,6 +60,7 @@ class assignTask extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.handleDateChange = this.handleDeadlineChange.bind(this);
+    this.subordinateChange = this.subordinateChange.bind(this);
   }
   handleDeadlineChange(date) {
     this.setState({
@@ -75,6 +76,12 @@ class assignTask extends Component {
     });
     this.props.history.push("/view_assigned_task");
   };
+    subordinateChange(e) {
+        this.setState({
+          assignee: this.state.subordinateDictionary[e.target.value],
+        });
+      }
+
   inputChange(e) {
     this.setState({
         [e.target.name] : e.target.value
@@ -249,7 +256,7 @@ componentDidMount() {
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
                       value={this.state.assignee}
-                      onChange = {this.inputChange}
+                      onChange = {this.subordinateChange}
                       label="Assignee"
                     >
                       {this.state.subordinateList.map((d) => {
