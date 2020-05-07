@@ -14,6 +14,8 @@ import Select from "@material-ui/core/Select";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+//above components and code for them borrowed from material-ui and modified to fit our code
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -44,16 +46,19 @@ class editUser extends Component {
     this.inputChange = this.inputChange.bind(this);
     this.inputChangeDepartment = this.inputChangeDepartment.bind(this);
   }
+  //this functions update the value to what is typed in the box
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
+  //updates the dropdown value
   inputChangeDepartment(e) {
     this.setState({
       department: this.state.departmentDictionary[e.target.value],
     });
   }
+  //send the updated data to server
   onClickSave(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
 
@@ -84,6 +89,7 @@ class editUser extends Component {
     this.props.history.push("/user");
   }
   componentDidMount() {
+    //maintaining the login token
     const token = localStorage.getItem("token");
     if (token === null) {
       this.setState({
@@ -92,10 +98,12 @@ class editUser extends Component {
     }
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
+    // asking for data on page reload
     var payload = {
       Message: "admin give employee info",
       Id: -1,
     };
+    // data recieved from server here and being updated
     axios
       .post(apiBaseUrl + "edit_user_info", payload)
       .then(function (response) {
@@ -118,7 +126,7 @@ class editUser extends Component {
         });
       });
   }
-
+  // the defination of component begins here
   render() {
     if (this.state.loggedIn === false) {
       return (
@@ -137,6 +145,8 @@ class editUser extends Component {
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
+              {/* text fields begin here*/}
+              {/* helper text in each field displays the current data of user */}
               <form className="formContainer">
                 <div className="myForm">
                   <TextField
@@ -246,6 +256,8 @@ class editUser extends Component {
             </Typography>
           </Container>
           <div className="centerplacing">
+            {/* theme color being applied to buttons */}
+            {/* buttons to perform save and cancel functionality */}
             <ThemeProvider theme={theme}>
               <Button
                 variant="contained"

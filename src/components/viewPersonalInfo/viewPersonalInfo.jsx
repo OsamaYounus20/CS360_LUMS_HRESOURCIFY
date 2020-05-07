@@ -3,8 +3,6 @@ import "./viewPersonalInfo.css";
 import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
@@ -39,6 +37,7 @@ class viewPersonalInfo extends Component {
   onClickEditUser(event) {
     this.props.history.push("/edit_personal_info");
   }
+  // checking for the login state/
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -53,10 +52,10 @@ class viewPersonalInfo extends Component {
       id: localStorage.getItem("user_id"),
     };
     axios
+      // data being fetched from server here
       .post(apiBaseUrl + "view_personal_info", payload)
       .then(function (response) {
         self.setState({
-          // rows: response.data,
           name: response.data[0].full_name,
           phone: response.data[0].contact_no,
           address: response.data[0].address,
@@ -93,6 +92,7 @@ class viewPersonalInfo extends Component {
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
+              {/* data being displayed here */}
               <div>
                 <ul>
                   <li>

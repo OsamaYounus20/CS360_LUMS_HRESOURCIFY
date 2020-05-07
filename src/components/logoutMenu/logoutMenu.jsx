@@ -4,6 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
+//above components imported from material-ui.com and modified to fit our code
 
 class Logout extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Logout extends Component {
     this.handleCloseLogout = this.handleCloseLogout.bind(this);
     this.handleAccountSettings = this.handleAccountSettings.bind(this);
   }
+  //following functions assigning actions of what will happen on clicking on the logout dropdown items
   handleAccountSettings = (event) => {
     this.setState({
       anchorEl: null,
@@ -55,11 +57,13 @@ class Logout extends Component {
           open={Boolean(this.state.anchorEl)}
           onClose={this.handleClose}
         >
+          {/* user being redirected to account settings */}
           <Link to="/account_settings" style={{ textDecoration: "none" }}>
             <MenuItem onClick={this.handleAccountSettings}>
               Account Settings
             </MenuItem>
           </Link>
+          {/* user being redirected to login page */}
           <Link to="/" style={{ textDecoration: "none" }}>
             <MenuItem onClick={this.handleCloseLogout}>Logout</MenuItem>
           </Link>

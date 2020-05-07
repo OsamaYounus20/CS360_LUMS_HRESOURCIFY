@@ -19,6 +19,9 @@ import EventIcon from "@material-ui/icons/Event";
 import Logout from "../logoutMenu/logoutMenu";
 import "./navbar.css";
 
+// code for navbar imported from material-ui.com and modified to fit our needs
+// icons also imported from material-ui.com
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
+// styling the buttons and texts according to our needs
 const buttonstyle = {
   background: "#292770",
 };
@@ -87,6 +91,7 @@ export default function ClippedDrawer() {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
+          {/* navbar buttons begin here */}
           <List>
             <Link to="/user_dashboard" style={{ textDecoration: "none" }}>
               <ListItem style={buttonstyle} button key={"Dashboard"}>
@@ -97,36 +102,36 @@ export default function ClippedDrawer() {
               </ListItem>
             </Link>
             <Link to="/to_do_task" style={{ textDecoration: "none" }}>
-            <ListItem style={buttonstyle} button key={"Tasks"}>
-              <ListItemIcon style={iconstyle}>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText style={textstyle} primary={"Tasks"} />
-            </ListItem>
+              <ListItem style={buttonstyle} button key={"Tasks"}>
+                <ListItemIcon style={iconstyle}>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Tasks"} />
+              </ListItem>
             </Link>
             <Link to="/attendance" style={{ textDecoration: "none" }}>
-            <ListItem style={buttonstyle} button key={"Attendance"}>
-              <ListItemIcon style={iconstyle}>
-                <HowToRegIcon />
-              </ListItemIcon>
-              <ListItemText style={textstyle} primary={"Attendance"} />
-            </ListItem>
+              <ListItem style={buttonstyle} button key={"Attendance"}>
+                <ListItemIcon style={iconstyle}>
+                  <HowToRegIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Attendance"} />
+              </ListItem>
             </Link>
-            <Link to="/apply_leaves" style={{ textDecoration: "none" }}>
-            <ListItem style={buttonstyle} button key={"Leaves"}>
-              <ListItemIcon style={iconstyle}>
-                <DateRangeIcon />
-              </ListItemIcon>
-              <ListItemText style={textstyle} primary={"Leaves"} />
-            </ListItem>
+            <Link to="/view_applied_leaves" style={{ textDecoration: "none" }}>
+              <ListItem style={buttonstyle} button key={"Leaves"}>
+                <ListItemIcon style={iconstyle}>
+                  <DateRangeIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Leaves"} />
+              </ListItem>
             </Link>
             <Link to="/calendar" style={{ textDecoration: "none" }}>
-            <ListItem style={buttonstyle} button key={"Calendar"}>
-              <ListItemIcon style={iconstyle}>
-                <EventIcon />
-              </ListItemIcon>
-              <ListItemText style={textstyle} primary={"Calendar"} />
-            </ListItem>
+              <ListItem style={buttonstyle} button key={"Calendar"}>
+                <ListItemIcon style={iconstyle}>
+                  <EventIcon />
+                </ListItemIcon>
+                <ListItemText style={textstyle} primary={"Calendar"} />
+              </ListItem>
             </Link>
             <Link to="/view_personal_info" style={{ textDecoration: "none" }}>
               <ListItem style={buttonstyle} button key={"Personal Info"}>

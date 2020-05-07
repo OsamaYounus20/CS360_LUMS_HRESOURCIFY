@@ -14,6 +14,8 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import DateFnsUtils from "@date-io/date-fns";
+
+//above components and code for them borrowed from material-ui and modified to fit our code
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -43,16 +45,19 @@ class editPersonalInfo extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
   }
+  // updates the dropdown value
   handleGenderChange(gender) {
     this.setState({
       gender: gender,
     });
   }
+  // updates the date
   handleDateChange(date) {
     this.setState({
       dob: date,
     });
   }
+  //this functions update the value to what is typed in the box
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -60,7 +65,7 @@ class editPersonalInfo extends Component {
   }
   onClickSave(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
-
+    //updated user info being sent to server here
     var payload = {
       Message: "updated info user",
       Id: this.state.user_id,
@@ -78,10 +83,8 @@ class editPersonalInfo extends Component {
 
     axios
       .post(apiBaseUrl + "edit_user_info", payload)
-      .then(function (response) {
-      });
+      .then(function (response) {});
     this.props.history.push("/view_personal_info");
-
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -96,22 +99,24 @@ class editPersonalInfo extends Component {
       Message: "give employee info",
       Id: localStorage.getItem("user_id"),
     };
-    axios.post(apiBaseUrl + "edit_user_info", payload)
-    .then(function (response) {
-      console.log('data aaya',response.data);
-      self.setState({
-        user_id: response.data.user.user_id,
-        name: response.data.user.full_name.toString(),
-        phone: response.data.user.contact_no.toString(),
-        address: response.data.user.address.toString(),
-        email: response.data.user.email.toString(),
-        status: response.data.user.marital_status.toString(),
-        gender: response.data.user.gender.toString(),
-        dob: response.data.user.dob.toString(),
-        nationality: response.data.user.nationality.toString(),
-        bloodType: response.data.user.blood_type.toString(),
+    axios
+      //current data of user being fetched from server here
+      .post(apiBaseUrl + "edit_user_info", payload)
+      .then(function (response) {
+        // console.log("data aaya", response.data);
+        self.setState({
+          user_id: response.data.user.user_id,
+          name: response.data.user.full_name.toString(),
+          phone: response.data.user.contact_no.toString(),
+          address: response.data.user.address.toString(),
+          email: response.data.user.email.toString(),
+          status: response.data.user.marital_status.toString(),
+          gender: response.data.user.gender.toString(),
+          dob: response.data.user.dob.toString(),
+          nationality: response.data.user.nationality.toString(),
+          bloodType: response.data.user.blood_type.toString(),
+        });
       });
-    });
   }
 
   onClickCancel(event) {
@@ -135,6 +140,8 @@ class editPersonalInfo extends Component {
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
+              {/* text fields begin here*/}
+              {/* helper text in each field displays the current data of user */}
               <form className="formContainer">
                 <div className="myForm">
                   <TextField
@@ -190,6 +197,7 @@ class editPersonalInfo extends Component {
                       onChange={this.inputChange}
                       label="Gender"
                     >
+                      {/* values of dropdown */}
                       <MenuItem value={"M"}>M</MenuItem>
                       <MenuItem value={"F"}>F</MenuItem>
                     </Select>
@@ -234,6 +242,7 @@ class editPersonalInfo extends Component {
             </Typography>
           </Container>
           <div className="centerplacing">
+            {/* buttons to perform the save and cancel function */}
             <ThemeProvider theme={theme}>
               <Button
                 variant="contained"

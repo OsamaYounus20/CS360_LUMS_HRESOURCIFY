@@ -6,6 +6,8 @@ import Clock from "../clock/clock";
 import Piechart from "../piechart/piechart";
 import { Link } from "react-router-dom";
 
+//buttons were borrowed from material-ui.com and modified
+
 class userDashBoard extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +19,16 @@ class userDashBoard extends Component {
       loggedIn: true,
     };
   }
+  //being checked here if user has logged in or not
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
     }
   }
+  //user being redirected according to the button they have pressed
   onClickPersonalInfo(event) {
     this.props.history.push("/view_personal_info");
   }
@@ -45,21 +49,25 @@ class userDashBoard extends Component {
     this.props.history.push("/calendar");
   }
   onClickLeave(event) {
-    this.props.history.push("/apply_leaves");
-    console.log("abhi krna hai");
+    this.props.history.push("/view_applied_leaves");
   }
   onClickAttendance(event) {
     this.props.history.push("/attendance");
   }
 
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <React.Fragment>
         <Navbar />
         <div>
+          {/* clock and piechart being rendered here */}
           <div className="clockContainer">
             <div className="clock">
               <Clock />
@@ -74,6 +82,7 @@ class userDashBoard extends Component {
           </div>
           <div className="positioning">
             <div className="userDashboard">
+              {/* dashboard buttons begin here */}
               <Button
                 variant="contained"
                 style={{
@@ -163,7 +172,7 @@ class userDashBoard extends Component {
                 color="default"
                 onClick={this.onClickLeave.bind(this)}
               >
-                Apply For Leave
+                Leave
               </Button>
               <Button
                 variant="contained"

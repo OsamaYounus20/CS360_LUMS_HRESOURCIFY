@@ -1,18 +1,16 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
+//above components were borrowed from material-ui.com and modified to fit our code
+//properties of table defined here
 const columns = [
   { id: "requested_by", label: "ID", minWidth: 170 },
   { id: "full_name", label: "Name", minWidth: 170 },
@@ -32,6 +30,7 @@ const columns = [
   },
 ];
 
+//react component begins here
 class leaveRequestTable extends Component {
   constructor(props) {
     super(props);
@@ -40,20 +39,21 @@ class leaveRequestTable extends Component {
     };
     this.onClickViewRequest = this.onClickViewRequest.bind(this);
   }
-  onClickViewRequest(row){
-    var apiBaseUrl =  "http://3.8.136.131:4000/api/";
-    var self = this;
+  //data being fetched from server here
+  onClickViewRequest(row) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
-        request_id : row.request_id,
-        full_name : row.full_name,
-        department_id : row.department_id,
-        department : row.department
-    }
+      request_id: row.request_id,
+      full_name: row.full_name,
+      department_id: row.department_id,
+      department: row.department,
+    };
     console.log(payload);
-    axios.post(apiBaseUrl+'view_leave_request', payload)
-    .then(function(response){
-      // console.log(response.data);            
-    })
+    axios
+      .post(apiBaseUrl + "view_leave_request", payload)
+      .then(function (response) {
+        // console.log(response.data);
+      });
     this.props.history.push("/view_leave_request");
   }
   componentDidMount() {
@@ -88,6 +88,7 @@ class leaveRequestTable extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
+              {/* data from server being mapped to table here */}
               {this.state.rows.map((row) => {
                 return (
                   <TableRow

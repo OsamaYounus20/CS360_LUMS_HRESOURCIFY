@@ -5,8 +5,9 @@ import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import Navbar from "../adminNavbar/navbar";
 import UserTable from "../userTable/userTable";
-import {withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+// button imported from material-ui.com
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -22,7 +23,7 @@ class user extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -32,8 +33,13 @@ class user extends Component {
     this.props.history.push("/add_user");
   }
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    // checking if user is logged in or not
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
@@ -50,6 +56,7 @@ class user extends Component {
               Add User
             </Button>
           </ThemeProvider>
+          {/* table being rendered here */}
           <UserTable />
         </div>
       </div>

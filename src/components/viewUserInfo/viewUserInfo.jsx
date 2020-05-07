@@ -3,14 +3,12 @@ import "./viewUserInfo.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+// above components imported from material-ui.com and modified to fit our code
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -32,20 +30,7 @@ class viewUserInfo extends Component {
     };
     axios
       .post(apiBaseUrl + "edit_user_info", payload)
-      .then(function (response) {
-        // self.setState({
-        //   name: response.data[0].full_name,
-        //   phone: response.data[0].contact_no,
-        //   address: response.data[0].address,
-        //   email: response.data[0].email,
-        //   status: response.data[0].marital_status,
-        //   dept: response.data[0].department,
-        //   job: response.data[0].job_title,
-        //   loc: response.data[0].location,
-        //   nationality: response.data[0].nationality,
-        //   bloodType: response.data[0].blood_type,
-        // });
-      });
+      .then(function (response) {});
     this.props.history.push("/edit_user");
   }
   handleClickUser(event) {
@@ -61,13 +46,14 @@ class viewUserInfo extends Component {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
+      // asking server for data
       msg: "Send Data",
     };
     axios
       .post(apiBaseUrl + "view_user_info", payload)
       .then(function (response) {
+        // data being recieved from server
         self.setState({
-          // rows: response.data,
           id: response.data.user_id,
           name: response.data.full_name,
           phone: response.data.contact_no,
@@ -105,6 +91,7 @@ class viewUserInfo extends Component {
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
+              {/* data being displayed here */}
               <div>
                 <ul>
                   <li>

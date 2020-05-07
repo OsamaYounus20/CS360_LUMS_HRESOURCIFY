@@ -3,6 +3,7 @@ import { PieChart } from "react-minimal-pie-chart";
 
 // code borrowed from:
 // https://toomuchdesign.github.io/react-minimal-pie-chart/index.html?path=/story/donut-chart--custom-arcs-width
+//values and styling modified to meet our needs
 
 const present = "330"; //insert present value of backend here
 const absent = "10"; //insert absences value of backend here
@@ -46,53 +47,3 @@ class piechart extends Component {
   }
 }
 export default piechart;
-
-// import React, { Component } from "react";
-// import Paper from "@material-ui/core/Paper";
-// import {
-//   Chart,
-//   PieSeries,
-//   Title,
-// } from "@devexpress/dx-react-chart-material-ui";
-// import { Animation } from "@devexpress/dx-react-chart";
-
-// /* code borrowed fron:
-// https://devexpress.github.io/devextreme-reactive/react/chart/demos/pie/doughnut/
-// */
-
-// var data = [
-//   { stats: "Leave", val: 25 },
-//   { stats: "Absent", val: 10 },
-//   { stats: "Present", val: 330 },
-// ];
-
-// class piechart extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       data,
-//     };
-//   }
-
-//   render() {
-//     const { data: chartData } = this.state;
-
-//     return (
-//       <React.Fragment>
-//         <div className="chartBackground">
-//           <Chart data={chartData}>
-//             <PieSeries
-//               valueField="val"
-//               argumentField="stats"
-//               innerRadius={0.2}
-//               outerRadius={0.5}
-//             />
-//             <Animation />
-//           </Chart>
-//         </div>
-//       </React.Fragment>
-//     );
-//   }
-// }
-// export default piechart;
