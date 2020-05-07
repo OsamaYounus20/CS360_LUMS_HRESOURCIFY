@@ -172,7 +172,7 @@ class userDashBoard extends Component {
                 color="default"
                 onClick={this.onClickLeave.bind(this)}
               >
-                Leave
+               View Leave Requests
               </Button>
               <Button
                 variant="contained"
