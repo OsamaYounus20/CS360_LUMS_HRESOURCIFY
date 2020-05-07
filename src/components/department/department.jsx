@@ -6,7 +6,7 @@ import { green } from "@material-ui/core/colors";
 import Navbar from "../adminNavbar/navbar";
 import Form from "../departmentTable/departmentTable";
 import { Link } from "react-router-dom";
-
+//color theme provided to button.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -19,6 +19,7 @@ class department extends Component {
       loggedIn: true,
     };
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if(token === null) {
