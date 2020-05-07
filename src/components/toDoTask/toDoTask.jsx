@@ -52,7 +52,8 @@ class toDoTask extends Component {
                 <Tab label="To Do Task" onClick={this.onClickToDoTask.bind(this)}/>
               </Tabs>
             </Paper>
-        <h1>To Do Tasks</h1>
+            <div className = "heading">
+            <h1>To-Do Tasks</h1></div>
           <Form />
         </div>
       </div>
