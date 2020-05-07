@@ -7,20 +7,20 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+//borrowed table from material-ui and modified it for our app use.
 const columns = [
-  { id: 'name', label: 'Date', minWidth: 170 },
-  { id: 'code', label: 'Time_in', minWidth: 100 },
+  { id: 'date', label: 'Date', minWidth: 170 },
+  { id: 'time_in', label: 'Time_in', minWidth: 100 },
   {
-    id: 'population',
+    id: 'time_out',
     label: 'Time_out',
     minWidth: 170,
     align: 'right',
   },
 ];
 
-function createData(name, code, population) {
-  return { name, code, population};
+function createData(date, time_in, time_out) {
+  return {date, time_in, time_out};
 }
 
 const rows = [
