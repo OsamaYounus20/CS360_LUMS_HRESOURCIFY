@@ -3,8 +3,6 @@ import "./attendance.css";
 import Navbar from "../userNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { createMuiTheme} from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
 import Table from "../attendance/attendanceTable";
 //show number of times user present , absent and on leave.
