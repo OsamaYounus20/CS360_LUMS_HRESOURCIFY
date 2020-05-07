@@ -54,8 +54,8 @@ class applyLeave extends Component {
       open: false
     };
     this.inputChange = this.inputChange.bind(this);
-    this.handleDateChange = this.handleFromDateChange.bind(this);
-    this.handleDateChange = this.handleToDateChange.bind(this);
+    this.handleFromDateChange = this.handleFromDateChange.bind(this);
+    this.handleToDateChange = this.handleToDateChange.bind(this);
   }
 // for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
@@ -97,9 +97,8 @@ class applyLeave extends Component {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-      Name: this.state.Name,
-      Department: this.state.Department,
-      HOD: this.state.HOD,
+      userId: localStorage.getItem("user_id"),
+      currentDate: new Date(),
       fromDate: this.state.fromDate,
       toDate: this.state.toDate,
       type: this.state.type,
@@ -195,9 +194,9 @@ class applyLeave extends Component {
                   <TextField
                     className="reasonInput"
                     required
-                    name="Reason"
+                    name="reason"
                     id="outlined-multiline-static"
-                    label="Reason"
+                    label="reason"
                     rows={4}
                     multiline
                     variant="outlined"
