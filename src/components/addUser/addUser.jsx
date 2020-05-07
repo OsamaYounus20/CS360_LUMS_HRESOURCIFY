@@ -26,6 +26,18 @@ const theme = createMuiTheme({
   },
 });
 
+function Alert(props) {
+  return (
+    <MuiAlert
+      style={{
+        leftMargin: "100px",
+      }}
+      elevation={6}
+      variant="filled"
+      {...props}
+    />
+  );
+}
 class addUser extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +59,7 @@ class addUser extends Component {
       gender: "",
       manager: "",
       loggedIn: true,
+      open: false
     };
     this.inputChange = this.inputChange.bind(this);
   }
@@ -60,6 +73,15 @@ class addUser extends Component {
       dob: date,
     });
   }
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({
+      open: true,
+    });
+    this.props.history.push("/user");
+  };
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -116,7 +138,9 @@ class addUser extends Component {
     axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
       if (response.data.code === 200) {
         //success
-        self.props.history.push("/user");
+        self.setState({
+          open: true,
+        });
       }
     });
     return;
@@ -300,6 +324,20 @@ class addUser extends Component {
                     defaultValue=""
                     onChange={this.inputChange}
                   />{" "}
+                  <div className="alert">
+                    <Snackbar
+                      open={this.state.open}
+                      autoHideDuration={2000}
+                      onClose={this.handleClose.bind(this)}
+                    >
+                      <Alert
+                        onClose={this.handleClose.bind(this)}
+                        severity="success"
+                      >
+                        User added Successfully!
+                      </Alert>
+                    </Snackbar>
+                  </div>
                 </div>
               </form>
             </Typography>
