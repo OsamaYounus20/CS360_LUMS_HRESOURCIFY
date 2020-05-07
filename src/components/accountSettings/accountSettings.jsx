@@ -32,7 +32,7 @@ const theme = createMuiTheme({
   },
 });
 //class created for edit user
-class editUser extends Component {
+class accountSettings extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -76,7 +76,7 @@ class editUser extends Component {
       });
       return;
     }
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
       Message: "updated password",
@@ -233,4 +233,4 @@ class editUser extends Component {
     );
   }
 }
-export default editUser;
+export default accountSettings;
