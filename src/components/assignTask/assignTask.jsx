@@ -24,6 +24,8 @@ import Tab from '@material-ui/core/Tab';
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
+//code borrowed from material-ui for snackbar and alert pop up.
+//color theme provided to button.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -90,11 +92,10 @@ class assignTask extends Component {
       priority: this.state.priorityList[e.target.value]
     });
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
+//fetching subordiante list from the server for the user.
 componentDidMount() {
   const token = localStorage.getItem("token");
-  // this.setState({
-  //   userId: localStorage.getItem("user_id")
-  // });
   console.log(localStorage.getItem("user_id"));
   if(token === null) {
     this.setState({
@@ -106,13 +107,6 @@ componentDidMount() {
   var payload = {
       'message': 'subordinates',
       'userId': localStorage.getItem("user_id"),
-      // 'description': this.state.taskName,
-      // 'deadline' : this.state.deadline,
-      // 'priority': this.state.priorityList,
-      // 'assigned_to': this.state.assignee,
-      // 'assigned_on': date,
-      // 'type': this.state.type,
-      // 'reason': this.state.reason,
   }
   axios.post(apiBaseUrl+'assign_task', payload)
   .then(function(response){
@@ -147,6 +141,7 @@ componentDidMount() {
     })
     return
   }
+//routing user to pages according to their click.
   onClickCancel(event) {
     this.props.history.push("/user_dashboard");
   }
