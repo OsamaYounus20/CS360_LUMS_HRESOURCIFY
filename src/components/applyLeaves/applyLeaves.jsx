@@ -84,7 +84,7 @@ class applyLeave extends Component {
     this.setState({
       open: true,
     });
-    this.props.history.push("/user_dashboard");
+    this.props.history.push("/view_applied_leaves");
   };
   inputChange(e) {
     this.setState({
