@@ -59,9 +59,7 @@ class assignTask extends Component {
       open: false
     };
     this.inputChange = this.inputChange.bind(this);
-    this.inputChangePriority = this.inputChangePriority.bind(this);
     this.handleDateChange = this.handleDeadlineChange.bind(this);
-    this.inputChangeSubordinate = this.inputChangeSubordinate.bind(this);
   }
   handleDeadlineChange(date) {
     this.setState({
