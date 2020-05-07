@@ -17,6 +17,8 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
 //borrowed code for textfields and datepicker from material-ui and modified them to fit our apps need.
 //color theme provide to buttons.
@@ -25,7 +27,18 @@ const theme = createMuiTheme({
     primary: green,
   },
 });
-
+function Alert(props) {
+  return (
+    <MuiAlert
+      style={{
+        leftMargin: "100px",
+      }}
+      elevation={6}
+      variant="filled"
+      {...props}
+    />
+  );
+}
 class applyLeave extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +51,7 @@ class applyLeave extends Component {
       type: "",
       reason: "",
       loggedIn: true,
+      open: false
     };
     this.inputChange = this.inputChange.bind(this);
     this.handleDateChange = this.handleFromDateChange.bind(this);
@@ -63,6 +77,15 @@ class applyLeave extends Component {
       toDate: date,
     });
   }
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({
+      open: true,
+    });
+    this.props.history.push("/user_dashboard");
+  };
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -84,8 +107,9 @@ class applyLeave extends Component {
     };
     axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
       if (response.data.code === 200) {
-        // successful login
-        self.props.history.push("/user_dashboard");
+        self.setState({
+          open: true,
+        });
       }
     });
     return;
@@ -118,19 +142,21 @@ class applyLeave extends Component {
                     <KeyboardDatePicker
                       required
                       autoOk
+                      name='fromDate'
                       variant="inline"
                       inputVariant="outlined"
                       label="From"
                       format="yyyy/MM/dd"
                       value={this.state.fromDate}
                       InputAdornmentProps={{ position: "start" }}
-                      onChange={(date) => this.handleDateChange(date)}
+                      onChange={(date) => this.handleFromDateChange(date)}
                     />
                   </MuiPickersUtilsProvider>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       required
                       autoOk
+                      name="toDate"
                       variant="inline"
                       inputVariant="outlined"
                       label="To"
@@ -152,16 +178,18 @@ class applyLeave extends Component {
                       name="type"
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
-                      value={this.state.gender}
+                      value={this.state.type}
                       onChange={this.inputChange}
                       label="Type"
                     >
                       <MenuItem value={"Medical"}>Medical</MenuItem>
                       <MenuItem value={"Unpaid"}>Unpaid</MenuItem>
                       <MenuItem value={"Maternity"}>Maternity</MenuItem>
+                      <MenuItem value={"Paternity"}>Other</MenuItem>
                       <MenuItem value={"Sick"}>Sick</MenuItem>
                       <MenuItem value={"Annual"}>Annual</MenuItem>
                       <MenuItem value={"Other"}>Other</MenuItem>
+                      
                     </Select>
                   </FormControl>
                   <TextField
@@ -177,6 +205,20 @@ class applyLeave extends Component {
                     onChange={this.inputChange}
                   />{" "}
                 </div>
+                <div className="alert">
+                    <Snackbar
+                      open={this.state.open}
+                      autoHideDuration={2000}
+                      onClose={this.handleClose.bind(this)}
+                    >
+                      <Alert
+                        onClose={this.handleClose.bind(this)}
+                        severity="success"
+                      >
+                        Request sent successfully!
+                      </Alert>
+                    </Snackbar>
+                  </div>
               </form>
             </Typography>
           </Container>
