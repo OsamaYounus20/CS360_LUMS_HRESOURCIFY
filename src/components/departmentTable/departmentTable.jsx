@@ -8,7 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-
+//borrowed code from material-ui table and modified it to fit our apps need.
 const columns = [
   { id: "dept_id", label: "ID", minWidth: 170, align: "center" },
   { id: "dept_name", label: "Name", minWidth: 170, align: "center" },
