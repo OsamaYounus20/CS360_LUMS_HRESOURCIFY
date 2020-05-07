@@ -3,13 +3,11 @@ import "./viewLeaveRequest.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Avatar from "@material-ui/core/Avatar";
-import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
-
+//button placing and styling
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -26,6 +24,7 @@ class viewLeaveRequest extends Component {
       rows: [],
     };
   }
+//sending decision to backend regarding the leave.
   onClickGrant(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
@@ -37,6 +36,7 @@ class viewLeaveRequest extends Component {
     });
     this.props.history.push("/pending_leave_request");
   }
+//sending decision to backend regarding the leave.
   onClickDeny(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
@@ -48,9 +48,11 @@ class viewLeaveRequest extends Component {
     });
     this.props.history.push("/pending_leave_request");
   }
+//routing to pending leave request page on clicking cancel button.
   onClickCancel(event) {
     this.props.history.push("/pending_leave_request");
   }
+//fetching data from database to show on screen
   componentDidMount() {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
