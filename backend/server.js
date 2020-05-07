@@ -13,6 +13,7 @@ var viewLeaveRequest = require("./routes/viewLeaveRequest");
 var grantDenyLeave = require("./routes/grantDenyLeave");
 var assignTask = require('./routes/assignTask');
 var applyLeave = require("./routes/applyLeave");
+var viewAppliedLeaves = require('./routes/viewAppliedLeaves');
 var viewAssignedTask = require('./routes/viewAssignedTask');
 var viewToDoTask = require('./routes/viewToDoTask');
 var bodyParser = require("body-parser");
@@ -45,6 +46,7 @@ router.all("/view_leave_request", viewLeaveRequest.display);
 router.all("/grant_deny_leave", grantDenyLeave.grantDeny);
 router.all('/assign_task', assignTask.assign);
 router.all("/apply_leave", applyLeave.apply);
+router.all('view_applied_leaves', viewAppliedLeaves.display);
 router.all('/view_assigned_task', viewAssignedTask.display);
 router.all('/view_todo_task', viewToDoTask.display);
 
