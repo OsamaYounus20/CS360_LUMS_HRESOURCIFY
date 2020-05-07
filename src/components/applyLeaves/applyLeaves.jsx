@@ -185,7 +185,7 @@ class applyLeave extends Component {
                       <MenuItem value={"Medical"}>Medical</MenuItem>
                       <MenuItem value={"Unpaid"}>Unpaid</MenuItem>
                       <MenuItem value={"Maternity"}>Maternity</MenuItem>
-                      <MenuItem value={"Paternity"}>Other</MenuItem>
+                      <MenuItem value={"Paternity"}>Paternity</MenuItem>
                       <MenuItem value={"Sick"}>Sick</MenuItem>
                       <MenuItem value={"Annual"}>Annual</MenuItem>
                       <MenuItem value={"Other"}>Other</MenuItem>
