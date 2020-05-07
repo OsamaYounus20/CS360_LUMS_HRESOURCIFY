@@ -3,7 +3,7 @@ import "./adminDashboard.css";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import Navbar from "../adminNavbar/navbar";
-
+//admin dashboard frontend.
 class adminDashBoard extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +11,7 @@ class adminDashBoard extends Component {
       loggedIn: true,
     };
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if(token === null) {
@@ -19,6 +20,7 @@ class adminDashBoard extends Component {
       });
     }
   }
+//routing user to pages according to the button they clicked.
   onClickAddUser(event) {
     this.props.history.push("/add_user");
   }

@@ -16,8 +16,9 @@ import BusinessIcon from "@material-ui/icons/Business";
 import { Link } from "react-router-dom";
 import Logout from "../logoutMenu/logoutMenu";
 import "./navbar.css";
-
+//Code taken from material-ui and modified and styled according to our apps need.
 const drawerWidth = 240;
+//styling navbar
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
+//styling buttons, options and their text.
 const buttonstyle = {
   background: "#292770",
 };

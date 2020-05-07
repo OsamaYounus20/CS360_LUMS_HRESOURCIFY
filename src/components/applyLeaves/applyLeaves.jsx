@@ -18,7 +18,8 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { Link } from "react-router-dom";
-
+//borrowed code for textfields and datepicker from material-ui and modified them to fit our apps need.
+//color theme provide to buttons.
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -29,6 +30,9 @@ class applyLeave extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Name: "",
+      Department: "",
+      HOD: "",
       fromDate: new Date(),
       toDate: new Date(),
       type: "",
@@ -39,6 +43,7 @@ class applyLeave extends Component {
     this.handleDateChange = this.handleFromDateChange.bind(this);
     this.handleDateChange = this.handleToDateChange.bind(this);
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -47,6 +52,7 @@ class applyLeave extends Component {
       });
     }
   }
+//setting state to new input values.
   handleFromDateChange(date) {
     this.setState({
       fromDate: date,
@@ -62,26 +68,29 @@ class applyLeave extends Component {
       [e.target.name]: e.target.value,
     });
   }
+//sending input data to backend
   onClickApply(event) {
     event.preventDefault();
-    var apiBaseUrl = "http://localhost:4000/api/";
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-      message: "apply leave",
-      userId: localStorage.getItem("user_id"),
-      currentDate: new Date(),
+      Name: this.state.Name,
+      Department: this.state.Department,
+      HOD: this.state.HOD,
       fromDate: this.state.fromDate,
       toDate: this.state.toDate,
       type: this.state.type,
-      reason: this.state.reason
+      reason: this.state.reason,
     };
-    axios.post(apiBaseUrl + "apply_leave", payload).then(function (response) {
+    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
       if (response.data.code === 200) {
+        // successful login
         self.props.history.push("/user_dashboard");
       }
     });
     return;
   }
+//routing user back to dashboard on clicking cancel
   onClickCancel(event) {
     this.props.history.push("/user_dashboard");
   }
@@ -143,7 +152,7 @@ class applyLeave extends Component {
                       name="type"
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
-                      value={this.state.type}
+                      value={this.state.gender}
                       onChange={this.inputChange}
                       label="Type"
                     >
@@ -156,8 +165,9 @@ class applyLeave extends Component {
                     </Select>
                   </FormControl>
                   <TextField
+                    className="reasonInput"
                     required
-                    name="reason"
+                    name="Reason"
                     id="outlined-multiline-static"
                     label="Reason"
                     rows={4}

@@ -19,7 +19,7 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-
+//assigning green color to button
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -65,6 +65,8 @@ class addUser extends Component {
       [e.target.name]: e.target.value,
     });
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
+//fetching list of departments available to choose.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -88,7 +90,7 @@ class addUser extends Component {
     });
     return;
   }
-
+//sending input data back to server to update the sqldatabase with new user.
   onClickAddUser(event) {
     event.preventDefault();
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
@@ -119,6 +121,7 @@ class addUser extends Component {
     });
     return;
   }
+//on cancelling routing back to users table.
   onClickCancel(event) {
     this.props.history.push("/user");
   }

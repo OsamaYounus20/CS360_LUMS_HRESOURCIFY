@@ -11,7 +11,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-
+// Alert and SnackBar code is taken from maetrial-ui and we modified it to adjust with our screens.
+// Styling for alert pop up.
 function Alert(props) {
   return (
     <MuiAlert
@@ -24,13 +25,13 @@ function Alert(props) {
     />
   );
 }
-
+//color assigned green to button from material-ui
 const theme = createMuiTheme({
   palette: {
     primary: green,
   },
 });
-
+//class created for edit user
 class editUser extends Component {
   constructor(props) {
     super(props);
@@ -46,9 +47,7 @@ class editUser extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
   }
-
-  handleClick() {}
-
+//to close the alert pop up and history is used to redirect to admin or user according to their credentials.
   handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -63,12 +62,13 @@ class editUser extends Component {
       this.props.history.push("/user_dashboard");
     }
   };
-
+//assigning input value to state variables
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
+//sending data to backend to update new password in sql database.
   onClickSave(event) {
     if (this.state.newPassword !== this.state.confirmNewPassword) {
       this.setState({
@@ -98,7 +98,6 @@ class editUser extends Component {
             open: true,
           });
         }
-        // console.log(response.data);
       });
   }
   onClickCancel(event) {
@@ -108,6 +107,7 @@ class editUser extends Component {
       this.props.history.push("/user_dashboard");
     }
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
