@@ -1,4 +1,6 @@
 const mysql = require("mysql");
+
+// setting up a connection with the database
 const connection = mysql.createConnection({
   host: "database-hrms1.c0sl004lok1n.eu-west-2.rds.amazonaws.com",
   user: "Aleeha",
@@ -15,50 +17,42 @@ connection.connect((err) => {
 var id = 0;
 
 exports.edit = async function (req, res) {
-  if (req.body.Id > 0 && req.body.Message === "give employee info") { //employee se aa raha hai
-    console.log(req.body.Message)
+  if (req.body.Id > 0 && req.body.Message === "give employee info") {   // if an employee is requesting their own info
     var departments = {};
-    connection.query("SELECT * FROM DEPARTMENT", async function (
-      error,
-      results,
-      fields
-    ) {
+    connection.query("SELECT * FROM DEPARTMENT", async function (error, results, fields) {
       if (error) {
         console.log(error);
       } else {
+        // creating a dictionary of departments with name as the key and id as the value
         results = JSON.parse(JSON.stringify(results));
         for (var index = 0; index < results.length; index++) {
           departments[results[index].dept_name] = results[index].dept_id;
         }
 
-        connection.query(
-          "SELECT * FROM HRUSER WHERE user_id = ?",
-          [req.body.Id],
-          async function (error, results, fields) {
-            if (error) {
-              console.log(error);
-            } else {
-              results = JSON.parse(JSON.stringify(results));
-              results = results[0];
-              //delete results.user_password;
-              console.log('kuch',results);
-              res.send({
-                code: 200,
-                user: results,
-                dept: departments,
-              });
-            }
+        // getting the client's info from the user table
+        connection.query("SELECT * FROM HRUSER WHERE user_id = ?", [req.body.Id], async function (error, results, fields) {
+          if (error) {
+            console.log(error);
+          } else {
+            // sending the info to the client
+            results = JSON.parse(JSON.stringify(results));
+            results = results[0];
+            console.log('kuch',results);
+            res.send({
+              code: 200,
+              user: results,
+              dept: departments,
+            });
           }
-        );
+        });
       }
     });
-  }
-  else if (req.body.Id > 0 && req.body.Message === "give user info") { //admin se aa raha hai
+  } else if (req.body.Id > 0 && req.body.Message === "admin give employee info") {    // if admin id requesting a user's info
     id = req.body.Id; 
     res.send({
       code: 200,
     });
-  } else if (req.body.Message === "updated info employee") {
+  } else if (req.body.Message === "updated info employee") {    // admin is sending the updated info
     console.log("frontend sent", req.body);
     var values = [
       req.body.Name,
@@ -75,18 +69,15 @@ exports.edit = async function (req, res) {
       req.body.Id,
     ];
 
-    connection.query(
-      "UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, job_title = ?, department = ?, manager = ?, nationality = ?, location = ?, address = ? WHERE user_id = ?",
-      values,
-      async function (error, results, fields) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("shukar");
-        }
+    // querying the database to update the entry
+    connection.query("UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, job_title = ?, department = ?, manager = ?, nationality = ?, location = ?, address = ? WHERE user_id = ?", values, async function (error, results, fields) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("shukar");
       }
-    );
-  } else if (req.body.Message === "updated info user") {
+    });
+  } else if (req.body.Message === "updated info user") {    // employee is sending the updated info
     console.log("frontend sent", req.body);
     values = [
       req.body.Name,
@@ -101,24 +92,17 @@ exports.edit = async function (req, res) {
       req.body.Id,
     ];
 
-    connection.query(
-      "UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, dob = ?, gender = ?, nationality = ?, address = ? WHERE user_id = ?",
-      values,
-      async function (error, results, fields) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("shukar shukar");
-        }
+    // querying the database to update the entry
+    connection.query("UPDATE HRUSER SET full_name = ?, email = ?, contact_no = ?, marital_status = ?, blood_type = ?, dob = ?, gender = ?, nationality = ?, address = ? WHERE user_id = ?", values, async function (error, results, fields) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("shukar shukar");
       }
-    );
+    });
   } else {
     var departments = {};
-    connection.query("SELECT * FROM DEPARTMENT", async function (
-      error,
-      results,
-      fields
-    ) {
+    connection.query("SELECT * FROM DEPARTMENT", async function (error, results, fields) {
       if (error) {
         console.log(error);
       } else {
@@ -127,47 +111,22 @@ exports.edit = async function (req, res) {
           departments[results[index].dept_name] = results[index].dept_id;
         }
 
-        connection.query(
-          "SELECT * FROM HRUSER WHERE user_id = ?",
-          [id],
-          async function (error, results, fields) {
-            if (error) {
-              console.log(error);
-            } else {
-              results = JSON.parse(JSON.stringify(results));
-              results = results[0];
-              //delete results.user_password;
-              console.log('kuch',results);
-              res.send({
-                code: 200,
-                user: results,
-                dept: departments,
-              });
-            }
+        connection.query("SELECT * FROM HRUSER WHERE user_id = ?", [id], async function (error, results, fields) {
+          if (error) {
+            console.log(error);
+          } else {
+            results = JSON.parse(JSON.stringify(results));
+            results = results[0];
+            //delete results.user_password;
+            console.log('kuch',results);
+            res.send({
+              code: 200,
+              user: results,
+              dept: departments,
+            });
           }
-        );
+        });
       }
     });
   }
-  // if (req.body.Message === 'give user info') {
-
-  // }
-  // else {
-  //     connection.query('SELECT * FROM DEPARTMENT', async function (error, results, fields) {
-  //         if (error) {
-  //             console.log(error);
-  //         } else {
-  //             console.log('lets send some');
-  //             var departments = {};
-  //             results = JSON.parse(JSON.stringify(results));
-  //             for (var index = 0; index < results.length; index++) {
-  //                 departments[results[index].dept_name] = results[index].dept_id;
-  //             }
-  //             res.send({
-  //                 'code' : 200,
-  //                 'dept' :  departments
-  //             });
-  //         }
-  //     });
-  // }
 };
