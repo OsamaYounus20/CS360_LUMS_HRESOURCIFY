@@ -156,7 +156,7 @@ class adminDashBoard extends Component {
             color="default"
             
           >
-            View Benefit Request
+            Account Settings
           </Button>
         </div>
       </div>
