@@ -105,7 +105,7 @@ class applyLeave extends Component {
       type: this.state.type,
       reason: this.state.reason,
     };
-    axios.post(apiBaseUrl + "add_user", payload).then(function (response) {
+    axios.post(apiBaseUrl + "apply_leave", payload).then(function (response) {
       if (response.data.code === 200) {
         self.setState({
           open: true,
