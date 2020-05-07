@@ -85,13 +85,12 @@ class viewUserInfo extends Component {
       <div>
         <Navbar />
         <div className="ContainerPlacing">
-          <Container fixed>
             <h1>Employee Info</h1>
+            <div className="userInfo">
             <Typography
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
-              {/* data being displayed here */}
               <div>
                 <ul>
                   <li>
@@ -201,14 +200,15 @@ class viewUserInfo extends Component {
                 </ul>
               </div>
             </Typography>
-          </Container>
-          <div className="centerplacing">
+          </div>
+        </div>
+        <div className="centerplacing">
             <ThemeProvider theme={theme}>
               <Button
                 variant="contained"
                 size="small"
                 color="primary"
-                className="margin"
+                className="buttonmargin"
                 onClick={this.handleClickEditUser.bind(this)}
               >
                 Edit
@@ -217,14 +217,13 @@ class viewUserInfo extends Component {
                 variant="contained"
                 size="small"
                 color="primary"
-                className="margin"
+                className="buttonmargin"
                 onClick={this.handleClickUser.bind(this)}
               >
                 Delete
               </Button>
             </ThemeProvider>
           </div>
-        </div>
       </div>
     );
   }
