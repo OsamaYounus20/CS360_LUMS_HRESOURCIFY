@@ -21,13 +21,26 @@ import Calendar from "../calendar/calendar";
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import { Link } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
     primary: green,
   },
 });
-
+function Alert(props) {
+  return (
+    <MuiAlert
+      style={{
+        leftMargin: "100px",
+      }}
+      elevation={6}
+      variant="filled"
+      {...props}
+    />
+  );
+}
 class assignTask extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +54,7 @@ class assignTask extends Component {
       assignee: '',
       assignedOn: new Date(),
       loggedIn: true,
+      open: false
     };
     this.inputChange = this.inputChange.bind(this);
     this.inputChangePriority = this.inputChangePriority.bind(this);
@@ -57,6 +71,15 @@ class assignTask extends Component {
       deadline: date,
     });
   }
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({
+      open: true,
+    });
+    this.props.history.push("/view_assigned_task");
+  };
   inputChange(e) {
     this.setState({
         [e.target.name] : e.target.value
@@ -117,7 +140,9 @@ componentDidMount() {
     axios.post(apiBaseUrl+'assign_task', payload)
     .then(function(response){
         if (response.data.code === 200) {
-            self.props.history.push('/user_dashboard');
+          self.setState({
+            open: true,
+          });
         }
     })
     return
@@ -218,6 +243,20 @@ componentDidMount() {
                     className="priorityDropdown"
                     required
                   >
+                    <div className="alert">
+                    <Snackbar
+                      open={this.state.open}
+                      autoHideDuration={2000}
+                      onClose={this.handleClose.bind(this)}
+                    >
+                      <Alert
+                        onClose={this.handleClose.bind(this)}
+                        severity="success"
+                      >
+                        Task Assigned!
+                      </Alert>
+                    </Snackbar>
+                  </div>
                     <InputLabel id="demo-simple-select-outlined-label">
                       Assignee
                     </InputLabel>
