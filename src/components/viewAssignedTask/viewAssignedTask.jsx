@@ -51,7 +51,8 @@ class viewAssignedTask extends Component {
                 <Tab label="To Do Task" onClick={this.onClickToDoTask.bind(this)}/>
               </Tabs>
             </Paper>
-        <h1>View Assiged Tasks</h1>
+            <div className = "heading">
+            <h1>View Assigned Tasks</h1></div>
           <Form />
         </div>
       </div>
