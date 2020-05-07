@@ -47,7 +47,7 @@ class accountSettings extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
   }
-//to close the alert pop up and history is used to redirect to admin or user according to their credentials.
+  //to close the alert pop up and history is used to redirect to admin or user according to their credentials.
   handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -62,13 +62,13 @@ class accountSettings extends Component {
       this.props.history.push("/user_dashboard");
     }
   };
-//assigning input value to state variables
+  //assigning input value to state variables
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
-//sending data to backend to update new password in sql database.
+  //sending data to backend to update new password in sql database.
   onClickSave(event) {
     if (this.state.newPassword !== this.state.confirmNewPassword) {
       this.setState({
@@ -107,7 +107,7 @@ class accountSettings extends Component {
       this.props.history.push("/user_dashboard");
     }
   }
-// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
+  // for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {

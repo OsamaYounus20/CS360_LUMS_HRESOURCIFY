@@ -12,10 +12,10 @@ const theme = createMuiTheme({
   palette: {
     primary: green,
   },
-  style:{
-      height: "auto",
-      margin: "auto",
-  }
+  style: {
+    height: "auto",
+    margin: "auto",
+  },
 });
 class viewLeaveRequest extends Component {
   constructor(props) {
@@ -24,55 +24,61 @@ class viewLeaveRequest extends Component {
       rows: [],
     };
   }
-//sending decision to backend regarding the leave.
+  //sending decision to backend regarding the leave.
   onClickGrant(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
-      msg : "grant leave",
-      id  : this.state.id
+      msg: "grant leave",
+      id: this.state.id,
     };
-    axios.post(apiBaseUrl + "grant_deny_leave", payload).then(function (response) {
-      console.log(response);
-    });
+    axios
+      .post(apiBaseUrl + "grant_deny_leave", payload)
+      .then(function (response) {
+        console.log(response);
+      });
     this.props.history.push("/pending_leave_request");
   }
-//sending decision to backend regarding the leave.
+  //sending decision to backend regarding the leave.
   onClickDeny(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
-      msg : "deny leave",
-      id  : this.state.id
+      msg: "deny leave",
+      id: this.state.id,
     };
-    axios.post(apiBaseUrl + "grant_deny_leave", payload).then(function (response) {
-      console.log(response);
-    });
+    axios
+      .post(apiBaseUrl + "grant_deny_leave", payload)
+      .then(function (response) {
+        console.log(response);
+      });
     this.props.history.push("/pending_leave_request");
   }
-//routing to pending leave request page on clicking cancel button.
+  //routing to pending leave request page on clicking cancel button.
   onClickCancel(event) {
     this.props.history.push("/pending_leave_request");
   }
-//fetching data from database to show on screen
+  //fetching data from database to show on screen
   componentDidMount() {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var self = this;
     var payload = {
-      msg: "Send Data"
+      msg: "Send Data",
     };
-    axios.post(apiBaseUrl + "view_leave_request", payload).then(function (response) {
-      console.log(response);
-      self.setState({
-        id: response.data.info.request_id,
-        name: response.data.info.full_name,
-        department: response.data.info.department,
-        HOD: response.data.info.hod,
-        fromDate: response.data.info.start_date.substring(0,10),
-        toDate: response.data.info.end_date.substring(0,10),
-        type: response.data.info.type,
-        reason: response.data.info.reason,
-        requestedOn: response.data.info.requested_on.substring(0,10),
+    axios
+      .post(apiBaseUrl + "view_leave_request", payload)
+      .then(function (response) {
+        console.log(response);
+        self.setState({
+          id: response.data.info.request_id,
+          name: response.data.info.full_name,
+          department: response.data.info.department,
+          HOD: response.data.info.hod,
+          fromDate: response.data.info.start_date.substring(0, 10),
+          toDate: response.data.info.end_date.substring(0, 10),
+          type: response.data.info.type,
+          reason: response.data.info.reason,
+          requestedOn: response.data.info.requested_on.substring(0, 10),
+        });
       });
-    });
     return;
   }
   render() {
@@ -138,12 +144,10 @@ class viewLeaveRequest extends Component {
                     </div>
                   </li>
                   <li>
-                    <div>
-            
-                    </div>
+                    <div></div>
                   </li>
                   <li>
-                  <div>
+                    <div>
                       <h5>
                         <b>Requested On:</b>
                       </h5>
@@ -158,24 +162,19 @@ class viewLeaveRequest extends Component {
                       <h4> {this.state.reason}</h4>
                     </div>
                   </li>
-                  
-                  
                 </ul>
               </div>
             </Typography>
-          </Container >
-            
-          
-        
-        <div >
-            <ThemeProvider theme={theme }  >
+          </Container>
+
+          <div>
+            <ThemeProvider theme={theme}>
               <Button
                 variant="contained"
                 size="small"
                 color="primary"
                 className="margin"
                 onClick={this.onClickGrant.bind(this)}
-
               >
                 Grant
               </Button>
@@ -199,7 +198,7 @@ class viewLeaveRequest extends Component {
               </Button>
             </ThemeProvider>
           </div>
-          </div>
+        </div>
       </div>
     );
   }

@@ -40,11 +40,11 @@ class addDepartment extends Component {
       HeadofDept: "",
       hodID: "",
       loggedIn: true,
-      open: false
+      open: false,
     };
     this.inputChange = this.inputChange.bind(this);
   }
-// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
+  // for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -62,13 +62,13 @@ class addDepartment extends Component {
     });
     this.props.history.push("/department");
   };
-//setting states to new input values 
+  //setting states to new input values
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
-//sending the new input data for department to backend to update the mysql database.
+  //sending the new input data for department to backend to update the mysql database.
   onClickAddUser(event) {
     event.preventDefault();
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
@@ -91,7 +91,7 @@ class addDepartment extends Component {
     });
     return;
   }
-//on cancel go to department main page. 
+  //on cancel go to department main page.
   onClickCancel(event) {
     this.props.history.push("/department");
   }
@@ -114,19 +114,19 @@ class addDepartment extends Component {
               style={{ backgroundColor: "#fff", height: "auto" }}
             >
               <div className="alert">
-                    <Snackbar
-                      open={this.state.open}
-                      autoHideDuration={2000}
-                      onClose={this.handleClose.bind(this)}
-                    >
-                      <Alert
-                        onClose={this.handleClose.bind(this)}
-                        severity="success"
-                      >
-                        Department added Successfully!
-                      </Alert>
-                    </Snackbar>
-                  </div>
+                <Snackbar
+                  open={this.state.open}
+                  autoHideDuration={2000}
+                  onClose={this.handleClose.bind(this)}
+                >
+                  <Alert
+                    onClose={this.handleClose.bind(this)}
+                    severity="success"
+                  >
+                    Department added Successfully!
+                  </Alert>
+                </Snackbar>
+              </div>
               <form>
                 <div className="formContainer">
                   <TextField

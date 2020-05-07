@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import "./viewUserInfo.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 // above components imported from material-ui.com and modified to fit our code
 const theme = createMuiTheme({
   palette: {
@@ -18,10 +23,22 @@ class viewUserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: [],
       loggedIn: true,
+      open: false,
     };
   }
+  handleClickOpen() {
+    this.setState({
+      open: true,
+    });
+  }
+
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
+
   handleClickEditUser(event) {
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
     var payload = {
@@ -33,7 +50,15 @@ class viewUserInfo extends Component {
       .then(function (response) {});
     this.props.history.push("/edit_user");
   }
-  handleClickUser(event) {
+  handleClickDeleteUser(event) {
+    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var payload = {
+      Message: "delete user info",
+      Id: this.state.id,
+    };
+    axios
+      .post(apiBaseUrl + "delete_user", payload)
+      .then(function (response) {});
     this.props.history.push("/user");
   }
   componentDidMount() {
@@ -48,6 +73,7 @@ class viewUserInfo extends Component {
     var payload = {
       // asking server for data
       msg: "Send Data",
+      id: -1,
     };
     axios
       .post(apiBaseUrl + "view_user_info", payload)
@@ -85,8 +111,8 @@ class viewUserInfo extends Component {
       <div>
         <Navbar />
         <div className="ContainerPlacing">
-            <h1>Employee Info</h1>
-            <div className="userInfo">
+          <h1>Employee Info</h1>
+          <div className="userInfo">
             <Typography
               component="div"
               style={{ backgroundColor: "#fff", height: "auto" }}
@@ -202,28 +228,60 @@ class viewUserInfo extends Component {
             </Typography>
           </div>
         </div>
-        <div className="centerplacing">
-            <ThemeProvider theme={theme}>
+        <div>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose.bind(this)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Warning"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure you want to delete this user?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
               <Button
-                variant="contained"
-                size="small"
+                className="colorButton"
+                onClick={this.handleClose.bind(this)}
                 color="primary"
-                className="buttonmargin"
-                onClick={this.handleClickEditUser.bind(this)}
               >
-                Edit
+                Cancel
               </Button>
               <Button
-                variant="contained"
-                size="small"
+                onClick={this.handleClickDeleteUser.bind(this)}
                 color="primary"
-                className="buttonmargin"
-                onClick={this.handleClickUser.bind(this)}
+                autoFocus
+                className="colorButton"
               >
                 Delete
               </Button>
-            </ThemeProvider>
-          </div>
+            </DialogActions>
+          </Dialog>
+        </div>
+        <div className="centerplacing">
+          <ThemeProvider theme={theme}>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              className="buttonmargin"
+              onClick={this.handleClickEditUser.bind(this)}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              className="buttonmargin"
+              onClick={this.handleClickOpen.bind(this)}
+            >
+              Delete
+            </Button>
+          </ThemeProvider>
+        </div>
       </div>
     );
   }

@@ -41,13 +41,15 @@ class viewAssignedTaskTable extends Component {
     var self = this;
     var payload = {
       msg: "Send Data",
-      id: localStorage.getItem("user_id")
+      id: localStorage.getItem("user_id"),
     };
-    axios.post(apiBaseUrl + "view_assigned_task", payload).then(function (response) {
-      self.setState({
-        rows: response.data.data,
+    axios
+      .post(apiBaseUrl + "view_assigned_task", payload)
+      .then(function (response) {
+        self.setState({
+          rows: response.data.data,
+        });
       });
-    });
     return;
   }
   render() {
@@ -71,12 +73,7 @@ class viewAssignedTaskTable extends Component {
             <TableBody>
               {this.state.rows.map((row) => {
                 return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.code}
-                  >
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (

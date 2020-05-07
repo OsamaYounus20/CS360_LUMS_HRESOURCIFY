@@ -40,11 +40,16 @@ exports.display = async function (req, res) {
   if (req.body.id > 0) {
     // getting the id of the user from the first query from the client
     id = req.body.id;
+    console.log("initial id", id);
+    res.send({
+      code: 200,
+    });
+    return;
   }
 
   // getting the dictionary of departments
   var departments = await getDepartment();
-  
+
   // querying the database to get the information from the user table
   connection.query(
     "SELECT * FROM HRUSER WHERE user_id = ?",
@@ -56,8 +61,9 @@ exports.display = async function (req, res) {
         // formatting the results properly
         results = JSON.parse(JSON.stringify(results));
         results = results[0];
+        console.log(results);
         results.department = departments[results.department];
-        results.dob = results.dob.substring(0,10);
+        results.dob = results.dob.substring(0, 10);
         delete results.user_password;
         delete results.photo;
         delete results.employment_status;
@@ -66,17 +72,25 @@ exports.display = async function (req, res) {
 
         // querying the database to get the name of the manager
         if (results.manager != null) {
-          connection.query('SELECT full_name FROM HRUSER WHERE user_id = ?', [results.manager], async function(error, results2, fields) {
-            if (error) {
-              console.log(error);
-            } else {
-              results.manager = results2[0].full_name;
-              res.send(results);
+          connection.query(
+            "SELECT full_name FROM HRUSER WHERE user_id = ?",
+            [results.manager],
+            async function (error, results2, fields) {
+              if (error) {
+                console.log(error);
+              } else {
+                if (results2.length === 0) {
+                  results.manager = "None";
+                } else {
+                  results.manager = results2[0].full_name;
+                }
+                res.send(results);
+              }
             }
-          });
+          );
         } else {
           // sending the results to the client
-          results.manager = 'None';
+          results.manager = "None";
           res.send(results);
         }
       }

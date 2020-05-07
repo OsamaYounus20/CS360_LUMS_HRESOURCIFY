@@ -51,13 +51,13 @@ class applyLeave extends Component {
       type: "",
       reason: "",
       loggedIn: true,
-      open: false
+      open: false,
     };
     this.inputChange = this.inputChange.bind(this);
     this.handleFromDateChange = this.handleFromDateChange.bind(this);
     this.handleToDateChange = this.handleToDateChange.bind(this);
   }
-// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
+  // for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token === null) {
@@ -66,7 +66,7 @@ class applyLeave extends Component {
       });
     }
   }
-//setting state to new input values.
+  //setting state to new input values.
   handleFromDateChange(date) {
     this.setState({
       fromDate: date,
@@ -84,14 +84,14 @@ class applyLeave extends Component {
     this.setState({
       open: true,
     });
-    this.props.history.push("/view_applied_leaves");
+    this.props.history.push("/user_dashboard");
   };
   inputChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
-//sending input data to backend
+  //sending input data to backend
   onClickApply(event) {
     event.preventDefault();
     var apiBaseUrl = "http://3.8.136.131:4000/api/";
@@ -113,9 +113,9 @@ class applyLeave extends Component {
     });
     return;
   }
-//routing user back to dashboard on clicking cancel
+  //routing user back to dashboard on clicking cancel
   onClickCancel(event) {
-    this.props.history.push("/view_applied_leaves");
+    this.props.history.push("/user_dashboard");
   }
   render() {
     if (this.state.loggedIn === false) {
@@ -141,7 +141,7 @@ class applyLeave extends Component {
                     <KeyboardDatePicker
                       required
                       autoOk
-                      name='fromDate'
+                      name="fromDate"
                       variant="inline"
                       inputVariant="outlined"
                       label="From"
@@ -188,7 +188,6 @@ class applyLeave extends Component {
                       <MenuItem value={"Sick"}>Sick</MenuItem>
                       <MenuItem value={"Annual"}>Annual</MenuItem>
                       <MenuItem value={"Other"}>Other</MenuItem>
-                      
                     </Select>
                   </FormControl>
                   <TextField
@@ -205,19 +204,19 @@ class applyLeave extends Component {
                   />{" "}
                 </div>
                 <div className="alert">
-                    <Snackbar
-                      open={this.state.open}
-                      autoHideDuration={2000}
+                  <Snackbar
+                    open={this.state.open}
+                    autoHideDuration={2000}
+                    onClose={this.handleClose.bind(this)}
+                  >
+                    <Alert
                       onClose={this.handleClose.bind(this)}
+                      severity="success"
                     >
-                      <Alert
-                        onClose={this.handleClose.bind(this)}
-                        severity="success"
-                      >
-                        Request sent successfully!
-                      </Alert>
-                    </Snackbar>
-                  </div>
+                      Request sent successfully!
+                    </Alert>
+                  </Snackbar>
+                </div>
               </form>
             </Typography>
           </Container>

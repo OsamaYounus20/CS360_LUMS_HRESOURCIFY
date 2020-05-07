@@ -30,7 +30,7 @@ class viewDepartmentInfo extends Component {
   }
   componentDidMount() {
     const token = localStorage.getItem("token");
-    if(token === null) {
+    if (token === null) {
       this.setState({
         loggedIn: false,
       });
@@ -40,112 +40,114 @@ class viewDepartmentInfo extends Component {
     var payload = {
       msg: "Send Data",
     };
-    axios.post(apiBaseUrl + "view_dept_info", payload).then(function (response) {
-      self.setState({
-        name: response.data.dept_name,
-        email: response.data.email,
-        hod: response.data.hod,
-        extension_code: response.data.extension_code,
-        hod_phone: response.data.hod_phone,
-        hod_email: response.data.hod_email
+    axios
+      .post(apiBaseUrl + "view_dept_info", payload)
+      .then(function (response) {
+        self.setState({
+          name: response.data.dept_name,
+          email: response.data.email,
+          hod: response.data.hod,
+          extension_code: response.data.extension_code,
+          hod_phone: response.data.hod_phone,
+          hod_email: response.data.hod_email,
+        });
       });
-    });
     return;
   }
 
   render() {
-    if(this.state.loggedIn === false) {
-      return <Link to="/" style={{ textDecoration: "none" }}>You are not LoggedIn( Click Here )</Link>
+    if (this.state.loggedIn === false) {
+      return (
+        <Link to="/" style={{ textDecoration: "none" }}>
+          You are not LoggedIn( Click Here )
+        </Link>
+      );
     }
     return (
       <div>
         <Navbar />
         <div className="ContainerPlacing">
-          <Container fixed>
-            <h1>Department Info</h1>
-            <Typography
-              component="div"
-              className="margin2"
-              style={{ backgroundColor: "#fff", height: "auto" }}
+          <h1>Department Info</h1>
+          <Typography
+            component="div"
+            className="margin2"
+            style={{ backgroundColor: "#fff", height: "auto" }}
+          >
+            <div>
+              <ul>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Name:</b>
+                    </h5>
+                    <h4> {this.state.name}</h4>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Email:</b>
+                    </h5>
+                    <h4> {this.state.email}</h4>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Extension Code:</b>
+                    </h5>
+                    <h4> {this.state.extension_code}</h4>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Head of Department:</b>
+                    </h5>
+                    <h4> {this.state.hod}</h4>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Email HOD:</b>
+                    </h5>
+                    <h4>{this.state.hod_email}</h4>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <h5>
+                      <b>Phone Number HOD:</b>
+                    </h5>
+                    <h4>{this.state.hod_phone}</h4>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </Typography>
+        </div>
+        <div className="centerplacing">
+          <ThemeProvider theme={theme}>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              className="buttonMargin"
+              onClick={this.onClickEditDepartment.bind(this)}
             >
-              <div>
-                
-                <ul>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Name:</b>
-                      </h5>
-                        <h4> {this.state.name}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Email:</b>
-                      </h5>
-                      <h4> {this.state.email}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Extension Code:</b>
-                      </h5>
-                      <h4> {this.state.extension_code}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Head of Department:</b>
-                      </h5>
-                      <h4> {this.state.hod}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Email HOD:</b>
-                      </h5>
-                        <h4>{this.state.hod_email}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>Phone Number HOD:</b>
-                      </h5>
-                      <h4>{this.state.hod_phone}</h4>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </Typography>
-          </Container>
-          <div className="centerplacing">
-            <ThemeProvider theme={theme} className="margin2">
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                className="margin"
-                onClick={this.onClickEditDepartment.bind(this)}
-              >
-                Edit
-              </Button>
-
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                className="margin"
-                onClick={this.onClickviewDepartmentInfo.bind(this)}
-              >
-                Delete
-              </Button>
-            </ThemeProvider>
-          </div>
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              className="buttonMargin"
+              onClick={this.onClickviewDepartmentInfo.bind(this)}
+            >
+              Delete
+            </Button>
+          </ThemeProvider>
         </div>
       </div>
     );
