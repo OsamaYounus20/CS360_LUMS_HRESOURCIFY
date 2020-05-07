@@ -3,6 +3,8 @@ import "./viewLeaveRequest.css";
 import Navbar from "../adminNavbar/navbar";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import Avatar from "@material-ui/core/Avatar";
+import image1 from "../img/imagetest.jpg";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { green } from "@material-ui/core/colors";
@@ -64,9 +66,9 @@ class viewLeaveRequest extends Component {
         HOD: response.data.info.hod,
         fromDate: response.data.info.start_date.substring(0,10),
         toDate: response.data.info.end_date.substring(0,10),
-        requestedOn: response.data.info.requested_on.substring(0,10),
         type: response.data.info.type,
         reason: response.data.info.reason,
+        requestedOn: response.data.info.requested_on.substring(0,10),
       });
     });
     return;
@@ -112,15 +114,7 @@ class viewLeaveRequest extends Component {
                   <li>
                     <div>
                       <h5>
-                        <b>Requested On:</b>
-                      </h5>
-                      <h4>{this.state.toDate}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5>
-                        <b>From:</b>
+                        <b>From Date:</b>
                       </h5>
                       <h4> {this.state.fromDate}</h4>
                     </div>
@@ -128,7 +122,7 @@ class viewLeaveRequest extends Component {
                   <li>
                     <div>
                       <h5>
-                        <b>To:</b>
+                        <b>To Date:</b>
                       </h5>
                       <h4>{this.state.toDate}</h4>
                     </div>
@@ -143,12 +137,15 @@ class viewLeaveRequest extends Component {
                   </li>
                   <li>
                     <div>
-                      
+            
                     </div>
                   </li>
                   <li>
-                    <div>
-                     
+                  <div>
+                      <h5>
+                        <b>Requested On:</b>
+                      </h5>
+                      <h4> {this.state.requestedOn}</h4>
                     </div>
                   </li>
                   <li>
