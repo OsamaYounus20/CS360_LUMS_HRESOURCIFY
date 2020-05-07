@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import './calendar.css';
 import { Link } from "react-router-dom";
 
-
+//used react calendar.
 class calendar extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,7 @@ class calendar extends Component {
     };
     this.onChangedate = this.onChangedate.bind(this);
   }
+// for state management. setting loggedin value according to the token which is null in case user hasn't log in through credentials. Basically for security.
   componentDidMount() {
     const token = localStorage.getItem("token");
     if(token === null) {
@@ -24,6 +25,7 @@ class calendar extends Component {
       });
     }
   }
+//by clicking on each date it gives the event on that date.
   onChangedate= date => {
       this.setState({date})
       this.setState({
