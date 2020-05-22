@@ -71,7 +71,7 @@ class addDepartment extends Component {
   //sending the new input data for department to backend to update the mysql database.
   onClickAddUser(event) {
     event.preventDefault();
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       name: this.state.Name,

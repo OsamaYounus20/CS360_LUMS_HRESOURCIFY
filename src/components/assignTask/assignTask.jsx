@@ -98,7 +98,7 @@ class assignTask extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       message: "subordinates",
@@ -113,7 +113,7 @@ class assignTask extends Component {
   }
   onClickAssign(event) {
     event.preventDefault();
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       user_id: localStorage.getItem("user_id"),

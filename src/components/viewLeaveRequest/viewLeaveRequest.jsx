@@ -26,7 +26,7 @@ class viewLeaveRequest extends Component {
   }
   //sending decision to backend regarding the leave.
   onClickGrant(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       msg: "grant leave",
       id: this.state.id,
@@ -40,7 +40,7 @@ class viewLeaveRequest extends Component {
   }
   //sending decision to backend regarding the leave.
   onClickDeny(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       msg: "deny leave",
       id: this.state.id,
@@ -58,7 +58,7 @@ class viewLeaveRequest extends Component {
   }
   //fetching data from database to show on screen
   componentDidMount() {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

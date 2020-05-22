@@ -98,7 +98,7 @@ class addUser extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       Message: "show depts",
@@ -117,7 +117,7 @@ class addUser extends Component {
   //sending input data back to server to update the sqldatabase with new user.
   onClickAddUser(event) {
     event.preventDefault();
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       Message: "add user",

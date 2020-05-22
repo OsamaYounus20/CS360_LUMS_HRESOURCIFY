@@ -64,7 +64,7 @@ class editPersonalInfo extends Component {
     });
   }
   onClickSave(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     //updated user info being sent to server here
     var payload = {
       Message: "updated info user",
@@ -93,7 +93,7 @@ class editPersonalInfo extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       Message: "give employee info",

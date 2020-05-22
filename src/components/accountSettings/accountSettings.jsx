@@ -76,7 +76,7 @@ class accountSettings extends Component {
       });
       return;
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       Message: "updated password",

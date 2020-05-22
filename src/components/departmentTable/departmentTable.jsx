@@ -23,7 +23,7 @@ class departmentTable extends Component {
     this.onClickDepartmentRow = this.onClickDepartmentRow.bind(this);
   }
   onClickDepartmentRow(row) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       id: row.dept_id,
     };
@@ -35,7 +35,7 @@ class departmentTable extends Component {
     this.props.history.push("/view_department_info");
   }
   componentDidMount() {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

@@ -40,7 +40,7 @@ class viewUserInfo extends Component {
   }
 
   handleClickEditUser(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       Message: "give user info",
       Id: this.state.id,
@@ -51,7 +51,7 @@ class viewUserInfo extends Component {
     this.props.history.push("/edit_user");
   }
   handleClickDeleteUser(event) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       Message: "delete user info",
       Id: this.state.id,
@@ -68,7 +68,7 @@ class viewUserInfo extends Component {
         loggedIn: false,
       });
     }
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       // asking server for data

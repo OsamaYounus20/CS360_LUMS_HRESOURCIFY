@@ -41,7 +41,7 @@ class leaveRequestTable extends Component {
   }
   //data being fetched from server here
   onClickViewRequest(row) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       request_id: row.request_id,
       full_name: row.full_name,
@@ -57,7 +57,7 @@ class leaveRequestTable extends Component {
     this.props.history.push("/view_leave_request");
   }
   componentDidMount() {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",

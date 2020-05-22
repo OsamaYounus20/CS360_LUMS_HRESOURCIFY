@@ -41,7 +41,7 @@ class table extends Component {
 
   //updated data being sent to server here
   onClickAddUser(row) {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var payload = {
       id: row.user_id,
     };
@@ -53,7 +53,7 @@ class table extends Component {
 
   //user data is being recieved from the backend here on page load
   componentDidMount() {
-    var apiBaseUrl = "http://3.8.136.131:4000/api/";
+    var apiBaseUrl = "http://18.130.38.77:4000/api/";
     var self = this;
     var payload = {
       msg: "Send Data",
